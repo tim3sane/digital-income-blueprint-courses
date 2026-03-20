@@ -191,6 +191,46 @@
         .curso-price .old { font-size: .9rem; color: var(--text-muted); text-decoration: line-through; margin-left: .4rem; font-weight: 400; }
         .curso-footer .btn { padding: .6rem 1.4rem; font-size: .85rem; }
 
+        /* ── PREMIUM CARD ── */
+        .curso-premium {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--dark-2), rgba(108,92,231,.08));
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 40px rgba(108,92,231,.15), inset 0 1px 0 rgba(255,255,255,.05);
+        }
+        .curso-premium::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--green), var(--accent-light));
+        }
+        .curso-premium:hover { transform: translateY(-6px); box-shadow: 0 0 60px rgba(108,92,231,.25); }
+        .curso-premium-inner {
+            display: flex; align-items: center; gap: 2.5rem; padding: 2.5rem;
+        }
+        .curso-premium-left {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-width: 140px; gap: 1rem;
+        }
+        .premium-crown { font-size: 5rem; filter: drop-shadow(0 0 20px rgba(201,168,76,.4)); }
+        .curso-premium-left .curso-badge { position: static; font-size: .8rem; padding: .4rem 1.2rem; }
+        .curso-premium-right { flex: 1; }
+        .premium-label {
+            text-transform: uppercase; letter-spacing: 4px; font-size: .7rem;
+            font-weight: 700; color: var(--accent-light); margin-bottom: .5rem;
+        }
+        .curso-premium-right h3 {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem;
+            color: #fff; margin-bottom: .75rem;
+        }
+        .curso-premium-right p { font-size: .92rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+        .curso-premium-right .curso-footer { border-top: 1px solid rgba(108,92,231,.2); }
+        .btn-premium { padding: .75rem 2rem !important; font-size: .95rem !important; }
+        @media (max-width: 768px) {
+            .curso-premium-inner { flex-direction: column; gap: 1.5rem; padding: 1.5rem; }
+            .curso-premium-left { min-width: auto; }
+            .premium-crown { font-size: 3.5rem; }
+            .curso-premium-right h3 { font-size: 1.3rem; }
+        }
+
         /* ── BLOG ── */
         .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
         .blog-card {
@@ -448,22 +488,27 @@
                 </div>
             </div>
 
-            <div class="curso-card fade-in">
-                <div class="curso-img">
-                    💰
-                    <span class="curso-badge badge-pro">Advanced</span>
-                </div>
-                <div class="curso-body">
-                    <h3>Scale to $10K/mo with Paid Ads</h3>
-                    <p>Advanced Meta Ads and TikTok Ads strategies. Learn to scale campaigns, optimize ROAS, and build a predictable, profitable ads system.</p>
-                    <div class="curso-meta">
-                        <span>📚 18 modules</span>
-                        <span>⏱ 14 hours</span>
-                        <span>📊 Real case studies</span>
+            <div class="curso-card curso-premium fade-in">
+                <div class="curso-premium-inner">
+                    <div class="curso-premium-left">
+                        <div class="premium-crown">👑</div>
+                        <span class="curso-badge badge-pro">Ultimate</span>
                     </div>
-                    <div class="curso-footer">
-                        <div class="curso-price">$49.99 <span class="old">$197</span></div>
-                        <a href="#" class="btn btn-primary">Buy Now</a>
+                    <div class="curso-premium-right">
+                        <div class="premium-label">THE ULTIMATE BLUEPRINT</div>
+                        <h3>Scale to $10K/mo with Paid Ads</h3>
+                        <p>The definitive method to build real wealth with e-commerce. Advanced Meta Ads and TikTok Ads strategies, campaign scaling, ROAS optimization, and a predictable, profitable ads system that works on autopilot.</p>
+                        <div class="curso-meta">
+                            <span>📚 18 modules</span>
+                            <span>⏱ 14 hours</span>
+                            <span>📊 Real case studies</span>
+                            <span>🔥 1-on-1 support</span>
+                            <span>💎 Lifetime updates</span>
+                        </div>
+                        <div class="curso-footer">
+                            <div class="curso-price">$49.99 <span class="old">$197</span></div>
+                            <a href="#" class="btn btn-primary btn-premium">Get the Blueprint &rarr;</a>
+                        </div>
                     </div>
                 </div>
             </div>
