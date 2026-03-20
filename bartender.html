@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bar Book — La Guía Definitiva de Bartending</title>
+    <meta name="description" content="La guía definitiva de bartending y coctelería. Manual profesional, reglas IBA, y los 30 cócteles clásicos más importantes del mundo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍸</text></svg>">
+</head>
+<body>
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-icon">🍸</span>
+                <span class="logo-text">Coctelisimo</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" class="nav-link">El Oficio</a></li>
+                <li><a href="#manual" class="nav-link">Manual</a></li>
+                <li><a href="#iba" class="nav-link">IBA</a></li>
+                <li><a href="#cocktails" class="nav-link">Cócteles</a></li>
+                <li><a href="#glossary" class="nav-link">Glosario</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-particles" id="heroParticles"></div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-eyebrow reveal">La Guía Definitiva</p>
+            <h1 class="hero-title">
+                <span class="reveal">El Arte del</span>
+                <span class="reveal hero-title-accent">Bartending</span>
+            </h1>
+            <p class="hero-subtitle reveal">Domina el oficio. Conoce la historia. Perfecciona cada cóctel. Una guía profesional basada en los estándares de la International Bartenders Association.</p>
+            <div class="hero-cta reveal">
+                <a href="#cocktails" class="btn btn-primary">Explorar Cócteles</a>
+                <a href="#manual" class="btn btn-secondary">Leer el Manual</a>
+            </div>
+            <div class="hero-stats reveal">
+                <div class="stat">
+                    <span class="stat-number" data-count="30">0</span>
+                    <span class="stat-label">Cócteles Clásicos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="1951">0</span>
+                    <span class="stat-label">IBA Fundada</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-count="72">0</span>
+                    <span class="stat-label">Países Miembros</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section section-about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow reveal">El Oficio</p>
+                <h2 class="section-title reveal">Más que servir tragos.<br><span class="text-accent">Es un arte.</span></h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-card reveal">
+                    <div class="about-card-icon">🎯</div>
+                    <h3>Precisión</h3>
+                    <p>Cada mililitro cuenta. Un bartender profesional domina las medidas exactas, los tiempos de agitación y las temperaturas ideales para cada preparación.</p>
+                </div>
+                <div class="about-card reveal" style="--delay: 0.1s">
+                    <div class="about-card-icon">🧪</div>
+                    <h3>Conocimiento</h3>
+                    <p>Desde la destilación hasta la fermentación, un bartender entiende la ciencia detrás de cada espíritu, licor y modificador que utiliza en sus creaciones.</p>
+                </div>
+                <div class="about-card reveal" style="--delay: 0.2s">
+                    <div class="about-card-icon">🤝</div>
+                    <h3>Hospitalidad</h3>
+                    <p>La barra es un escenario. El bartender es anfitrión, psicólogo, artista y profesional. La experiencia del cliente es siempre la prioridad.</p>
+                </div>
+                <div class="about-card reveal" style="--delay: 0.3s">
+                    <div class="about-card-icon">📜</div>
+                    <h3>Tradición</h3>
+                    <p>Desde las primeras tabernas del siglo XVIII hasta los speakeasies modernos, el bartending ha evolucionado manteniendo el respeto por sus raíces y clásicos.</p>
+                </div>
+            </div>
+            <div class="about-quote reveal">
+                <blockquote>
+                    <p>"El conocimiento y la técnica también se beben"</p>
+                    <cite>— Jerry Thomas</cite>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ MANUAL ============ -->
+    <section class="section section-manual" id="manual">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow reveal">Manual Profesional</p>
+                <h2 class="section-title reveal">El Manual del<br><span class="text-accent">Bartender</span></h2>
+                <p class="section-desc reveal">Todo lo que necesitas saber para dominar la barra profesionalmente. Desde las herramientas esenciales hasta las técnicas avanzadas de preparación.</p>
+            </div>
+
+            <div class="manual-accordion">
+                <!-- Equipment -->
+                <div class="accordion-item reveal">
+                    <button class="accordion-trigger" data-accordion="equipment">
+                        <div class="accordion-trigger-content">
+                            <span class="accordion-icon">🛠️</span>
+                            <div>
+                                <h3>Herramientas Esenciales</h3>
+                                <p>El equipo que todo bartender profesional debe dominar</p>
+                            </div>
+                        </div>
+                        <span class="accordion-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content" id="equipment">
+                        <div class="tools-grid">
+                            <div class="tool-item">
+                                <h4>Coctelera Boston</h4>
+                                <p>Dos piezas (vaso metálico + vaso de vidrio o metal). La preferida por profesionales por su versatilidad y rapidez. Requiere strainer separado.</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>Coctelera Cobbler</h4>
+                                <p>Tres piezas (vaso, tapa con colador integrado y capuchón). Ideal para principiantes. El colador incorporado facilita el servicio.</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>Jigger / Medidor</h4>
+                                <p>Herramienta de medición de doble cara. Estándar: 1oz/2oz o 30ml/60ml. La precisión en las medidas es la base de la consistencia.</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>Bar Spoon</h4>
+                                <p>Cuchara larga de barra con espiral. Se usa para mezclar, medir (1 barspoon ≈ 5ml), hacer capas y como guía para vertido lento.</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>Strainer Hawthorne</h4>
+                                <p>Colador con resorte metálico. Se usa con la coctelera Boston para colar cócteles agitados, reteniendo hielo y sólidos.</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>Colador Fino (Fine Strainer)</h4>
+                                <p>Malla fina para doble colado. Elimina pequeños fragmentos de hielo, pulpa y semillas para un resultado cristalino.</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>Muddler / Macerador</h4>
+                                <p>Para macerar frutas, hierbas y especias directamente en el vaso. Extraer aceites esenciales sin destrozar los ingredientes es clave.</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>Mixing Glass</h4>
+                                <p>Vaso de cristal grueso para cócteles revueltos (stirred). Diseñado para enfriar y diluir con elegancia. Esencial para Martinis y Manhattans.</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>Exprimidor de Cítricos</h4>
+                                <p>Manual o de palanca. El zumo fresco es no negociable en coctelería profesional. Nunca uses zumo embotellado.</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>Pelador / Zester</h4>
+                                <p>Para crear twists de cítricos. Un buen twist libera aceites esenciales que aromatizan el cóctel. Evita la parte blanca (amarga).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Techniques -->
+                <div class="accordion-item reveal" style="--delay: 0.1s">
+                    <button class="accordion-trigger" data-accordion="techniques">
+                        <div class="accordion-trigger-content">
+                            <span class="accordion-icon">🔄</span>
+                            <div>
+                                <h3>Técnicas de Preparación</h3>
+                                <p>Los métodos fundamentales para elaborar cualquier cóctel</p>
+                            </div>
+                        </div>
+                        <span class="accordion-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content" id="techniques">
+                        <div class="techniques-list">
+                            <div class="technique-item">
+                                <div class="technique-name">Shake / Agitar</div>
+                                <div class="technique-desc">
+                                    <p>Para cócteles con zumos, cremas, huevo o ingredientes densos. Agitar vigorosamente 10-15 segundos con hielo. Enfría rápidamente y genera dilución y textura. <strong>Regla de oro:</strong> si tiene cítricos, se agita.</p>
+                                </div>
+                            </div>
+                            <div class="technique-item">
+                                <div class="technique-name">Stir / Revolver</div>
+                                <div class="technique-desc">
+                                    <p>Para cócteles con solo espíritus y modificadores transparentes. Revolver 30-40 segundos en mixing glass con hielo. Produce dilución controlada sin aireación. <strong>Regla de oro:</strong> si todos los ingredientes son transparentes, se revuelve.</p>
+                                </div>
+                            </div>
+                            <div class="technique-item">
+                                <div class="technique-name">Build / Construir</div>
+                                <div class="technique-desc">
+                                    <p>Preparar directamente en el vaso de servicio. Agregar ingredientes sobre hielo y mezclar brevemente. Ideal para highballs y tragos sencillos como Gin & Tonic o Cuba Libre.</p>
+                                </div>
+                            </div>
+                            <div class="technique-item">
+                                <div class="technique-name">Muddle / Macerar</div>
+                                <div class="technique-desc">
+                                    <p>Presionar suavemente ingredientes frescos para liberar sabores y aceites esenciales. No triturar — presionar y girar. Las hierbas se golpean (palmear), las frutas se presionan.</p>
+                                </div>
+                            </div>
+                            <div class="technique-item">
+                                <div class="technique-name">Dry Shake</div>
+                                <div class="technique-desc">
+                                    <p>Agitar SIN hielo primero (para cócteles con clara de huevo o aquafaba), luego agregar hielo y agitar nuevamente. Crea una espuma densa y cremosa perfecta.</p>
+                                </div>
+                            </div>
+                            <div class="technique-item">
+                                <div class="technique-name">Layer / Estratificar</div>
+                                <div class="technique-desc">
+                                    <p>Verter lentamente sobre el dorso de la bar spoon para crear capas separadas. Los líquidos se ordenan por densidad. Requiere pulso firme y paciencia.</p>
+                                </div>
+                            </div>
+                            <div class="technique-item">
+                                <div class="technique-name">Blend / Licuar</div>
+                                <div class="technique-desc">
+                                    <p>Mezclar con hielo en licuadora. Para cócteles frozen como Frozen Daiquiri o Piña Colada. El hielo debe quedar completamente integrado, textura suave.</p>
+                                </div>
+                            </div>
+                            <div class="technique-item">
+                                <div class="technique-name">Roll / Rodar</div>
+                                <div class="technique-desc">
+                                    <p>Pasar el contenido de un vaso a otro suavemente. Mezcla sin agitación excesiva. Técnica clásica del Bloody Mary para mantener la textura sin aireación.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Glassware -->
+                <div class="accordion-item reveal" style="--delay: 0.2s">
+                    <button class="accordion-trigger" data-accordion="glassware">
+                        <div class="accordion-trigger-content">
+                            <span class="accordion-icon">🥃</span>
+                            <div>
+                                <h3>Cristalería</h3>
+                                <p>La copa correcta para cada cóctel</p>
+                            </div>
+                        </div>
+                        <span class="accordion-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content" id="glassware">
+                        <div class="glass-grid">
+                            <div class="glass-item">
+                                <img src="assets/img/old_fashioned.png" alt="Rocks Glass" class="glass-image">
+                                <h4>Rocks / Old Fashioned</h4>
+                                <p>6-10 oz. Para cócteles servidos on the rocks o espíritus neat. Old Fashioned, Negroni, Whiskey Sour.</p>
+                            </div>
+                            <div class="glass-item">
+                                <div class="glass-emoji">🥛</div>
+                                <h4>Highball</h4>
+                                <p>8-12 oz. Para tragos largos con mixer. Gin & Tonic, Moscow Mule, Cuba Libre, Paloma.</p>
+                            </div>
+                            <div class="glass-item">
+                                <div class="glass-emoji">🍸</div>
+                                <h4>Coupe</h4>
+                                <p>5-7 oz. Elegante copa de boca ancha. Para cócteles servidos up sin hielo. Daiquiri, Sidecar, Gimlet.</p>
+                            </div>
+                            <div class="glass-item">
+                                <div class="glass-emoji">🍸</div>
+                                <h4>Martini / Cocktail</h4>
+                                <p>4-6 oz. La copa icónica en forma de V invertida. Dry Martini, Cosmopolitan, Aviation.</p>
+                            </div>
+                            <div class="glass-item">
+                                <div class="glass-emoji">🥂</div>
+                                <h4>Flauta / Flute</h4>
+                                <p>6-8 oz. Alargada para preservar la carbonatación. French 75, Bellini, Kir Royale.</p>
+                            </div>
+                            <div class="glass-item">
+                                <div class="glass-emoji">🍷</div>
+                                <h4>Nick & Nora</h4>
+                                <p>5-6 oz. Copa elegante redondeada. Alternativa sofisticada al vaso Martini. Gin cocktails, Last Word.</p>
+                            </div>
+                            <div class="glass-item">
+                                <div class="glass-emoji">🫗</div>
+                                <h4>Collins</h4>
+                                <p>10-14 oz. Más alto y estrecho que el highball. Tom Collins, John Collins, Mojito.</p>
+                            </div>
+                            <div class="glass-item">
+                                <div class="glass-emoji">☕</div>
+                                <h4>Copa Irish Coffee</h4>
+                                <p>8-10 oz. Con asa para bebidas calientes. Irish Coffee, Hot Toddy, cócteles de café.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ice -->
+                <div class="accordion-item reveal" style="--delay: 0.3s">
+                    <button class="accordion-trigger" data-accordion="ice">
+                        <div class="accordion-trigger-content">
+                            <span class="accordion-icon">🧊</span>
+                            <div>
+                                <h3>Tipos de Hielo</h3>
+                                <p>El ingrediente más importante y subestimado</p>
+                            </div>
+                        </div>
+                        <span class="accordion-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content" id="ice">
+                        <div class="ice-grid">
+                            <div class="ice-item">
+                                <h4>Cubo Estándar</h4>
+                                <p>El más versátil. Dilución moderada y constante. Ideal para la mayoría de cócteles on the rocks y para agitar.</p>
+                            </div>
+                            <div class="ice-item">
+                                <h4>Cubo Grande / King Cube</h4>
+                                <p>2" × 2". Se derrite lento, mínima dilución. Perfecto para espíritus premium servidos neat o cócteles como Old Fashioned.</p>
+                            </div>
+                            <div class="ice-item">
+                                <h4>Esfera</h4>
+                                <p>Máxima superficie con mínimo contacto. Se derrite extremadamente lento. Presentación premium para whiskey y cócteles especiales.</p>
+                            </div>
+                            <div class="ice-item">
+                                <h4>Hielo Picado / Crushed</h4>
+                                <p>Dilución rápida y enfriamiento instantáneo. Esencial para Juleps, Cobblers, Tiki drinks y cualquier cóctel frozen-style.</p>
+                            </div>
+                            <div class="ice-item">
+                                <h4>Hielo en Bloque</h4>
+                                <p>Para tallar a medida o para poncheras. El más lento en derretirse. Los bartenders artesanales lo tallan a mano.</p>
+                            </div>
+                            <div class="ice-item">
+                                <h4>Hielo Cracked</h4>
+                                <p>Entre cubo y picado. Dilución media-rápida. Se obtiene rompiendo cubos con un mallet. Ideal para swizzles.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Garnishing -->
+                <div class="accordion-item reveal" style="--delay: 0.4s">
+                    <button class="accordion-trigger" data-accordion="garnish">
+                        <div class="accordion-trigger-content">
+                            <span class="accordion-icon">🍋</span>
+                            <div>
+                                <h3>El Arte de la Decoración</h3>
+                                <p>Guarniciones que complementan aroma, sabor y presentación</p>
+                            </div>
+                        </div>
+                        <span class="accordion-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content" id="garnish">
+                        <div class="garnish-list">
+                            <div class="garnish-item">
+                                <strong>Twist de cítrico:</strong> Tira de piel de limón, naranja o pomelo. Exprimir sobre el cóctel para liberar aceites esenciales, luego colocar en el borde o dentro del vaso.
+                            </div>
+                            <div class="garnish-item">
+                                <strong>Rueda (Wheel):</strong> Rodaja completa de cítrico. Decorativa y funcional, se coloca en el borde del vaso o flotando.
+                            </div>
+                            <div class="garnish-item">
+                                <strong>Cuña (Wedge):</strong> Gajo de cítrico. Se exprime al gusto del cliente. Clásica en Gin & Tonic y bebidas servidas en highball.
+                            </div>
+                            <div class="garnish-item">
+                                <strong>Cereza Maraschino:</strong> La Luxardo es el estándar profesional. Nunca uses cerezas de bar artificiales rojas brillantes. Para Manhattans y Old Fashioneds.
+                            </div>
+                            <div class="garnish-item">
+                                <strong>Aceitunas:</strong> Para Martinis. Siempre de calidad, preferiblemente rellenas de pimiento o almendra. Número impar es tradición (1 o 3).
+                            </div>
+                            <div class="garnish-item">
+                                <strong>Hierbas frescas:</strong> Menta, romero, albahaca, tomillo. Se "palmean" (golpean entre las manos) para liberar aromas antes de colocar.
+                            </div>
+                            <div class="garnish-item">
+                                <strong>Flameado de naranja:</strong> Calentar un twist de naranja con un encendedor y exprimir los aceites sobre la llama hacia el cóctel. Aroma caramelizado espectacular.
+                            </div>
+                            <div class="garnish-item">
+                                <strong>Fruta deshidratada:</strong> Ruedas de cítrico, piña o fresa deshidratadas. Elegantes, duraderas y aportan textura visual premium.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Responsible Service -->
+                <div class="accordion-item reveal" style="--delay: 0.5s">
+                    <button class="accordion-trigger" data-accordion="responsible">
+                        <div class="accordion-trigger-content">
+                            <span class="accordion-icon">⚖️</span>
+                            <div>
+                                <h3>Servicio Responsable</h3>
+                                <p>Ética profesional y servicio responsable de alcohol</p>
+                            </div>
+                        </div>
+                        <span class="accordion-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content" id="responsible">
+                        <div class="responsible-content">
+                            <div class="responsible-rule">
+                                <h4>1. Conoce la Ley</h4>
+                                <p>Cada país y estado tiene regulaciones diferentes sobre edad legal, horarios de servicio y licencias. Es tu responsabilidad conocerlas y cumplirlas sin excepción.</p>
+                            </div>
+                            <div class="responsible-rule">
+                                <h4>2. Identifica Señales de Intoxicación</h4>
+                                <p>Habla arrastrada, falta de coordinación, cambios de humor bruscos, ojos vidriosos, agresividad. Aprende a identificar estas señales tempranamente.</p>
+                            </div>
+                            <div class="responsible-rule">
+                                <h4>3. Saber Decir No</h4>
+                                <p>Negar el servicio a una persona intoxicada es un deber legal y moral. Hazlo con respeto y firmeza. Ofrece agua, comida o transporte alternativo.</p>
+                            </div>
+                            <div class="responsible-rule">
+                                <h4>4. No Fomentar el Consumo Excesivo</h4>
+                                <p>Nunca presiones para vender más. No participes en juegos de beber ni promuevas shots excesivos. Tu papel es ser guardián responsable.</p>
+                            </div>
+                            <div class="responsible-rule">
+                                <h4>5. Opciones Sin Alcohol</h4>
+                                <p>Ten siempre un menú de mocktails de calidad. Un buen bartender hace sentir bienvenido a quien no bebe alcohol, sin hacerle sentir diferente.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ IBA RULES ============ -->
+    <section class="section section-iba" id="iba">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow reveal">International Bartenders Association</p>
+                <h2 class="section-title reveal">Estándares<br><span class="text-accent">IBA</span></h2>
+                <p class="section-desc reveal">La International Bartenders Association, fundada en 1951 en Torquay, Inglaterra, establece los estándares globales de la coctelería profesional. Actualmente agrupa asociaciones de bartenders de más de 72 países.</p>
+            </div>
+
+            <div class="iba-grid">
+                <div class="iba-card reveal">
+                    <div class="iba-card-number">01</div>
+                    <h3>Historia y Misión</h3>
+                    <p>La IBA fue fundada el 24 de febrero de 1951 por representantes de las asociaciones de bartenders de Dinamarca, Francia, Gran Bretaña, Italia, Países Bajos, Suecia y Suiza. Su misión es promover y mantener los más altos estándares profesionales en bartending a nivel mundial, fomentar el intercambio cultural y organizar competiciones internacionales.</p>
+                </div>
+
+                <div class="iba-card reveal" style="--delay: 0.1s">
+                    <div class="iba-card-number">02</div>
+                    <h3>Categorías Oficiales de Cócteles</h3>
+                    <div class="iba-categories">
+                        <div class="iba-category">
+                            <h4>The Unforgettables</h4>
+                            <p>Los cócteles que han resistido la prueba del tiempo. Creados antes o durante la Prohibición, son la columna vertebral de la coctelería clásica. Incluyen el Old Fashioned, Negroni, Manhattan y Dry Martini.</p>
+                        </div>
+                        <div class="iba-category">
+                            <h4>Contemporary Classics</h4>
+                            <p>Cócteles que han ganado reconocimiento global en las últimas décadas. Incluyen el Cosmopolitan, Espresso Martini, y el Aperol Spritz. Reflejan la evolución moderna del oficio.</p>
+                        </div>
+                        <div class="iba-category">
+                            <h4>New Era Drinks</h4>
+                            <p>Las creaciones más recientes que han demostrado merecer un lugar en la lista oficial. Innovadores en técnica y combinaciones, como el Penicillin y el Spicy Fifty.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="iba-card reveal" style="--delay: 0.2s">
+                    <div class="iba-card-number">03</div>
+                    <h3>Reglas de Competencia</h3>
+                    <div class="iba-rules-list">
+                        <div class="iba-rule">
+                            <span class="rule-badge">Tiempo</span>
+                            <p>Los competidores disponen de <strong>7 minutos</strong> para preparar y presentar su cóctel, incluyendo decoración y limpieza del área de trabajo.</p>
+                        </div>
+                        <div class="iba-rule">
+                            <span class="rule-badge">Categorías</span>
+                            <p>Las competiciones se dividen en: <strong>Cócteles Clásicos</strong> (recetas IBA oficiales), <strong>Fancy/Flair</strong> (estilo libre con espectáculo) y <strong>No Alcohólicos</strong>.</p>
+                        </div>
+                        <div class="iba-rule">
+                            <span class="rule-badge">Evaluación</span>
+                            <p>Los jueces evalúan: <strong>Sabor</strong> (50%), <strong>Técnica</strong> (20%), <strong>Presentación</strong> (15%), <strong>Higiene</strong> (10%) y <strong>Creatividad</strong> (5%).</p>
+                        </div>
+                        <div class="iba-rule">
+                            <span class="rule-badge">Medidas</span>
+                            <p>Todas las recetas IBA usan <strong>centilitros (cl)</strong> como unidad estándar. 1 cl = 10 ml. La precisión es obligatoria: se evalúa con jigger.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="iba-card reveal" style="--delay: 0.3s">
+                    <div class="iba-card-number">04</div>
+                    <h3>Código de Conducta del Bartender</h3>
+                    <ul class="iba-conduct">
+                        <li>Mantener la más alta higiene personal y del área de trabajo</li>
+                        <li>Servir con cortesía y profesionalismo en todo momento</li>
+                        <li>Conocer y respetar las recetas clásicas antes de innovar</li>
+                        <li>Usar ingredientes frescos y de la mejor calidad disponible</li>
+                        <li>Medir con precisión — nunca calcular "a ojo"</li>
+                        <li>Practicar el servicio responsable de alcohol</li>
+                        <li>Mantener la confidencialidad del cliente en la barra</li>
+                        <li>Respetar a colegas y competidores por igual</li>
+                        <li>Buscar la mejora continua a través de la educación y práctica</li>
+                        <li>Representar dignamente la profesión en todo momento</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ COCKTAILS ============ -->
+    <section class="section section-cocktails" id="cocktails">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow reveal">Recetario Clásico</p>
+                <h2 class="section-title reveal">Los 30 Cócteles<br><span class="text-accent">Esenciales</span></h2>
+                <p class="section-desc reveal">Cada receta incluye la fórmula oficial IBA, historia de creación, y las notas del bartender profesional. Domina estos clásicos y tendrás la base para cualquier creación.</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="cocktail-filters reveal">
+                <div class="filter-group">
+                    <label class="filter-label">Buscar</label>
+                    <div class="search-wrapper">
+                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" class="search-input" id="cocktailSearch" placeholder="Buscar cóctel...">
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Base</label>
+                    <div class="filter-buttons" id="spiritFilters">
+                        <button class="filter-btn active" data-filter="all">Todos</button>
+                        <button class="filter-btn" data-filter="whiskey">Whiskey</button>
+                        <button class="filter-btn" data-filter="gin">Gin</button>
+                        <button class="filter-btn" data-filter="rum">Ron</button>
+                        <button class="filter-btn" data-filter="vodka">Vodka</button>
+                        <button class="filter-btn" data-filter="tequila">Tequila</button>
+                        <button class="filter-btn" data-filter="brandy">Brandy</button>
+                        <button class="filter-btn" data-filter="other">Otros</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Categoría IBA</label>
+                    <div class="filter-buttons" id="categoryFilters">
+                        <button class="filter-btn active" data-category="all">Todas</button>
+                        <button class="filter-btn" data-category="unforgettable">Unforgettables</button>
+                        <button class="filter-btn" data-category="contemporary">Contemporary</button>
+                        <button class="filter-btn" data-category="newera">New Era</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cocktail Grid -->
+            <div class="cocktail-grid" id="cocktailGrid">
+                <!-- Rendered by JavaScript -->
+            </div>
+
+            <div class="no-results" id="noResults" style="display: none;">
+                <p>No se encontraron cócteles con ese filtro. Intenta con otra búsqueda.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ COCKTAIL MODAL ============ -->
+    <div class="modal-overlay" id="cocktailModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <!-- Rendered by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ GLOSSARY ============ -->
+    <section class="section section-glossary" id="glossary">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow reveal">Referencia Rápida</p>
+                <h2 class="section-title reveal">Glosario del<br><span class="text-accent">Bartender</span></h2>
+            </div>
+            <div class="glossary-grid reveal">
+                <div class="glossary-item">
+                    <dt>ABV</dt>
+                    <dd>Alcohol By Volume. Porcentaje de alcohol en una bebida.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Neat</dt>
+                    <dd>Espíritu servido solo, a temperatura ambiente, sin hielo ni mixer.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>On the Rocks</dt>
+                    <dd>Servido sobre hielo en un vaso rocks.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Up / Straight Up</dt>
+                    <dd>Agitado o revuelto con hielo, luego colado en copa fría sin hielo.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Dash</dt>
+                    <dd>Pequeña cantidad de líquido (bitters). Aproximadamente 0.6ml.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Float</dt>
+                    <dd>Capa de líquido que flota sobre el cóctel, agregado al final.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Rinse</dt>
+                    <dd>Cubrir el interior del vaso con una pequeña cantidad de espíritu, descartando el exceso.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Express</dt>
+                    <dd>Exprimir los aceites de un twist de cítrico sobre la superficie del cóctel.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Call</dt>
+                    <dd>Cuando el cliente especifica la marca del espíritu que desea.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Well</dt>
+                    <dd>El espíritu estándar/de casa utilizado cuando el cliente no especifica marca.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Back</dt>
+                    <dd>Bebida no alcohólica servida junto al cóctel (ej: "whiskey con water back").</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Top / Top Off</dt>
+                    <dd>Completar el vaso con un mixer (soda, tónica, champagne).</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Chaser</dt>
+                    <dd>Bebida suave consumida inmediatamente después de un shot.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Proof</dt>
+                    <dd>Sistema de medida de alcohol. En EE.UU.: Proof = ABV × 2 (ej: 80 proof = 40% ABV).</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Simple Syrup</dt>
+                    <dd>Jarabe simple: proporción 1:1 de azúcar y agua. Rich syrup usa 2:1.</dd>
+                </div>
+                <div class="glossary-item">
+                    <dt>Free Pour</dt>
+                    <dd>Verter sin jigger, contando mentalmente. Requiere mucha práctica. La IBA exige jigger.</dd>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo-icon">🍸</span>
+                    <span class="logo-text">The Bar Book</span>
+                    <p class="footer-desc">La guía definitiva de bartending y coctelería profesional. Basada en los estándares de la International Bartenders Association.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#about">El Oficio</a></li>
+                        <li><a href="#manual">Manual</a></li>
+                        <li><a href="#iba">IBA</a></li>
+                        <li><a href="#cocktails">Cócteles</a></li>
+                        <li><a href="#glossary">Glosario</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="https://iba-world.com" target="_blank" rel="noopener">IBA Oficial</a></li>
+                        <li><a href="#manual">Técnicas</a></li>
+                        <li><a href="#manual">Cristalería</a></li>
+                        <li><a href="#glossary">Glosario</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 The Bar Book. Bebe con responsabilidad.</p>
+                <p class="footer-disclaimer">Este sitio es una guía educativa. El consumo de alcohol es solo para mayores de edad legal en tu jurisdicción.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

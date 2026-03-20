@@ -3,697 +3,624 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Bar Book — La Guía Definitiva de Bartending</title>
-    <meta name="description" content="La guía definitiva de bartending y coctelería. Manual profesional, reglas IBA, y los 30 cócteles clásicos más importantes del mundo.">
+    <title>Domina el Dropshipping con IA — Genera Ingresos Online</title>
+    <meta name="description" content="Aprende a construir un negocio de dropshipping rentable usando inteligencia artificial. Cursos prácticos paso a paso.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍸</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --accent: #6c5ce7;
+            --accent-light: #a29bfe;
+            --accent-glow: rgba(108,92,231,.25);
+            --green: #00b894;
+            --green-light: #55efc4;
+            --dark: #0b0b0f;
+            --dark-2: #12121a;
+            --dark-3: #1a1a2e;
+            --dark-4: #252540;
+            --text: #e0e0e8;
+            --text-muted: #8888a0;
+            --radius: 16px;
+            --max-w: 1100px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a { color: var(--accent-light); text-decoration: none; }
+        a:hover { color: #fff; }
+
+        /* ── NAV ── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(11,11,15,.9);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(108,92,231,.15);
+        }
+        .nav-inner {
+            max-width: var(--max-w); margin: auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.5rem;
+        }
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem; font-weight: 700; color: #fff;
+            display: flex; align-items: center; gap: .5rem;
+        }
+        .nav-logo span { font-size: 1.5rem; }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-links a { color: var(--text-muted); font-size: .9rem; font-weight: 500; transition: color .2s; }
+        .nav-links a:hover { color: #fff; }
+        .nav-cta {
+            padding: .55rem 1.3rem; background: var(--accent); color: #fff;
+            border-radius: 50px; font-size: .85rem; font-weight: 600; transition: .3s;
+        }
+        .nav-cta:hover { background: var(--accent-light); color: var(--dark); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; transition: .3s; }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-links {
+                display: none; position: absolute; top: 100%; left: 0; right: 0;
+                flex-direction: column; background: var(--dark-2); padding: 1.5rem;
+                border-bottom: 1px solid var(--dark-4);
+            }
+            .nav-links.active { display: flex; }
+            .nav-cta { display: none; }
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 8rem 1.5rem 4rem;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(108,92,231,.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(0,184,148,.08) 0%, transparent 50%),
+                var(--dark);
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236c5ce7' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: .5;
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: .5rem;
+            background: rgba(108,92,231,.15); border: 1px solid rgba(108,92,231,.3);
+            padding: .4rem 1.2rem; border-radius: 50px; font-size: .8rem;
+            color: var(--accent-light); font-weight: 500; margin-bottom: 2rem;
+        }
+        .hero-badge .pulse {
+            width: 8px; height: 8px; background: var(--green); border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 1.5rem;
+        }
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--accent-light), var(--green-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p { max-width: 580px; margin: 0 auto 2.5rem; color: var(--text-muted); font-size: 1.15rem; }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .95rem 2.2rem; border-radius: 50px; font-size: 1rem;
+            font-weight: 700; transition: .3s; border: none; cursor: pointer;
+        }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { background: var(--accent-light); color: var(--dark); transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+        .btn-ghost { background: rgba(255,255,255,.05); color: #fff; border: 1px solid var(--dark-4); }
+        .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: var(--accent); color: #fff; }
+
+        .hero-stats {
+            display: flex; justify-content: center; gap: 3rem; margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat .num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem; font-weight: 800; color: #fff;
+        }
+        .hero-stat .num span { color: var(--green); }
+        .hero-stat .label { font-size: .8rem; color: var(--text-muted); margin-top: .25rem; }
+
+        /* ── SECTIONS ── */
+        .section { padding: 5rem 1.5rem; max-width: var(--max-w); margin: auto; }
+        .section-label {
+            display: inline-flex; align-items: center; gap: .4rem;
+            text-transform: uppercase; letter-spacing: 3px; font-size: .75rem;
+            color: var(--accent-light); font-weight: 600; margin-bottom: .75rem;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700; color: #fff; margin-bottom: 1rem;
+        }
+        .section-desc { color: var(--text-muted); max-width: 600px; margin-bottom: 3rem; }
+
+        /* ── CURSOS GRID ── */
+        .cursos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .curso-card {
+            background: var(--dark-2); border: 1px solid var(--dark-4);
+            border-radius: var(--radius); overflow: hidden; transition: transform .3s, border-color .3s;
+            position: relative;
+        }
+        .curso-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 12px 40px rgba(108,92,231,.1); }
+        .curso-card.featured { border-color: var(--accent); }
+        .curso-card.featured::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--green));
+        }
+        .curso-img {
+            height: 180px; background: linear-gradient(135deg, var(--dark-3), var(--dark-4));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3.5rem; position: relative;
+        }
+        .curso-badge {
+            position: absolute; top: 1rem; right: 1rem;
+            font-size: .7rem; font-weight: 700; padding: .35rem .9rem;
+            border-radius: 50px; text-transform: uppercase;
+        }
+        .badge-hot { background: #e17055; color: #fff; }
+        .badge-new { background: var(--green); color: var(--dark); }
+        .badge-pro { background: var(--accent); color: #fff; }
+        .curso-body { padding: 1.5rem; }
+        .curso-body h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; color: #fff; margin-bottom: .5rem; }
+        .curso-body p { font-size: .88rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+        .curso-meta { display: flex; gap: 1rem; font-size: .78rem; color: var(--text-muted); margin-bottom: 1.25rem; flex-wrap: wrap; }
+        .curso-meta span { display: flex; align-items: center; gap: .3rem; }
+        .curso-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--dark-4); }
+        .curso-price { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 800; color: #fff; }
+        .curso-price .old { font-size: .9rem; color: var(--text-muted); text-decoration: line-through; margin-left: .4rem; font-weight: 400; }
+        .curso-footer .btn { padding: .6rem 1.4rem; font-size: .85rem; }
+
+        /* ── BLOG ── */
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .blog-card {
+            background: var(--dark-2); border: 1px solid var(--dark-4);
+            border-radius: var(--radius); overflow: hidden; transition: transform .3s, border-color .3s;
+        }
+        .blog-card:hover { transform: translateY(-4px); border-color: rgba(108,92,231,.4); }
+        .blog-img {
+            height: 170px; background: linear-gradient(135deg, var(--dark-3), var(--dark-4));
+            display: flex; align-items: center; justify-content: center; font-size: 2.8rem;
+        }
+        .blog-body { padding: 1.5rem; }
+        .blog-tag {
+            display: inline-block; font-size: .7rem; font-weight: 600;
+            color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: .5rem;
+        }
+        .blog-body h3 { font-size: 1.05rem; color: #fff; margin-bottom: .5rem; line-height: 1.4; }
+        .blog-body p { font-size: .85rem; color: var(--text-muted); margin-bottom: 1rem; }
+        .blog-footer { display: flex; justify-content: space-between; font-size: .8rem; color: var(--text-muted); }
+        .blog-footer a { color: var(--accent-light); font-weight: 500; }
+
+        /* ── FEATURES / STEPS ── */
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; counter-reset: step; }
+        .step {
+            padding: 2rem; background: var(--dark-2); border: 1px solid var(--dark-4);
+            border-radius: var(--radius); position: relative; counter-increment: step;
+        }
+        .step::before {
+            content: counter(step); position: absolute; top: 1.5rem; right: 1.5rem;
+            font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 800;
+            color: rgba(108,92,231,.1); line-height: 1;
+        }
+        .step-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .step h3 { font-size: 1.05rem; color: #fff; margin-bottom: .5rem; }
+        .step p { font-size: .85rem; color: var(--text-muted); }
+
+        /* ── TOOLS LOGOS ── */
+        .tools-bar {
+            display: flex; justify-content: center; align-items: center; gap: 2.5rem;
+            flex-wrap: wrap; padding: 3rem 1.5rem;
+            border-top: 1px solid var(--dark-4); border-bottom: 1px solid var(--dark-4);
+        }
+        .tool-item {
+            display: flex; align-items: center; gap: .5rem;
+            font-size: .9rem; color: var(--text-muted); font-weight: 500;
+        }
+        .tool-item span { font-size: 1.4rem; }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .testimonial {
+            background: var(--dark-2); border: 1px solid var(--dark-4);
+            border-radius: var(--radius); padding: 2rem;
+        }
+        .testimonial-revenue {
+            display: inline-block; background: rgba(0,184,148,.1); border: 1px solid rgba(0,184,148,.2);
+            color: var(--green); font-size: .8rem; font-weight: 600; padding: .3rem .8rem;
+            border-radius: 50px; margin-bottom: 1rem;
+        }
+        .testimonial p { font-size: .95rem; color: var(--text); margin-bottom: 1.25rem; line-height: 1.7; }
+        .testimonial-author { display: flex; align-items: center; gap: .75rem; }
+        .testimonial-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--green));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; font-weight: 700; color: #fff;
+        }
+        .testimonial-name { font-weight: 600; color: #fff; font-size: .9rem; }
+        .testimonial-role { font-size: .78rem; color: var(--text-muted); }
+
+        /* ── CTA ── */
+        .cta-section {
+            text-align: center; padding: 6rem 1.5rem;
+            background:
+                radial-gradient(ellipse at 50% 50%, rgba(108,92,231,.1) 0%, transparent 60%);
+            border-top: 1px solid var(--dark-4);
+        }
+        .cta-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: #fff; margin-bottom: 1rem;
+        }
+        .cta-section p { color: var(--text-muted); max-width: 500px; margin: 0 auto 2rem; }
+        .newsletter {
+            max-width: 460px; margin: 0 auto;
+            display: flex; gap: .5rem;
+        }
+        .newsletter input {
+            flex: 1; padding: .9rem 1.2rem; border-radius: 50px;
+            background: var(--dark-3); border: 1px solid var(--dark-4); color: #fff;
+            font-size: .9rem; outline: none; font-family: inherit;
+        }
+        .newsletter input:focus { border-color: var(--accent); }
+        .newsletter .btn { white-space: nowrap; }
+        .cta-note { font-size: .75rem; color: var(--text-muted); margin-top: 1rem; }
+
+        @media (max-width: 500px) {
+            .newsletter { flex-direction: column; }
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            padding: 3rem 1.5rem; text-align: center;
+            border-top: 1px solid var(--dark-4);
+        }
+        .footer-inner { max-width: var(--max-w); margin: auto; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-muted); font-size: .85rem; }
+        .footer-links a:hover { color: #fff; }
+        .footer-copy { font-size: .78rem; color: var(--text-muted); }
+        .footer-copy a { color: var(--text-muted); }
+
+        /* ── DIVIDER ── */
+        .divider {
+            height: 1px; max-width: var(--max-w); margin: 0 auto;
+            background: linear-gradient(90deg, transparent, var(--dark-4), transparent);
+        }
+
+        /* ── ANIMATIONS ── */
+        .fade-in {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
 </head>
 <body>
-    <!-- ============ NAVIGATION ============ -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#hero" class="nav-logo">
-                <span class="logo-icon">🍸</span>
-                <span class="logo-text">Coctelisimo</span>
-            </a>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo"><span>🚀</span> DropAI Pro</a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#about" class="nav-link">El Oficio</a></li>
-                <li><a href="#manual" class="nav-link">Manual</a></li>
-                <li><a href="#iba" class="nav-link">IBA</a></li>
-                <li><a href="#cocktails" class="nav-link">Cócteles</a></li>
-                <li><a href="#glossary" class="nav-link">Glosario</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#metodo">Metodo</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#testimonios">Resultados</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Menú">
-                <span></span>
-                <span></span>
-                <span></span>
+            <a href="#cursos" class="nav-cta">Empezar Ahora</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <!-- ============ HERO ============ -->
-    <section class="hero" id="hero">
-        <div class="hero-bg">
-            <div class="hero-gradient"></div>
-            <div class="hero-particles" id="heroParticles"></div>
-        </div>
+    <!-- HERO -->
+    <section class="hero">
         <div class="hero-content">
-            <p class="hero-eyebrow reveal">La Guía Definitiva</p>
-            <h1 class="hero-title">
-                <span class="reveal">El Arte del</span>
-                <span class="reveal hero-title-accent">Bartending</span>
+            <div class="hero-badge fade-in">
+                <span class="pulse"></span>
+                +200 alumnos activos este mes
+            </div>
+            <h1 class="fade-in">
+                Genera Ingresos con<br>
+                <span class="gradient">Dropshipping + IA</span>
             </h1>
-            <p class="hero-subtitle reveal">Domina el oficio. Conoce la historia. Perfecciona cada cóctel. Una guía profesional basada en los estándares de la International Bartenders Association.</p>
-            <div class="hero-cta reveal">
-                <a href="#cocktails" class="btn btn-primary">Explorar Cócteles</a>
-                <a href="#manual" class="btn btn-secondary">Leer el Manual</a>
+            <p class="fade-in">Aprende a construir tiendas rentables desde cero usando inteligencia artificial para automatizar productos, copy, ads y servicio al cliente.</p>
+            <div class="hero-buttons fade-in">
+                <a href="#cursos" class="btn btn-primary">Ver Cursos &rarr;</a>
+                <a href="#metodo" class="btn btn-ghost">Como Funciona</a>
             </div>
-            <div class="hero-stats reveal">
-                <div class="stat">
-                    <span class="stat-number" data-count="30">0</span>
-                    <span class="stat-label">Cócteles Clásicos</span>
+            <div class="hero-stats fade-in">
+                <div class="hero-stat">
+                    <div class="num">$<span>2.4</span>M</div>
+                    <div class="label">Ventas generadas por alumnos</div>
                 </div>
-                <div class="stat">
-                    <span class="stat-number" data-count="1951">0</span>
-                    <span class="stat-label">IBA Fundada</span>
+                <div class="hero-stat">
+                    <div class="num"><span>1,200</span>+</div>
+                    <div class="label">Alumnos graduados</div>
                 </div>
-                <div class="stat">
-                    <span class="stat-number" data-count="72">0</span>
-                    <span class="stat-label">Países Miembros</span>
-                </div>
-            </div>
-        </div>
-        <div class="hero-scroll">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section class="section section-about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-eyebrow reveal">El Oficio</p>
-                <h2 class="section-title reveal">Más que servir tragos.<br><span class="text-accent">Es un arte.</span></h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-card reveal">
-                    <div class="about-card-icon">🎯</div>
-                    <h3>Precisión</h3>
-                    <p>Cada mililitro cuenta. Un bartender profesional domina las medidas exactas, los tiempos de agitación y las temperaturas ideales para cada preparación.</p>
-                </div>
-                <div class="about-card reveal" style="--delay: 0.1s">
-                    <div class="about-card-icon">🧪</div>
-                    <h3>Conocimiento</h3>
-                    <p>Desde la destilación hasta la fermentación, un bartender entiende la ciencia detrás de cada espíritu, licor y modificador que utiliza en sus creaciones.</p>
-                </div>
-                <div class="about-card reveal" style="--delay: 0.2s">
-                    <div class="about-card-icon">🤝</div>
-                    <h3>Hospitalidad</h3>
-                    <p>La barra es un escenario. El bartender es anfitrión, psicólogo, artista y profesional. La experiencia del cliente es siempre la prioridad.</p>
-                </div>
-                <div class="about-card reveal" style="--delay: 0.3s">
-                    <div class="about-card-icon">📜</div>
-                    <h3>Tradición</h3>
-                    <p>Desde las primeras tabernas del siglo XVIII hasta los speakeasies modernos, el bartending ha evolucionado manteniendo el respeto por sus raíces y clásicos.</p>
-                </div>
-            </div>
-            <div class="about-quote reveal">
-                <blockquote>
-                    <p>"El conocimiento y la técnica también se beben"</p>
-                    <cite>— Jerry Thomas</cite>
-                </blockquote>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ MANUAL ============ -->
-    <section class="section section-manual" id="manual">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-eyebrow reveal">Manual Profesional</p>
-                <h2 class="section-title reveal">El Manual del<br><span class="text-accent">Bartender</span></h2>
-                <p class="section-desc reveal">Todo lo que necesitas saber para dominar la barra profesionalmente. Desde las herramientas esenciales hasta las técnicas avanzadas de preparación.</p>
-            </div>
-
-            <div class="manual-accordion">
-                <!-- Equipment -->
-                <div class="accordion-item reveal">
-                    <button class="accordion-trigger" data-accordion="equipment">
-                        <div class="accordion-trigger-content">
-                            <span class="accordion-icon">🛠️</span>
-                            <div>
-                                <h3>Herramientas Esenciales</h3>
-                                <p>El equipo que todo bartender profesional debe dominar</p>
-                            </div>
-                        </div>
-                        <span class="accordion-arrow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="accordion-content" id="equipment">
-                        <div class="tools-grid">
-                            <div class="tool-item">
-                                <h4>Coctelera Boston</h4>
-                                <p>Dos piezas (vaso metálico + vaso de vidrio o metal). La preferida por profesionales por su versatilidad y rapidez. Requiere strainer separado.</p>
-                            </div>
-                            <div class="tool-item">
-                                <h4>Coctelera Cobbler</h4>
-                                <p>Tres piezas (vaso, tapa con colador integrado y capuchón). Ideal para principiantes. El colador incorporado facilita el servicio.</p>
-                            </div>
-                            <div class="tool-item">
-                                <h4>Jigger / Medidor</h4>
-                                <p>Herramienta de medición de doble cara. Estándar: 1oz/2oz o 30ml/60ml. La precisión en las medidas es la base de la consistencia.</p>
-                            </div>
-                            <div class="tool-item">
-                                <h4>Bar Spoon</h4>
-                                <p>Cuchara larga de barra con espiral. Se usa para mezclar, medir (1 barspoon ≈ 5ml), hacer capas y como guía para vertido lento.</p>
-                            </div>
-                            <div class="tool-item">
-                                <h4>Strainer Hawthorne</h4>
-                                <p>Colador con resorte metálico. Se usa con la coctelera Boston para colar cócteles agitados, reteniendo hielo y sólidos.</p>
-                            </div>
-                            <div class="tool-item">
-                                <h4>Colador Fino (Fine Strainer)</h4>
-                                <p>Malla fina para doble colado. Elimina pequeños fragmentos de hielo, pulpa y semillas para un resultado cristalino.</p>
-                            </div>
-                            <div class="tool-item">
-                                <h4>Muddler / Macerador</h4>
-                                <p>Para macerar frutas, hierbas y especias directamente en el vaso. Extraer aceites esenciales sin destrozar los ingredientes es clave.</p>
-                            </div>
-                            <div class="tool-item">
-                                <h4>Mixing Glass</h4>
-                                <p>Vaso de cristal grueso para cócteles revueltos (stirred). Diseñado para enfriar y diluir con elegancia. Esencial para Martinis y Manhattans.</p>
-                            </div>
-                            <div class="tool-item">
-                                <h4>Exprimidor de Cítricos</h4>
-                                <p>Manual o de palanca. El zumo fresco es no negociable en coctelería profesional. Nunca uses zumo embotellado.</p>
-                            </div>
-                            <div class="tool-item">
-                                <h4>Pelador / Zester</h4>
-                                <p>Para crear twists de cítricos. Un buen twist libera aceites esenciales que aromatizan el cóctel. Evita la parte blanca (amarga).</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Techniques -->
-                <div class="accordion-item reveal" style="--delay: 0.1s">
-                    <button class="accordion-trigger" data-accordion="techniques">
-                        <div class="accordion-trigger-content">
-                            <span class="accordion-icon">🔄</span>
-                            <div>
-                                <h3>Técnicas de Preparación</h3>
-                                <p>Los métodos fundamentales para elaborar cualquier cóctel</p>
-                            </div>
-                        </div>
-                        <span class="accordion-arrow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="accordion-content" id="techniques">
-                        <div class="techniques-list">
-                            <div class="technique-item">
-                                <div class="technique-name">Shake / Agitar</div>
-                                <div class="technique-desc">
-                                    <p>Para cócteles con zumos, cremas, huevo o ingredientes densos. Agitar vigorosamente 10-15 segundos con hielo. Enfría rápidamente y genera dilución y textura. <strong>Regla de oro:</strong> si tiene cítricos, se agita.</p>
-                                </div>
-                            </div>
-                            <div class="technique-item">
-                                <div class="technique-name">Stir / Revolver</div>
-                                <div class="technique-desc">
-                                    <p>Para cócteles con solo espíritus y modificadores transparentes. Revolver 30-40 segundos en mixing glass con hielo. Produce dilución controlada sin aireación. <strong>Regla de oro:</strong> si todos los ingredientes son transparentes, se revuelve.</p>
-                                </div>
-                            </div>
-                            <div class="technique-item">
-                                <div class="technique-name">Build / Construir</div>
-                                <div class="technique-desc">
-                                    <p>Preparar directamente en el vaso de servicio. Agregar ingredientes sobre hielo y mezclar brevemente. Ideal para highballs y tragos sencillos como Gin & Tonic o Cuba Libre.</p>
-                                </div>
-                            </div>
-                            <div class="technique-item">
-                                <div class="technique-name">Muddle / Macerar</div>
-                                <div class="technique-desc">
-                                    <p>Presionar suavemente ingredientes frescos para liberar sabores y aceites esenciales. No triturar — presionar y girar. Las hierbas se golpean (palmear), las frutas se presionan.</p>
-                                </div>
-                            </div>
-                            <div class="technique-item">
-                                <div class="technique-name">Dry Shake</div>
-                                <div class="technique-desc">
-                                    <p>Agitar SIN hielo primero (para cócteles con clara de huevo o aquafaba), luego agregar hielo y agitar nuevamente. Crea una espuma densa y cremosa perfecta.</p>
-                                </div>
-                            </div>
-                            <div class="technique-item">
-                                <div class="technique-name">Layer / Estratificar</div>
-                                <div class="technique-desc">
-                                    <p>Verter lentamente sobre el dorso de la bar spoon para crear capas separadas. Los líquidos se ordenan por densidad. Requiere pulso firme y paciencia.</p>
-                                </div>
-                            </div>
-                            <div class="technique-item">
-                                <div class="technique-name">Blend / Licuar</div>
-                                <div class="technique-desc">
-                                    <p>Mezclar con hielo en licuadora. Para cócteles frozen como Frozen Daiquiri o Piña Colada. El hielo debe quedar completamente integrado, textura suave.</p>
-                                </div>
-                            </div>
-                            <div class="technique-item">
-                                <div class="technique-name">Roll / Rodar</div>
-                                <div class="technique-desc">
-                                    <p>Pasar el contenido de un vaso a otro suavemente. Mezcla sin agitación excesiva. Técnica clásica del Bloody Mary para mantener la textura sin aireación.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Glassware -->
-                <div class="accordion-item reveal" style="--delay: 0.2s">
-                    <button class="accordion-trigger" data-accordion="glassware">
-                        <div class="accordion-trigger-content">
-                            <span class="accordion-icon">🥃</span>
-                            <div>
-                                <h3>Cristalería</h3>
-                                <p>La copa correcta para cada cóctel</p>
-                            </div>
-                        </div>
-                        <span class="accordion-arrow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="accordion-content" id="glassware">
-                        <div class="glass-grid">
-                            <div class="glass-item">
-                                <img src="assets/img/old_fashioned.png" alt="Rocks Glass" class="glass-image">
-                                <h4>Rocks / Old Fashioned</h4>
-                                <p>6-10 oz. Para cócteles servidos on the rocks o espíritus neat. Old Fashioned, Negroni, Whiskey Sour.</p>
-                            </div>
-                            <div class="glass-item">
-                                <div class="glass-emoji">🥛</div>
-                                <h4>Highball</h4>
-                                <p>8-12 oz. Para tragos largos con mixer. Gin & Tonic, Moscow Mule, Cuba Libre, Paloma.</p>
-                            </div>
-                            <div class="glass-item">
-                                <div class="glass-emoji">🍸</div>
-                                <h4>Coupe</h4>
-                                <p>5-7 oz. Elegante copa de boca ancha. Para cócteles servidos up sin hielo. Daiquiri, Sidecar, Gimlet.</p>
-                            </div>
-                            <div class="glass-item">
-                                <div class="glass-emoji">🍸</div>
-                                <h4>Martini / Cocktail</h4>
-                                <p>4-6 oz. La copa icónica en forma de V invertida. Dry Martini, Cosmopolitan, Aviation.</p>
-                            </div>
-                            <div class="glass-item">
-                                <div class="glass-emoji">🥂</div>
-                                <h4>Flauta / Flute</h4>
-                                <p>6-8 oz. Alargada para preservar la carbonatación. French 75, Bellini, Kir Royale.</p>
-                            </div>
-                            <div class="glass-item">
-                                <div class="glass-emoji">🍷</div>
-                                <h4>Nick & Nora</h4>
-                                <p>5-6 oz. Copa elegante redondeada. Alternativa sofisticada al vaso Martini. Gin cocktails, Last Word.</p>
-                            </div>
-                            <div class="glass-item">
-                                <div class="glass-emoji">🫗</div>
-                                <h4>Collins</h4>
-                                <p>10-14 oz. Más alto y estrecho que el highball. Tom Collins, John Collins, Mojito.</p>
-                            </div>
-                            <div class="glass-item">
-                                <div class="glass-emoji">☕</div>
-                                <h4>Copa Irish Coffee</h4>
-                                <p>8-10 oz. Con asa para bebidas calientes. Irish Coffee, Hot Toddy, cócteles de café.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ice -->
-                <div class="accordion-item reveal" style="--delay: 0.3s">
-                    <button class="accordion-trigger" data-accordion="ice">
-                        <div class="accordion-trigger-content">
-                            <span class="accordion-icon">🧊</span>
-                            <div>
-                                <h3>Tipos de Hielo</h3>
-                                <p>El ingrediente más importante y subestimado</p>
-                            </div>
-                        </div>
-                        <span class="accordion-arrow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="accordion-content" id="ice">
-                        <div class="ice-grid">
-                            <div class="ice-item">
-                                <h4>Cubo Estándar</h4>
-                                <p>El más versátil. Dilución moderada y constante. Ideal para la mayoría de cócteles on the rocks y para agitar.</p>
-                            </div>
-                            <div class="ice-item">
-                                <h4>Cubo Grande / King Cube</h4>
-                                <p>2" × 2". Se derrite lento, mínima dilución. Perfecto para espíritus premium servidos neat o cócteles como Old Fashioned.</p>
-                            </div>
-                            <div class="ice-item">
-                                <h4>Esfera</h4>
-                                <p>Máxima superficie con mínimo contacto. Se derrite extremadamente lento. Presentación premium para whiskey y cócteles especiales.</p>
-                            </div>
-                            <div class="ice-item">
-                                <h4>Hielo Picado / Crushed</h4>
-                                <p>Dilución rápida y enfriamiento instantáneo. Esencial para Juleps, Cobblers, Tiki drinks y cualquier cóctel frozen-style.</p>
-                            </div>
-                            <div class="ice-item">
-                                <h4>Hielo en Bloque</h4>
-                                <p>Para tallar a medida o para poncheras. El más lento en derretirse. Los bartenders artesanales lo tallan a mano.</p>
-                            </div>
-                            <div class="ice-item">
-                                <h4>Hielo Cracked</h4>
-                                <p>Entre cubo y picado. Dilución media-rápida. Se obtiene rompiendo cubos con un mallet. Ideal para swizzles.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Garnishing -->
-                <div class="accordion-item reveal" style="--delay: 0.4s">
-                    <button class="accordion-trigger" data-accordion="garnish">
-                        <div class="accordion-trigger-content">
-                            <span class="accordion-icon">🍋</span>
-                            <div>
-                                <h3>El Arte de la Decoración</h3>
-                                <p>Guarniciones que complementan aroma, sabor y presentación</p>
-                            </div>
-                        </div>
-                        <span class="accordion-arrow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="accordion-content" id="garnish">
-                        <div class="garnish-list">
-                            <div class="garnish-item">
-                                <strong>Twist de cítrico:</strong> Tira de piel de limón, naranja o pomelo. Exprimir sobre el cóctel para liberar aceites esenciales, luego colocar en el borde o dentro del vaso.
-                            </div>
-                            <div class="garnish-item">
-                                <strong>Rueda (Wheel):</strong> Rodaja completa de cítrico. Decorativa y funcional, se coloca en el borde del vaso o flotando.
-                            </div>
-                            <div class="garnish-item">
-                                <strong>Cuña (Wedge):</strong> Gajo de cítrico. Se exprime al gusto del cliente. Clásica en Gin & Tonic y bebidas servidas en highball.
-                            </div>
-                            <div class="garnish-item">
-                                <strong>Cereza Maraschino:</strong> La Luxardo es el estándar profesional. Nunca uses cerezas de bar artificiales rojas brillantes. Para Manhattans y Old Fashioneds.
-                            </div>
-                            <div class="garnish-item">
-                                <strong>Aceitunas:</strong> Para Martinis. Siempre de calidad, preferiblemente rellenas de pimiento o almendra. Número impar es tradición (1 o 3).
-                            </div>
-                            <div class="garnish-item">
-                                <strong>Hierbas frescas:</strong> Menta, romero, albahaca, tomillo. Se "palmean" (golpean entre las manos) para liberar aromas antes de colocar.
-                            </div>
-                            <div class="garnish-item">
-                                <strong>Flameado de naranja:</strong> Calentar un twist de naranja con un encendedor y exprimir los aceites sobre la llama hacia el cóctel. Aroma caramelizado espectacular.
-                            </div>
-                            <div class="garnish-item">
-                                <strong>Fruta deshidratada:</strong> Ruedas de cítrico, piña o fresa deshidratadas. Elegantes, duraderas y aportan textura visual premium.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Responsible Service -->
-                <div class="accordion-item reveal" style="--delay: 0.5s">
-                    <button class="accordion-trigger" data-accordion="responsible">
-                        <div class="accordion-trigger-content">
-                            <span class="accordion-icon">⚖️</span>
-                            <div>
-                                <h3>Servicio Responsable</h3>
-                                <p>Ética profesional y servicio responsable de alcohol</p>
-                            </div>
-                        </div>
-                        <span class="accordion-arrow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                        </span>
-                    </button>
-                    <div class="accordion-content" id="responsible">
-                        <div class="responsible-content">
-                            <div class="responsible-rule">
-                                <h4>1. Conoce la Ley</h4>
-                                <p>Cada país y estado tiene regulaciones diferentes sobre edad legal, horarios de servicio y licencias. Es tu responsabilidad conocerlas y cumplirlas sin excepción.</p>
-                            </div>
-                            <div class="responsible-rule">
-                                <h4>2. Identifica Señales de Intoxicación</h4>
-                                <p>Habla arrastrada, falta de coordinación, cambios de humor bruscos, ojos vidriosos, agresividad. Aprende a identificar estas señales tempranamente.</p>
-                            </div>
-                            <div class="responsible-rule">
-                                <h4>3. Saber Decir No</h4>
-                                <p>Negar el servicio a una persona intoxicada es un deber legal y moral. Hazlo con respeto y firmeza. Ofrece agua, comida o transporte alternativo.</p>
-                            </div>
-                            <div class="responsible-rule">
-                                <h4>4. No Fomentar el Consumo Excesivo</h4>
-                                <p>Nunca presiones para vender más. No participes en juegos de beber ni promuevas shots excesivos. Tu papel es ser guardián responsable.</p>
-                            </div>
-                            <div class="responsible-rule">
-                                <h4>5. Opciones Sin Alcohol</h4>
-                                <p>Ten siempre un menú de mocktails de calidad. Un buen bartender hace sentir bienvenido a quien no bebe alcohol, sin hacerle sentir diferente.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="hero-stat">
+                    <div class="num"><span>87</span>%</div>
+                    <div class="label">Logran su primera venta</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============ IBA RULES ============ -->
-    <section class="section section-iba" id="iba">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-eyebrow reveal">International Bartenders Association</p>
-                <h2 class="section-title reveal">Estándares<br><span class="text-accent">IBA</span></h2>
-                <p class="section-desc reveal">La International Bartenders Association, fundada en 1951 en Torquay, Inglaterra, establece los estándares globales de la coctelería profesional. Actualmente agrupa asociaciones de bartenders de más de 72 países.</p>
-            </div>
-
-            <div class="iba-grid">
-                <div class="iba-card reveal">
-                    <div class="iba-card-number">01</div>
-                    <h3>Historia y Misión</h3>
-                    <p>La IBA fue fundada el 24 de febrero de 1951 por representantes de las asociaciones de bartenders de Dinamarca, Francia, Gran Bretaña, Italia, Países Bajos, Suecia y Suiza. Su misión es promover y mantener los más altos estándares profesionales en bartending a nivel mundial, fomentar el intercambio cultural y organizar competiciones internacionales.</p>
-                </div>
-
-                <div class="iba-card reveal" style="--delay: 0.1s">
-                    <div class="iba-card-number">02</div>
-                    <h3>Categorías Oficiales de Cócteles</h3>
-                    <div class="iba-categories">
-                        <div class="iba-category">
-                            <h4>The Unforgettables</h4>
-                            <p>Los cócteles que han resistido la prueba del tiempo. Creados antes o durante la Prohibición, son la columna vertebral de la coctelería clásica. Incluyen el Old Fashioned, Negroni, Manhattan y Dry Martini.</p>
-                        </div>
-                        <div class="iba-category">
-                            <h4>Contemporary Classics</h4>
-                            <p>Cócteles que han ganado reconocimiento global en las últimas décadas. Incluyen el Cosmopolitan, Espresso Martini, y el Aperol Spritz. Reflejan la evolución moderna del oficio.</p>
-                        </div>
-                        <div class="iba-category">
-                            <h4>New Era Drinks</h4>
-                            <p>Las creaciones más recientes que han demostrado merecer un lugar en la lista oficial. Innovadores en técnica y combinaciones, como el Penicillin y el Spicy Fifty.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="iba-card reveal" style="--delay: 0.2s">
-                    <div class="iba-card-number">03</div>
-                    <h3>Reglas de Competencia</h3>
-                    <div class="iba-rules-list">
-                        <div class="iba-rule">
-                            <span class="rule-badge">Tiempo</span>
-                            <p>Los competidores disponen de <strong>7 minutos</strong> para preparar y presentar su cóctel, incluyendo decoración y limpieza del área de trabajo.</p>
-                        </div>
-                        <div class="iba-rule">
-                            <span class="rule-badge">Categorías</span>
-                            <p>Las competiciones se dividen en: <strong>Cócteles Clásicos</strong> (recetas IBA oficiales), <strong>Fancy/Flair</strong> (estilo libre con espectáculo) y <strong>No Alcohólicos</strong>.</p>
-                        </div>
-                        <div class="iba-rule">
-                            <span class="rule-badge">Evaluación</span>
-                            <p>Los jueces evalúan: <strong>Sabor</strong> (50%), <strong>Técnica</strong> (20%), <strong>Presentación</strong> (15%), <strong>Higiene</strong> (10%) y <strong>Creatividad</strong> (5%).</p>
-                        </div>
-                        <div class="iba-rule">
-                            <span class="rule-badge">Medidas</span>
-                            <p>Todas las recetas IBA usan <strong>centilitros (cl)</strong> como unidad estándar. 1 cl = 10 ml. La precisión es obligatoria: se evalúa con jigger.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="iba-card reveal" style="--delay: 0.3s">
-                    <div class="iba-card-number">04</div>
-                    <h3>Código de Conducta del Bartender</h3>
-                    <ul class="iba-conduct">
-                        <li>Mantener la más alta higiene personal y del área de trabajo</li>
-                        <li>Servir con cortesía y profesionalismo en todo momento</li>
-                        <li>Conocer y respetar las recetas clásicas antes de innovar</li>
-                        <li>Usar ingredientes frescos y de la mejor calidad disponible</li>
-                        <li>Medir con precisión — nunca calcular "a ojo"</li>
-                        <li>Practicar el servicio responsable de alcohol</li>
-                        <li>Mantener la confidencialidad del cliente en la barra</li>
-                        <li>Respetar a colegas y competidores por igual</li>
-                        <li>Buscar la mejora continua a través de la educación y práctica</li>
-                        <li>Representar dignamente la profesión en todo momento</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ COCKTAILS ============ -->
-    <section class="section section-cocktails" id="cocktails">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-eyebrow reveal">Recetario Clásico</p>
-                <h2 class="section-title reveal">Los 30 Cócteles<br><span class="text-accent">Esenciales</span></h2>
-                <p class="section-desc reveal">Cada receta incluye la fórmula oficial IBA, historia de creación, y las notas del bartender profesional. Domina estos clásicos y tendrás la base para cualquier creación.</p>
-            </div>
-
-            <!-- Filters -->
-            <div class="cocktail-filters reveal">
-                <div class="filter-group">
-                    <label class="filter-label">Buscar</label>
-                    <div class="search-wrapper">
-                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                        <input type="text" class="search-input" id="cocktailSearch" placeholder="Buscar cóctel...">
-                    </div>
-                </div>
-                <div class="filter-group">
-                    <label class="filter-label">Base</label>
-                    <div class="filter-buttons" id="spiritFilters">
-                        <button class="filter-btn active" data-filter="all">Todos</button>
-                        <button class="filter-btn" data-filter="whiskey">Whiskey</button>
-                        <button class="filter-btn" data-filter="gin">Gin</button>
-                        <button class="filter-btn" data-filter="rum">Ron</button>
-                        <button class="filter-btn" data-filter="vodka">Vodka</button>
-                        <button class="filter-btn" data-filter="tequila">Tequila</button>
-                        <button class="filter-btn" data-filter="brandy">Brandy</button>
-                        <button class="filter-btn" data-filter="other">Otros</button>
-                    </div>
-                </div>
-                <div class="filter-group">
-                    <label class="filter-label">Categoría IBA</label>
-                    <div class="filter-buttons" id="categoryFilters">
-                        <button class="filter-btn active" data-category="all">Todas</button>
-                        <button class="filter-btn" data-category="unforgettable">Unforgettables</button>
-                        <button class="filter-btn" data-category="contemporary">Contemporary</button>
-                        <button class="filter-btn" data-category="newera">New Era</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cocktail Grid -->
-            <div class="cocktail-grid" id="cocktailGrid">
-                <!-- Rendered by JavaScript -->
-            </div>
-
-            <div class="no-results" id="noResults" style="display: none;">
-                <p>No se encontraron cócteles con ese filtro. Intenta con otra búsqueda.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============ COCKTAIL MODAL ============ -->
-    <div class="modal-overlay" id="cocktailModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
-            <div class="modal-body" id="modalBody">
-                <!-- Rendered by JavaScript -->
-            </div>
-        </div>
+    <!-- HERRAMIENTAS -->
+    <div class="tools-bar fade-in">
+        <div class="tool-item"><span>🤖</span> ChatGPT</div>
+        <div class="tool-item"><span>🎨</span> Midjourney</div>
+        <div class="tool-item"><span>🛒</span> Shopify</div>
+        <div class="tool-item"><span>📦</span> AliExpress</div>
+        <div class="tool-item"><span>📊</span> Meta Ads</div>
+        <div class="tool-item"><span>🎬</span> CapCut</div>
+        <div class="tool-item"><span>📈</span> TikTok Ads</div>
     </div>
 
-    <!-- ============ GLOSSARY ============ -->
-    <section class="section section-glossary" id="glossary">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-eyebrow reveal">Referencia Rápida</p>
-                <h2 class="section-title reveal">Glosario del<br><span class="text-accent">Bartender</span></h2>
+    <!-- CURSOS -->
+    <section class="section" id="cursos">
+        <p class="section-label fade-in">📚 Formacion</p>
+        <h2 class="section-title fade-in">Elige Tu Camino</h2>
+        <p class="section-desc fade-in">Cursos paso a paso con resultados reales. Acceso de por vida y actualizaciones incluidas.</p>
+
+        <div class="cursos-grid">
+            <div class="curso-card fade-in">
+                <div class="curso-img">
+                    🏪
+                    <span class="curso-badge badge-hot">Bestseller</span>
+                </div>
+                <div class="curso-body">
+                    <h3>Dropshipping desde Cero con IA</h3>
+                    <p>De no saber nada a tu primera tienda rentable. Aprende a encontrar productos ganadores, crear tu tienda en Shopify y lanzar ads con ayuda de IA.</p>
+                    <div class="curso-meta">
+                        <span>📚 15 modulos</span>
+                        <span>⏱ 10+ horas</span>
+                        <span>🤖 Prompts incluidos</span>
+                    </div>
+                    <div class="curso-footer">
+                        <div class="curso-price">$67 <span class="old">$127</span></div>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
             </div>
-            <div class="glossary-grid reveal">
-                <div class="glossary-item">
-                    <dt>ABV</dt>
-                    <dd>Alcohol By Volume. Porcentaje de alcohol en una bebida.</dd>
+
+            <div class="curso-card featured fade-in">
+                <div class="curso-img">
+                    🧠
+                    <span class="curso-badge badge-new">Nuevo</span>
                 </div>
-                <div class="glossary-item">
-                    <dt>Neat</dt>
-                    <dd>Espíritu servido solo, a temperatura ambiente, sin hielo ni mixer.</dd>
+                <div class="curso-body">
+                    <h3>IA para E-commerce: Automatiza Todo</h3>
+                    <p>Usa ChatGPT, Claude y herramientas de IA para crear descripciones, responder clientes, generar creativos y escalar tu negocio en piloto automatico.</p>
+                    <div class="curso-meta">
+                        <span>📚 12 modulos</span>
+                        <span>⏱ 8 horas</span>
+                        <span>🔧 Templates listos</span>
+                    </div>
+                    <div class="curso-footer">
+                        <div class="curso-price">$47 <span class="old">$97</span></div>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
                 </div>
-                <div class="glossary-item">
-                    <dt>On the Rocks</dt>
-                    <dd>Servido sobre hielo en un vaso rocks.</dd>
+            </div>
+
+            <div class="curso-card fade-in">
+                <div class="curso-img">
+                    💰
+                    <span class="curso-badge badge-pro">Avanzado</span>
                 </div>
-                <div class="glossary-item">
-                    <dt>Up / Straight Up</dt>
-                    <dd>Agitado o revuelto con hielo, luego colado en copa fría sin hielo.</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Dash</dt>
-                    <dd>Pequeña cantidad de líquido (bitters). Aproximadamente 0.6ml.</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Float</dt>
-                    <dd>Capa de líquido que flota sobre el cóctel, agregado al final.</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Rinse</dt>
-                    <dd>Cubrir el interior del vaso con una pequeña cantidad de espíritu, descartando el exceso.</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Express</dt>
-                    <dd>Exprimir los aceites de un twist de cítrico sobre la superficie del cóctel.</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Call</dt>
-                    <dd>Cuando el cliente especifica la marca del espíritu que desea.</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Well</dt>
-                    <dd>El espíritu estándar/de casa utilizado cuando el cliente no especifica marca.</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Back</dt>
-                    <dd>Bebida no alcohólica servida junto al cóctel (ej: "whiskey con water back").</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Top / Top Off</dt>
-                    <dd>Completar el vaso con un mixer (soda, tónica, champagne).</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Chaser</dt>
-                    <dd>Bebida suave consumida inmediatamente después de un shot.</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Proof</dt>
-                    <dd>Sistema de medida de alcohol. En EE.UU.: Proof = ABV × 2 (ej: 80 proof = 40% ABV).</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Simple Syrup</dt>
-                    <dd>Jarabe simple: proporción 1:1 de azúcar y agua. Rich syrup usa 2:1.</dd>
-                </div>
-                <div class="glossary-item">
-                    <dt>Free Pour</dt>
-                    <dd>Verter sin jigger, contando mentalmente. Requiere mucha práctica. La IBA exige jigger.</dd>
+                <div class="curso-body">
+                    <h3>Escalar a $10K/mes con Paid Ads</h3>
+                    <p>Estrategias avanzadas de Meta Ads y TikTok Ads. Aprende a escalar campanas, optimizar ROAS y construir un sistema de ads predecible y rentable.</p>
+                    <div class="curso-meta">
+                        <span>📚 18 modulos</span>
+                        <span>⏱ 14 horas</span>
+                        <span>📊 Casos reales</span>
+                    </div>
+                    <div class="curso-footer">
+                        <div class="curso-price">$97 <span class="old">$197</span></div>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============ FOOTER ============ -->
-    <footer class="footer" id="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <span class="logo-icon">🍸</span>
-                    <span class="logo-text">The Bar Book</span>
-                    <p class="footer-desc">La guía definitiva de bartending y coctelería profesional. Basada en los estándares de la International Bartenders Association.</p>
+    <div class="divider"></div>
+
+    <!-- METODO -->
+    <section class="section" id="metodo">
+        <p class="section-label fade-in">⚡ Metodo</p>
+        <h2 class="section-title fade-in">4 Pasos para tu Primera Venta</h2>
+        <p class="section-desc fade-in">Nuestro sistema probado que combina dropshipping tradicional con el poder de la inteligencia artificial.</p>
+
+        <div class="steps">
+            <div class="step fade-in">
+                <div class="step-icon">🔍</div>
+                <h3>Encuentra Productos con IA</h3>
+                <p>Usa prompts especializados para analizar tendencias, validar nichos y encontrar productos ganadores antes que tu competencia.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-icon">🏗️</div>
+                <h3>Crea tu Tienda en 24h</h3>
+                <p>Shopify + IA para generar descripciones, politicas y una tienda profesional en tiempo record. Templates probados incluidos.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-icon">🎯</div>
+                <h3>Lanza Ads que Convierten</h3>
+                <p>Creativos generados con IA, segmentacion inteligente y estrategias de testing que maximizan cada dolar invertido.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-icon">📈</div>
+                <h3>Escala y Automatiza</h3>
+                <p>Chatbots IA para servicio al cliente, automatizaciones de email y sistemas para escalar sin trabajar mas horas.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- BLOG -->
+    <section class="section" id="blog">
+        <p class="section-label fade-in">✍️ Blog</p>
+        <h2 class="section-title fade-in">Contenido Gratuito</h2>
+        <p class="section-desc fade-in">Guias, estrategias y tips para emprendedores digitales que quieren resultados reales.</p>
+
+        <div class="blog-grid">
+            <article class="blog-card fade-in">
+                <div class="blog-img">🤖</div>
+                <div class="blog-body">
+                    <span class="blog-tag">Inteligencia Artificial</span>
+                    <h3>10 Prompts de ChatGPT que Usan los Dropshippers Exitosos</h3>
+                    <p>Los prompts exactos para investigar productos, escribir descripciones que venden y crear ads en minutos.</p>
+                    <div class="blog-footer">
+                        <span>8 min lectura</span>
+                        <a href="#">Leer mas &rarr;</a>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Navegación</h4>
-                    <ul>
-                        <li><a href="#about">El Oficio</a></li>
-                        <li><a href="#manual">Manual</a></li>
-                        <li><a href="#iba">IBA</a></li>
-                        <li><a href="#cocktails">Cócteles</a></li>
-                        <li><a href="#glossary">Glosario</a></li>
-                    </ul>
+            </article>
+
+            <article class="blog-card fade-in">
+                <div class="blog-img">💡</div>
+                <div class="blog-body">
+                    <span class="blog-tag">Estrategia</span>
+                    <h3>Dropshipping en 2026: Lo que Funciona y lo que Ya No</h3>
+                    <p>El panorama cambio. Te explico las estrategias actualizadas que estan dando resultados este ano.</p>
+                    <div class="blog-footer">
+                        <span>12 min lectura</span>
+                        <a href="#">Leer mas &rarr;</a>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Recursos</h4>
-                    <ul>
-                        <li><a href="https://iba-world.com" target="_blank" rel="noopener">IBA Oficial</a></li>
-                        <li><a href="#manual">Técnicas</a></li>
-                        <li><a href="#manual">Cristalería</a></li>
-                        <li><a href="#glossary">Glosario</a></li>
-                    </ul>
+            </article>
+
+            <article class="blog-card fade-in">
+                <div class="blog-img">🎯</div>
+                <div class="blog-body">
+                    <span class="blog-tag">Ads</span>
+                    <h3>Mi Framework de $0 a $5K/mes con TikTok Ads</h3>
+                    <p>Estructura exacta de campanas, presupuestos y metricas para escalar de forma rentable en TikTok.</p>
+                    <div class="blog-footer">
+                        <span>15 min lectura</span>
+                        <a href="#">Leer mas &rarr;</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- TESTIMONIOS -->
+    <section class="section" id="testimonios">
+        <p class="section-label fade-in">🏆 Resultados</p>
+        <h2 class="section-title fade-in">Historias de Exito Reales</h2>
+        <p class="section-desc fade-in">Alumnos que pasaron de cero conocimiento a generar ingresos reales con sus tiendas.</p>
+
+        <div class="testimonials">
+            <div class="testimonial fade-in">
+                <div class="testimonial-revenue">+$4,200/mes en 3 meses</div>
+                <p>"No sabia nada de e-commerce. El modulo de IA para encontrar productos fue un game changer. En la tercera semana ya tenia mi primera venta y en 3 meses ya estaba generando consistentemente."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">D</div>
+                    <div>
+                        <div class="testimonial-name">Daniel Herrera</div>
+                        <div class="testimonial-role">Ex empleado bancario, ahora emprendedor</div>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 The Bar Book. Bebe con responsabilidad.</p>
-                <p class="footer-disclaimer">Este sitio es una guía educativa. El consumo de alcohol es solo para mayores de edad legal en tu jurisdicción.</p>
+
+            <div class="testimonial fade-in">
+                <div class="testimonial-revenue">+$8,700/mes en 5 meses</div>
+                <p>"Ya habia probado dropshipping antes y falle. La diferencia fue usar IA para todo: productos, copy, ads. Ahorre meses de prueba y error. Ahora tengo dos tiendas activas."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">V</div>
+                    <div>
+                        <div class="testimonial-name">Valeria Rios</div>
+                        <div class="testimonial-role">Estudiante universitaria</div>
+                    </div>
+                </div>
             </div>
+
+            <div class="testimonial fade-in">
+                <div class="testimonial-revenue">+$15,000/mes en 6 meses</div>
+                <p>"El curso de scaling con Paid Ads es de otro nivel. Pase de gastar $20/dia a $200/dia manteniendo un ROAS de 3x. Los frameworks de testing son oro puro."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">M</div>
+                    <div>
+                        <div class="testimonial-name">Miguel Contreras</div>
+                        <div class="testimonial-role">Full-time dropshipper</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-section">
+        <h2 class="fade-in">Tu negocio online empieza hoy</h2>
+        <p class="fade-in">Recibe una guia gratuita + 3 prompts de IA para encontrar tu primer producto ganador.</p>
+        <div class="newsletter fade-in">
+            <input type="email" placeholder="Tu mejor email..." aria-label="Email">
+            <button class="btn btn-primary">Quiero la Guia</button>
+        </div>
+        <p class="cta-note fade-in">Sin spam. Puedes darte de baja cuando quieras.</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="#cursos">Cursos</a>
+                <a href="#blog">Blog</a>
+                <a href="#testimonios">Resultados</a>
+                <a href="#">Terminos</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Contacto</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 DropAI Pro. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <script src="js/app.js"></script>
+    <script>
+        // Mobile nav
+        document.getElementById('navToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+        });
+
+        // Fade in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
 </body>
 </html>
