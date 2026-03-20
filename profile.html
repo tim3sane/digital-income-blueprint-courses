@@ -275,7 +275,7 @@
 <script src="js/auth.js"></script>
 <script>
     // Guard: redirect if not logged in
-    if (!AUTH.isLoggedIn()) window.location.href = 'login.html';
+    if (!AUTH.isLoggedInSync()) window.location.href = 'login.html';
 
     const user = AUTH.getCurrentUser();
 

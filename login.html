@@ -198,7 +198,7 @@
 <script src="js/auth.js"></script>
 <script>
     // Redirect if already logged in
-    if (AUTH.isLoggedIn()) window.location.href = 'profile.html';
+    if (AUTH.isLoggedInSync()) window.location.href = 'profile.html';
 
     const form = document.getElementById('loginForm');
     const alert_ = document.getElementById('loginAlert');
