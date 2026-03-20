@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel — Digital Income Blueprint</title>
+    <link rel="icon" href="assets/img/logo-oficial.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --accent: #c9a227; --accent-light: #e2c462; --accent-glow: rgba(201,162,39,.25);
+            --dark: #0c0c0c; --dark-2: #141414; --dark-3: #1c1c1c; --dark-4: #2a2a2a;
+            --text: #e8e4dc; --text-muted: #9a9488; --radius: 16px;
+            --danger: #e74c3c; --success: #27ae60;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text); min-height: 100vh; line-height: 1.6; }
+        a { color: var(--accent-light); text-decoration: none; }
+
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(12,12,12,.92); backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(201,162,39,.15);
+        }
+        .nav-inner {
+            max-width: 1200px; margin: auto; display: flex; align-items: center;
+            justify-content: space-between; padding: 1rem 1.5rem;
+        }
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700;
+            color: #fff; display: flex; align-items: center; gap: .5rem;
+        }
+        .nav-logo img { width: 40px; height: 40px; border-radius: 50%; object-fit: contain; filter: drop-shadow(0 0 8px rgba(201,162,39,.4)); }
+        .admin-badge {
+            background: var(--danger); color: #fff; font-size: .65rem; font-weight: 700;
+            padding: .2rem .6rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .nav-btns { display: flex; gap: .75rem; }
+        .nav-btns a, .nav-btns button {
+            padding: .45rem 1rem; border-radius: 8px; font-size: .82rem; font-weight: 600;
+            cursor: pointer; transition: .3s; font-family: inherit; border: 1px solid var(--dark-4);
+            background: var(--dark-3); color: var(--text-muted);
+        }
+        .nav-btns a:hover, .nav-btns button:hover { border-color: var(--accent); color: #fff; }
+        .btn-logout { border-color: var(--danger) !important; color: var(--danger) !important; background: transparent; }
+        .btn-logout:hover { background: var(--danger) !important; color: #fff !important; }
+
+        .admin-page { max-width: 1200px; margin: 0 auto; padding: 6rem 1.5rem 3rem; }
+        .admin-page h1 {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; color: #fff;
+            margin-bottom: .5rem;
+        }
+        .admin-page > p { color: var(--text-muted); margin-bottom: 2rem; }
+
+        /* Stats */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+        .stat-card {
+            background: var(--dark-2); border: 1px solid var(--dark-4); border-radius: var(--radius);
+            padding: 1.5rem; text-align: center;
+        }
+        .stat-num {
+            font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 800; color: #fff;
+        }
+        .stat-num.gold { color: var(--accent); }
+        .stat-label { font-size: .82rem; color: var(--text-muted); margin-top: .25rem; }
+
+        /* Users Table */
+        .table-card {
+            background: var(--dark-2); border: 1px solid var(--dark-4);
+            border-radius: var(--radius); overflow: hidden;
+        }
+        .table-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--dark-4);
+        }
+        .table-header h2 {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; color: #fff;
+        }
+        .search-input {
+            padding: .5rem 1rem; border-radius: 8px; background: var(--dark-3);
+            border: 1px solid var(--dark-4); color: #fff; font-size: .85rem;
+            outline: none; width: 250px; font-family: inherit;
+        }
+        .search-input:focus { border-color: var(--accent); }
+
+        table { width: 100%; border-collapse: collapse; }
+        thead { background: var(--dark-3); }
+        th {
+            text-align: left; padding: .85rem 1.5rem; font-size: .75rem;
+            text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 600;
+        }
+        td { padding: .85rem 1.5rem; font-size: .88rem; border-top: 1px solid var(--dark-4); }
+        tr:hover td { background: rgba(201,162,39,.03); }
+        .user-cell { display: flex; align-items: center; gap: .75rem; }
+        .user-cell-avatar {
+            width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            display: flex; align-items: center; justify-content: center;
+            font-size: .8rem; font-weight: 700; color: var(--dark); overflow: hidden;
+        }
+        .user-cell-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .user-cell-name { font-weight: 600; color: #fff; }
+        .user-cell-email { font-size: .78rem; color: var(--text-muted); }
+        .role-badge {
+            display: inline-block; padding: .2rem .6rem; border-radius: 50px;
+            font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+        }
+        .role-admin { background: rgba(231,76,60,.15); color: #e74c3c; border: 1px solid rgba(231,76,60,.3); }
+        .role-user { background: rgba(201,162,39,.1); color: var(--accent); border: 1px solid rgba(201,162,39,.2); }
+        .btn-role {
+            padding: .3rem .7rem; border-radius: 6px; font-size: .75rem; font-weight: 600;
+            cursor: pointer; border: 1px solid var(--dark-4); background: var(--dark-3);
+            color: var(--text-muted); font-family: inherit; transition: .2s;
+        }
+        .btn-role:hover { border-color: var(--accent); color: var(--accent); }
+        .date-cell { font-size: .8rem; color: var(--text-muted); }
+
+        .empty-state {
+            text-align: center; padding: 3rem; color: var(--text-muted);
+        }
+        .empty-state .icon { font-size: 3rem; margin-bottom: 1rem; }
+
+        .access-denied {
+            text-align: center; padding: 6rem 2rem;
+        }
+        .access-denied .icon { font-size: 4rem; margin-bottom: 1.5rem; }
+        .access-denied h2 { font-family: 'Space Grotesk', sans-serif; color: #fff; margin-bottom: .5rem; }
+        .access-denied p { color: var(--text-muted); margin-bottom: 2rem; }
+        .btn-back {
+            display: inline-block; padding: .75rem 2rem; border-radius: 10px;
+            background: var(--accent); color: var(--dark); font-weight: 700; transition: .3s;
+        }
+        .btn-back:hover { background: var(--accent-light); color: var(--dark); }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr { display: block; }
+            thead { display: none; }
+            td { padding: .5rem 1.5rem; border: none; }
+            td:first-child { padding-top: 1rem; border-top: 1px solid var(--dark-4); }
+            td::before { content: attr(data-label); font-size: .7rem; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: .2rem; }
+            .search-input { width: 100%; }
+            .table-header { flex-direction: column; gap: .75rem; align-items: stretch; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/img/logo-oficial.png" alt="">
+                Digital Income Blueprint
+                <span class="admin-badge">Admin</span>
+            </a>
+            <div class="nav-btns">
+                <a href="index.html">Site</a>
+                <a href="profile.html">Profile</a>
+                <button class="btn-logout" onclick="AUTH.logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Access Denied (shown if not admin) -->
+    <div class="access-denied" id="accessDenied" style="display:none;">
+        <div class="icon">🔒</div>
+        <h2>Access Denied</h2>
+        <p>You don't have permission to view this page. Admin access required.</p>
+        <a href="index.html" class="btn-back">Go to Homepage</a>
+    </div>
+
+    <!-- Admin Content -->
+    <div class="admin-page" id="adminContent" style="display:none;">
+        <h1>Admin Dashboard</h1>
+        <p>Manage users, view stats, and control your platform.</p>
+
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-num gold" id="statTotal">-</div>
+                <div class="stat-label">Total Users</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" id="statAdmins">-</div>
+                <div class="stat-label">Admins</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" id="statToday">-</div>
+                <div class="stat-label">Joined Today</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" id="statWeek">-</div>
+                <div class="stat-label">Joined This Week</div>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <div class="table-header">
+                <h2>All Users</h2>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search by name or email...">
+            </div>
+            <div id="tableBody">
+                <div class="empty-state"><div class="icon">⏳</div>Loading users...</div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script>
+    let allUsers = [];
+
+    async function initAdmin() {
+        // Check auth
+        const loggedIn = AUTH.isLoggedInSync();
+        if (!loggedIn) { window.location.href = 'login.html'; return; }
+
+        const isAdmin = await AUTH.isAdmin();
+        if (!isAdmin) {
+            document.getElementById('accessDenied').style.display = 'block';
+            return;
+        }
+
+        document.getElementById('adminContent').style.display = 'block';
+        await loadUsers();
+    }
+
+    async function loadUsers() {
+        const result = await AUTH.getAllUsers();
+        if (!result.ok) {
+            document.getElementById('tableBody').innerHTML = `<div class="empty-state"><div class="icon">⚠️</div>${result.error}</div>`;
+            return;
+        }
+
+        allUsers = result.users;
+        updateStats();
+        renderTable(allUsers);
+    }
+
+    function updateStats() {
+        const now = new Date();
+        const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+        const weekStart = todayStart - 7 * 24 * 60 * 60 * 1000;
+
+        document.getElementById('statTotal').textContent = allUsers.length;
+        document.getElementById('statAdmins').textContent = allUsers.filter(u => u.role === 'admin').length;
+        document.getElementById('statToday').textContent = allUsers.filter(u => new Date(u.createdAt || u.created_at).getTime() >= todayStart).length;
+        document.getElementById('statWeek').textContent = allUsers.filter(u => new Date(u.createdAt || u.created_at).getTime() >= weekStart).length;
+    }
+
+    function renderTable(users) {
+        if (!users.length) {
+            document.getElementById('tableBody').innerHTML = `<div class="empty-state"><div class="icon">👤</div>No users found.</div>`;
+            return;
+        }
+
+        let html = `<table><thead><tr>
+            <th>User</th><th>Phone</th><th>Role</th><th>Joined</th><th>Action</th>
+        </tr></thead><tbody>`;
+
+        users.forEach(u => {
+            const initial = (u.name?.[0] || 'U').toUpperCase();
+            const avatar = u.avatar_url || u.avatar;
+            const date = new Date(u.createdAt || u.created_at);
+            const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const isAdmin = u.role === 'admin';
+            const roleClass = isAdmin ? 'role-admin' : 'role-user';
+
+            html += `<tr>
+                <td data-label="User">
+                    <div class="user-cell">
+                        <div class="user-cell-avatar">${avatar ? `<img src="${AUTH._sanitize(avatar)}" alt="">` : initial}</div>
+                        <div>
+                            <div class="user-cell-name">${AUTH._sanitize(u.name || 'No name')}</div>
+                            <div class="user-cell-email">${AUTH._sanitize(u.email)}</div>
+                        </div>
+                    </div>
+                </td>
+                <td data-label="Phone">${AUTH._sanitize(u.phone || '—')}</td>
+                <td data-label="Role"><span class="role-badge ${roleClass}">${u.role || 'user'}</span></td>
+                <td data-label="Joined" class="date-cell">${dateStr}</td>
+                <td data-label="Action">
+                    <button class="btn-role" onclick="toggleRole('${u.id}', '${u.role}')">
+                        ${isAdmin ? 'Remove Admin' : 'Make Admin'}
+                    </button>
+                </td>
+            </tr>`;
+        });
+
+        html += '</tbody></table>';
+        document.getElementById('tableBody').innerHTML = html;
+    }
+
+    async function toggleRole(userId, currentRole) {
+        const newRole = currentRole === 'admin' ? 'user' : 'admin';
+        const confirm_ = confirm(`Change this user's role to "${newRole}"?`);
+        if (!confirm_) return;
+
+        const result = await AUTH.updateUserRole(userId, newRole);
+        if (result.ok) {
+            await loadUsers();
+        } else {
+            alert(result.error);
+        }
+    }
+
+    // Search
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const q = this.value.toLowerCase().trim();
+        if (!q) { renderTable(allUsers); return; }
+        const filtered = allUsers.filter(u =>
+            (u.name || '').toLowerCase().includes(q) ||
+            (u.email || '').toLowerCase().includes(q)
+        );
+        renderTable(filtered);
+    });
+
+    document.addEventListener('DOMContentLoaded', initAdmin);
+</script>
+
+</body>
+</html>
