@@ -277,30 +277,31 @@
     // Guard: redirect if not logged in
     if (!AUTH.isLoggedInSync()) window.location.href = 'login.html';
 
-    const user = AUTH.getCurrentUser();
-
     // Populate header
-    function renderHeader() {
-        const u = AUTH.getCurrentUser();
+    async function renderHeader() {
+        let u = null;
+        try { u = await AUTH.getCurrentUser(); } catch(e) {}
+        if (!u) u = AUTH.getCurrentUserSync();
         if (!u) return;
-        document.getElementById('displayName').textContent = u.name;
-        document.getElementById('displayEmail').textContent = u.email;
+        document.getElementById('displayName').textContent = u.name || '';
+        document.getElementById('displayEmail').textContent = u.email || '';
         const avatar = document.getElementById('avatarDisplay');
-        if (u.avatar) {
-            avatar.innerHTML = `<img src="${u.avatar}" alt="">`;
+        const avatarSrc = u.avatar_url || u.avatar;
+        if (avatarSrc) {
+            avatar.innerHTML = `<img src="${AUTH._sanitize(avatarSrc)}" alt="">`;
         } else {
-            avatar.textContent = u.name[0].toUpperCase();
+            avatar.textContent = (u.name || 'U')[0].toUpperCase();
         }
-        const date = new Date(u.createdAt);
+        const date = new Date(u.createdAt || u.created_at);
         document.getElementById('memberSince').textContent = `Member since ${date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}`;
+
+        // Populate form fields
+        document.getElementById('pName').value = u.name || '';
+        document.getElementById('pEmail').value = u.email || '';
+        document.getElementById('pPhone').value = u.phone || '';
+        document.getElementById('pAddress').value = u.address || '';
     }
     renderHeader();
-
-    // Populate form
-    document.getElementById('pName').value = user?.name || '';
-    document.getElementById('pEmail').value = user?.email || '';
-    document.getElementById('pPhone').value = user?.phone || '';
-    document.getElementById('pAddress').value = user?.address || '';
 
     // Tabs
     document.querySelectorAll('.tab').forEach(tab => {
