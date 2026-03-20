@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account — Digital Income Blueprint</title>
+    <link rel="icon" href="assets/img/logo-oficial.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --accent: #c9a227; --accent-light: #e2c462; --accent-glow: rgba(201,162,39,.25);
+            --dark: #0c0c0c; --dark-2: #141414; --dark-3: #1c1c1c; --dark-4: #2a2a2a;
+            --text: #e8e4dc; --text-muted: #9a9488; --radius: 16px;
+            --danger: #e74c3c; --success: #27ae60;
+        }
+        body {
+            font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text);
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 2rem; line-height: 1.6;
+            background: radial-gradient(ellipse at 30% 20%, rgba(201,162,39,.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(201,162,39,.04) 0%, transparent 50%), var(--dark);
+        }
+        a { color: var(--accent-light); text-decoration: none; }
+        a:hover { color: #fff; }
+        .auth-container { width: 100%; max-width: 480px; }
+        .auth-logo { text-align: center; margin-bottom: 2rem; }
+        .auth-logo img {
+            width: 64px; height: 64px; border-radius: 50%; object-fit: contain;
+            filter: drop-shadow(0 0 16px rgba(201,162,39,.5)); margin-bottom: .75rem;
+        }
+        .auth-logo h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: #fff; text-shadow: 0 0 12px rgba(201,162,39,.3); }
+        .auth-card {
+            background: var(--dark-2); border: 1px solid var(--dark-4);
+            border-radius: var(--radius); padding: 2.5rem; position: relative; overflow: hidden;
+        }
+        .auth-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
+        .auth-card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; color: #fff; margin-bottom: .4rem; }
+        .auth-card .subtitle { font-size: .85rem; color: var(--text-muted); margin-bottom: 1.75rem; }
+        .form-group { margin-bottom: 1.1rem; }
+        .form-group label { display: block; font-size: .82rem; font-weight: 600; color: var(--text); margin-bottom: .35rem; }
+        .form-group input {
+            width: 100%; padding: .8rem 1rem; border-radius: 10px;
+            background: var(--dark-3); border: 1px solid var(--dark-4); color: #fff;
+            font-size: .9rem; outline: none; font-family: inherit; transition: .3s;
+        }
+        .form-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(201,162,39,.1); }
+        .form-group input.error { border-color: var(--danger); }
+        .form-group input.valid { border-color: var(--success); }
+        .field-error { font-size: .73rem; color: var(--danger); margin-top: .25rem; display: none; }
+        .field-error.show { display: block; }
+        .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+        .pass-strength { height: 4px; border-radius: 2px; background: var(--dark-4); margin-top: .4rem; overflow: hidden; }
+        .pass-strength-bar { height: 100%; width: 0; border-radius: 2px; transition: .3s; }
+        .pass-strength-text { font-size: .7rem; margin-top: .2rem; color: var(--text-muted); }
+        .pass-wrapper { position: relative; }
+        .pass-toggle {
+            position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+            background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem;
+        }
+        .btn-submit {
+            width: 100%; padding: .95rem; border: none; border-radius: 10px;
+            background: var(--accent); color: var(--dark); font-size: 1rem;
+            font-weight: 700; cursor: pointer; transition: .3s; font-family: inherit; margin-top: .5rem;
+        }
+        .btn-submit:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: 0 8px 24px var(--accent-glow); }
+        .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+        .alert { padding: .85rem 1rem; border-radius: 10px; font-size: .85rem; margin-bottom: 1rem; display: none; }
+        .alert.show { display: block; }
+        .alert-error { background: rgba(231,76,60,.1); border: 1px solid rgba(231,76,60,.3); color: #e74c3c; }
+        .alert-success { background: rgba(39,174,96,.1); border: 1px solid rgba(39,174,96,.3); color: #27ae60; }
+        .terms { font-size: .78rem; color: var(--text-muted); margin: 1rem 0 .5rem; }
+        .terms a { color: var(--accent-light); }
+        .auth-footer { text-align: center; margin-top: 1.5rem; font-size: .88rem; color: var(--text-muted); }
+        .back-home { display: block; text-align: center; margin-top: 1.5rem; font-size: .82rem; color: var(--text-muted); }
+        .back-home:hover { color: var(--accent); }
+        @media (max-width: 480px) {
+            .auth-card { padding: 1.5rem; }
+            .form-row-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="auth-logo">
+        <a href="index.html"><img src="assets/img/logo-oficial.png" alt="Digital Income Blueprint"></a>
+        <h1>Digital Income Blueprint</h1>
+    </div>
+
+    <div class="auth-card">
+        <h2>Create your account</h2>
+        <p class="subtitle">Join 3,847+ students building their online income.</p>
+
+        <div class="alert alert-error" id="regAlert"></div>
+
+        <form id="registerForm" novalidate>
+            <div class="form-row-2">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" placeholder="John Doe" autocomplete="name" required>
+                    <div class="field-error" id="nameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" placeholder="you@example.com" autocomplete="email" required>
+                    <div class="field-error" id="emailError"></div>
+                </div>
+            </div>
+
+            <div class="form-row-2">
+                <div class="form-group">
+                    <label for="phone">Phone <span style="color:var(--text-muted)">(optional)</span></label>
+                    <input type="tel" id="phone" placeholder="+1 234 567 890" autocomplete="tel">
+                    <div class="field-error" id="phoneError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Country <span style="color:var(--text-muted)">(optional)</span></label>
+                    <input type="text" id="address" placeholder="United States" autocomplete="country-name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <div class="pass-wrapper">
+                    <input type="password" id="password" placeholder="Min 8 chars, upper, lower, number, symbol" autocomplete="new-password" required>
+                    <button type="button" class="pass-toggle" id="passToggle">👁</button>
+                </div>
+                <div class="pass-strength"><div class="pass-strength-bar" id="strengthBar"></div></div>
+                <div class="pass-strength-text" id="strengthText"></div>
+                <div class="field-error" id="passError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPass">Confirm Password *</label>
+                <div class="pass-wrapper">
+                    <input type="password" id="confirmPass" placeholder="Repeat your password" autocomplete="new-password" required>
+                </div>
+                <div class="field-error" id="confirmError"></div>
+            </div>
+
+            <p class="terms">By creating an account, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+
+            <button type="submit" class="btn-submit" id="submitBtn">Create Account</button>
+        </form>
+    </div>
+
+    <p class="auth-footer">Already have an account? <a href="login.html">Sign in</a></p>
+    <a href="index.html" class="back-home">&larr; Back to home</a>
+</div>
+
+<script src="js/auth.js"></script>
+<script>
+    if (AUTH.isLoggedIn()) window.location.href = 'profile.html';
+
+    const form = document.getElementById('registerForm');
+    const alert_ = document.getElementById('regAlert');
+    const passInput = document.getElementById('password');
+    const confirmInput = document.getElementById('confirmPass');
+
+    // Password toggle
+    document.getElementById('passToggle').addEventListener('click', () => {
+        passInput.type = passInput.type === 'password' ? 'text' : 'password';
+    });
+
+    // Password strength meter
+    passInput.addEventListener('input', () => {
+        const val = passInput.value;
+        let score = 0;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[a-z]/.test(val)) score++;
+        if (/\d/.test(val)) score++;
+        if (/[\W_]/.test(val)) score++;
+
+        const bar = document.getElementById('strengthBar');
+        const text = document.getElementById('strengthText');
+        const colors = ['#e74c3c', '#e67e22', '#f1c40f', '#2ecc71', '#27ae60'];
+        const labels = ['Very weak', 'Weak', 'Fair', 'Strong', 'Very strong'];
+
+        bar.style.width = (score * 20) + '%';
+        bar.style.background = colors[score - 1] || '#e74c3c';
+        text.textContent = val ? labels[score - 1] || 'Very weak' : '';
+        text.style.color = colors[score - 1] || '#e74c3c';
+    });
+
+    // Confirm password check
+    confirmInput.addEventListener('input', () => {
+        const err = document.getElementById('confirmError');
+        if (confirmInput.value && confirmInput.value !== passInput.value) {
+            err.textContent = 'Passwords do not match.';
+            err.classList.add('show');
+            confirmInput.classList.add('error');
+        } else {
+            err.classList.remove('show');
+            confirmInput.classList.remove('error');
+            if (confirmInput.value) confirmInput.classList.add('valid');
+        }
+    });
+
+    // Real-time email validation
+    document.getElementById('email').addEventListener('blur', function() {
+        const err = document.getElementById('emailError');
+        if (this.value && !AUTH.EMAIL_REGEX.test(this.value)) {
+            err.textContent = 'Please enter a valid email.'; err.classList.add('show'); this.classList.add('error');
+        } else { err.classList.remove('show'); this.classList.remove('error'); }
+    });
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.textContent = 'Creating account...';
+        alert_.classList.remove('show');
+
+        const password = passInput.value;
+        const confirm = confirmInput.value;
+
+        if (password !== confirm) {
+            alert_.textContent = 'Passwords do not match.';
+            alert_.classList.add('show');
+            btn.disabled = false;
+            btn.textContent = 'Create Account';
+            return;
+        }
+
+        const result = await AUTH.register({
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            password,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value
+        });
+
+        if (result.ok) {
+            window.location.href = 'profile.html';
+        } else {
+            alert_.textContent = result.error;
+            alert_.classList.add('show');
+            btn.disabled = false;
+            btn.textContent = 'Create Account';
+        }
+    });
+</script>
+
+</body>
+</html>
