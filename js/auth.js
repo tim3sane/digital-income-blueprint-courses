@@ -25,9 +25,8 @@ const AUTH = {
             typeof supabase !== 'undefined') {
             this._supabase = supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
             this._useSupabase = true;
-            console.log('[AUTH] Supabase connected');
         } else {
-            console.log('[AUTH] Running in local mode (configure Supabase for production)');
+            // Local fallback mode
         }
     },
 
@@ -154,8 +153,6 @@ const AUTH = {
     // =============================================
 
     async _supabaseRegister({ name, email, password, phone, address }) {
-        console.log('[AUTH] Attempting Supabase signUp for:', email);
-
         try {
             const { data, error } = await this._supabase.auth.signUp({
                 email: email.toLowerCase().trim(),
@@ -165,26 +162,14 @@ const AUTH = {
                 }
             });
 
-            console.log('[AUTH] signUp response:', { data, error });
-
-            if (error) {
-                console.error('[AUTH] signUp error:', error);
-                return { ok: false, error: error.message };
-            }
+            if (error) return { ok: false, error: error.message };
 
             if (!data.user) {
-                console.error('[AUTH] signUp returned no user. Email confirmation may be required.');
-                return { ok: false, error: 'Registration failed. Check if email confirmation is disabled in Supabase.' };
-            }
-
-            // Check if user has a session (no email confirmation required)
-            if (!data.session) {
-                console.warn('[AUTH] No session returned — email confirmation may still be enabled.');
+                return { ok: false, error: 'Registration failed. Please check your email settings.' };
             }
 
             // Upsert profile to ensure it exists even if trigger failed
-            console.log('[AUTH] Upserting profile for user:', data.user.id);
-            const { error: upsertError } = await this._supabase.from('profiles').upsert({
+            await this._supabase.from('profiles').upsert({
                 id: data.user.id,
                 name: name.trim(),
                 email: email.toLowerCase().trim(),
@@ -194,18 +179,11 @@ const AUTH = {
                 avatar_url: ''
             }, { onConflict: 'id' });
 
-            if (upsertError) {
-                console.error('[AUTH] Profile upsert error:', upsertError);
-            } else {
-                console.log('[AUTH] Profile upserted successfully');
-            }
-
             const user = { id: data.user.id, name: name.trim(), email: data.user.email, phone, address, role: 'user', avatar_url: '', created_at: new Date().toISOString() };
             localStorage.setItem('dib_supabase_user', JSON.stringify(user));
 
             return { ok: true, user: data.user };
         } catch (err) {
-            console.error('[AUTH] Registration exception:', err);
             return { ok: false, error: 'Connection error. Please try again.' };
         }
     },
@@ -262,10 +240,15 @@ const AUTH = {
 
         // Handle avatar upload
         let avatar_url = undefined;
-        if (avatar && avatar.startsWith('data:')) {
+        if (avatar && avatar.startsWith('data:image/')) {
+            const mimeMatch = avatar.match(/^data:(image\/(?:png|jpe?g|gif|webp));base64,/);
+            if (!mimeMatch) return { ok: false, error: 'Invalid image format. Use PNG, JPG, GIF, or WebP.' };
+
             const base64 = avatar.split(',')[1];
+            if (base64.length > 2 * 1024 * 1024 * 1.37) return { ok: false, error: 'Image must be under 2MB.' };
+
             const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
-            const ext = avatar.includes('png') ? 'png' : 'jpg';
+            const ext = mimeMatch[1].includes('png') ? 'png' : 'jpg';
             const path = `${user.id}/avatar.${ext}`;
 
             const { error: uploadError } = await this._supabase.storage

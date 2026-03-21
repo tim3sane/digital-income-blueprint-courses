@@ -1,0 +1,15 @@
+# Credentials and secrets
+*.env
+admin pass.txt
+login pass.txt
+*.pem
+*.key
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/

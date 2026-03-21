@@ -229,7 +229,7 @@
     async function loadUsers() {
         const result = await AUTH.getAllUsers();
         if (!result.ok) {
-            document.getElementById('tableBody').innerHTML = `<div class="empty-state"><div class="icon">⚠️</div>${result.error}</div>`;
+            document.getElementById('tableBody').innerHTML = `<div class="empty-state"><div class="icon">⚠️</div>${AUTH._sanitize(result.error)}</div>`;
             return;
         }
 
@@ -267,10 +267,13 @@
             const isAdmin = u.role === 'admin';
             const roleClass = isAdmin ? 'role-admin' : 'role-user';
 
+            const safeId = AUTH._sanitize(u.id);
+            const safeRole = AUTH._sanitize(u.role || 'user');
+
             html += `<tr>
                 <td data-label="User">
                     <div class="user-cell">
-                        <div class="user-cell-avatar">${avatar ? `<img src="${AUTH._sanitize(avatar)}" alt="">` : initial}</div>
+                        <div class="user-cell-avatar">${avatar ? `<img src="${AUTH._sanitize(avatar)}" alt="">` : AUTH._sanitize(String(initial))}</div>
                         <div>
                             <div class="user-cell-name">${AUTH._sanitize(u.name || 'No name')}</div>
                             <div class="user-cell-email">${AUTH._sanitize(u.email)}</div>
@@ -278,10 +281,10 @@
                     </div>
                 </td>
                 <td data-label="Phone">${AUTH._sanitize(u.phone || '—')}</td>
-                <td data-label="Role"><span class="role-badge ${roleClass}">${u.role || 'user'}</span></td>
-                <td data-label="Joined" class="date-cell">${dateStr}</td>
+                <td data-label="Role"><span class="role-badge ${roleClass}">${safeRole}</span></td>
+                <td data-label="Joined" class="date-cell">${AUTH._sanitize(dateStr)}</td>
                 <td data-label="Action">
-                    <button class="btn-role" onclick="toggleRole('${u.id}', '${u.role}')">
+                    <button class="btn-role" data-uid="${safeId}" data-role="${safeRole}">
                         ${isAdmin ? 'Remove Admin' : 'Make Admin'}
                     </button>
                 </td>
@@ -292,18 +295,30 @@
         document.getElementById('tableBody').innerHTML = html;
     }
 
-    async function toggleRole(userId, currentRole) {
+    // Delegated click handler — no inline onclick, prevents XSS via user IDs
+    document.getElementById('tableBody').addEventListener('click', async (e) => {
+        const btn = e.target.closest('.btn-role');
+        if (!btn) return;
+
+        const userId = btn.dataset.uid;
+        const currentRole = btn.dataset.role;
+        if (!userId) return;
+
         const newRole = currentRole === 'admin' ? 'user' : 'admin';
         const confirm_ = confirm(`Change this user's role to "${newRole}"?`);
         if (!confirm_) return;
 
+        btn.disabled = true;
+        btn.textContent = 'Updating...';
         const result = await AUTH.updateUserRole(userId, newRole);
         if (result.ok) {
             await loadUsers();
         } else {
             alert(result.error);
+            btn.disabled = false;
+            btn.textContent = currentRole === 'admin' ? 'Remove Admin' : 'Make Admin';
         }
-    }
+    });
 
     // Search
     document.getElementById('searchInput').addEventListener('input', function() {
