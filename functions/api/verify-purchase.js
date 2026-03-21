@@ -5,12 +5,21 @@
  * Used on success.html to confirm payment and show course access.
  */
 
+function getAllowedOrigin(request, env) {
+    const origin = request.headers.get('Origin') || '';
+    const allowed = [
+        env.SITE_URL,
+        'https://digital-income-blueprint-courses.pages.dev',
+    ].filter(Boolean);
+    return allowed.includes(origin) ? origin : allowed[0] || '';
+}
+
 export async function onRequestGet(context) {
     const { request, env } = context;
 
     const headers = {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': env.SITE_URL || '*',
+        'Access-Control-Allow-Origin': getAllowedOrigin(request, env),
     };
 
     try {

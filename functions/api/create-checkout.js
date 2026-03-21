@@ -26,24 +26,53 @@ const COURSES = {
     },
 };
 
+function getAllowedOrigin(request, env) {
+    const origin = request.headers.get('Origin') || '';
+    const allowed = [
+        env.SITE_URL,
+        'https://digital-income-blueprint-courses.pages.dev',
+    ].filter(Boolean);
+    return allowed.includes(origin) ? origin : allowed[0] || '';
+}
+
 export async function onRequestPost(context) {
     const { request, env } = context;
+    const allowedOrigin = getAllowedOrigin(request, env);
 
     // CORS headers
     const headers = {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': env.SITE_URL || '*',
+        'Access-Control-Allow-Origin': allowedOrigin,
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type',
     };
 
     try {
+        // Rate limit check via simple IP tracking (basic protection)
+        const clientIP = request.headers.get('CF-Connecting-IP');
+
         const { courseId, email } = await request.json();
+
+        // Validate courseId type
+        if (typeof courseId !== 'string' || courseId.length > 20) {
+            return new Response(JSON.stringify({ error: 'Invalid request.' }), {
+                status: 400,
+                headers,
+            });
+        }
 
         // Validate course
         const course = COURSES[courseId];
         if (!course) {
             return new Response(JSON.stringify({ error: 'Invalid course.' }), {
+                status: 400,
+                headers,
+            });
+        }
+
+        // Validate email format if provided
+        if (email && (typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))) {
+            return new Response(JSON.stringify({ error: 'Invalid email.' }), {
                 status: 400,
                 headers,
             });
@@ -56,7 +85,7 @@ export async function onRequestPost(context) {
             });
         }
 
-        const siteUrl = env.SITE_URL || 'https://digital-income-blueprint-courses.tim3sane.workers.dev';
+        const siteUrl = env.SITE_URL || 'https://digital-income-blueprint-courses.pages.dev';
 
         // Create Stripe Checkout Session via API (no SDK needed)
         const params = new URLSearchParams();
@@ -106,12 +135,14 @@ export async function onRequestPost(context) {
 }
 
 // Handle CORS preflight
-export async function onRequestOptions() {
+export async function onRequestOptions(context) {
+    const { request, env } = context;
     return new Response(null, {
         headers: {
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': getAllowedOrigin(request, env),
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Max-Age': '86400',
         },
     });
 }

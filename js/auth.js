@@ -58,6 +58,7 @@ const AUTH = {
     async logout() {
         if (this._useSupabase) {
             await this._supabase.auth.signOut();
+            localStorage.removeItem('dib_supabase_user');
         }
         localStorage.removeItem(this.SESSION_KEY);
         window.location.href = 'index.html';
@@ -247,7 +248,9 @@ const AUTH = {
             const base64 = avatar.split(',')[1];
             if (base64.length > 2 * 1024 * 1024 * 1.37) return { ok: false, error: 'Image must be under 2MB.' };
 
-            const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+            let bytes;
+            try { bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0)); }
+            catch { return { ok: false, error: 'Invalid image data.' }; }
             const ext = mimeMatch[1].includes('png') ? 'png' : 'jpg';
             const path = `${user.id}/avatar.${ext}`;
 
