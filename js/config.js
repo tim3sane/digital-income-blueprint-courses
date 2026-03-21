@@ -13,8 +13,8 @@
 
 const CONFIG = {
     // ⚠️ PASTE YOUR SUPABASE CREDENTIALS HERE
-    SUPABASE_URL: 'YOUR_SUPABASE_URL_HERE',
-    SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY_HERE',
+    SUPABASE_URL: 'https://khvjxwkxoybgaqcwgpil.supabase.co',
+    SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtodmp4d2t4b3liZ2FxY3dncGlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NzAyNTQsImV4cCI6MjA4OTU0NjI1NH0.SBq-N5WgEbifYnvcwqdIKhcQeat3PpEDhc4wtkEObe4',
 
     // App settings
     APP_NAME: 'Digital Income Blueprint',
