@@ -619,7 +619,7 @@
                     </div>
                     <div class="curso-footer">
                         <div class="curso-price" style="color: var(--green);">FREE</div>
-                        <a href="#" class="btn btn-primary">Start Free</a>
+                        <a href="#" class="btn btn-primary" data-course="free">Start Free</a>
                     </div>
                 </div>
             </div>
@@ -639,7 +639,7 @@
                     </div>
                     <div class="curso-footer">
                         <div class="curso-price">$9.99 <span class="old">$127</span></div>
-                        <a href="#" class="btn btn-primary">Buy Now</a>
+                        <a href="#" class="btn btn-primary" data-course="starter">Buy Now</a>
                     </div>
                 </div>
             </div>
@@ -659,7 +659,7 @@
                     </div>
                     <div class="curso-footer">
                         <div class="curso-price">$19.99 <span class="old">$97</span></div>
-                        <a href="#" class="btn btn-primary">Buy Now</a>
+                        <a href="#" class="btn btn-primary" data-course="ai">Buy Now</a>
                     </div>
                 </div>
             </div>
@@ -683,7 +683,7 @@
                         </div>
                         <div class="curso-footer">
                             <div class="curso-price">$49.99 <span class="old">$197</span></div>
-                            <a href="#" class="btn btn-primary btn-premium">Get the Blueprint &rarr;</a>
+                            <a href="#" class="btn btn-primary btn-premium" data-course="ultimate">Get the Blueprint &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -974,6 +974,54 @@
             }
             updateTimer();
         })();
+
+        // ── STRIPE CHECKOUT ──
+        document.querySelectorAll('[data-course]').forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const courseId = btn.dataset.course;
+
+                // Free course — just redirect
+                if (courseId === 'free') {
+                    alert('The free introductory course is coming soon! Sign up to get notified.');
+                    return;
+                }
+
+                // Get user email if logged in
+                const user = AUTH.getCurrentUserSync();
+                const email = user?.email || '';
+
+                // Update button state
+                const originalText = btn.textContent;
+                btn.textContent = 'Redirecting...';
+                btn.style.pointerEvents = 'none';
+                btn.style.opacity = '.6';
+
+                try {
+                    const res = await fetch('/api/create-checkout', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ courseId, email }),
+                    });
+
+                    const data = await res.json();
+
+                    if (data.url) {
+                        window.location.href = data.url;
+                    } else {
+                        alert(data.error || 'Could not start checkout. Please try again.');
+                        btn.textContent = originalText;
+                        btn.style.pointerEvents = '';
+                        btn.style.opacity = '';
+                    }
+                } catch (err) {
+                    alert('Connection error. Please check your internet and try again.');
+                    btn.textContent = originalText;
+                    btn.style.pointerEvents = '';
+                    btn.style.opacity = '';
+                }
+            });
+        });
     </script>
 
 </body>

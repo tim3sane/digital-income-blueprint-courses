@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful — Digital Income Blueprint</title>
+    <link rel="icon" href="assets/img/logo-oficial.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --accent: #c9a227; --accent-light: #e2c462;
+            --dark: #0c0c0c; --dark-2: #141414; --dark-3: #1c1c1c; --dark-4: #2a2a2a;
+            --text: #e8e4dc; --text-muted: #9a9488; --radius: 16px;
+            --success: #27ae60;
+        }
+        body {
+            font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text);
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 520px; width: 100%; text-align: center;
+        }
+        .card {
+            background: var(--dark-2); border: 1px solid var(--dark-4);
+            border-radius: var(--radius); padding: 3rem 2rem; position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--success), var(--accent));
+        }
+        .icon {
+            width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1.5rem;
+            background: rgba(39,174,96,.15); border: 2px solid rgba(39,174,96,.3);
+            display: flex; align-items: center; justify-content: center; font-size: 2.5rem;
+        }
+        .icon.loading { animation: pulse 1.5s infinite; }
+        .icon.error { background: rgba(231,76,60,.15); border-color: rgba(231,76,60,.3); }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem;
+            color: #fff; margin-bottom: .75rem;
+        }
+        p { color: var(--text-muted); font-size: .95rem; margin-bottom: 1.5rem; line-height: 1.6; }
+        .course-name {
+            display: inline-block; background: rgba(201,162,39,.1);
+            border: 1px solid rgba(201,162,39,.2); padding: .5rem 1.2rem;
+            border-radius: 8px; color: var(--accent-light); font-weight: 600;
+            font-size: .95rem; margin-bottom: 1.5rem;
+        }
+        .amount {
+            font-family: 'Space Grotesk', sans-serif; font-size: 2rem;
+            color: var(--success); font-weight: 700; margin-bottom: .5rem;
+        }
+        .btn {
+            display: inline-block; padding: .75rem 2rem; border-radius: 50px;
+            font-weight: 700; font-size: .95rem; transition: .3s; cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: var(--accent); color: #fff; border: none;
+        }
+        .btn-primary:hover { background: var(--accent-light); color: var(--dark); }
+        .btn-ghost {
+            background: none; color: var(--text-muted); border: 1px solid var(--dark-4);
+            margin-left: .5rem;
+        }
+        .btn-ghost:hover { color: #fff; border-color: var(--accent); }
+        .buttons { display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap; }
+        .receipt { font-size: .8rem; color: var(--text-muted); margin-top: 1.5rem; }
+
+        #loadingState, #successState, #errorState { display: none; }
+        #loadingState.active, #successState.active, #errorState.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- Loading -->
+            <div id="loadingState" class="active">
+                <div class="icon loading">...</div>
+                <h1>Verifying your payment...</h1>
+                <p>Please wait while we confirm your purchase.</p>
+            </div>
+
+            <!-- Success -->
+            <div id="successState">
+                <div class="icon">&#10003;</div>
+                <h1>Payment Successful!</h1>
+                <p>Thank you for your purchase. Your course is now unlocked and ready to go.</p>
+                <div class="course-name" id="courseName"></div>
+                <div class="amount" id="amountPaid"></div>
+                <p>A confirmation has been sent to <strong id="customerEmail"></strong></p>
+                <div class="buttons">
+                    <a href="profile.html" class="btn btn-primary">Go to My Profile</a>
+                    <a href="index.html" class="btn btn-ghost">Back to Home</a>
+                </div>
+                <div class="receipt">Keep this page as your receipt.</div>
+            </div>
+
+            <!-- Error -->
+            <div id="errorState">
+                <div class="icon error">!</div>
+                <h1>Something went wrong</h1>
+                <p id="errorMsg">We couldn't verify your payment. If you were charged, please contact support.</p>
+                <div class="buttons">
+                    <a href="index.html#courses" class="btn btn-primary">Try Again</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const COURSE_NAMES = {
+        starter: 'Dropshipping from Zero with AI',
+        ai: 'AI for E-commerce: Automate Everything',
+        ultimate: 'Scale to $10K/mo with Paid Ads',
+    };
+
+    (async function() {
+        const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get('session_id');
+
+        if (!sessionId) {
+            showError('No payment session found.');
+            return;
+        }
+
+        try {
+            const res = await fetch(`/api/verify-purchase?session_id=${encodeURIComponent(sessionId)}`);
+            const data = await res.json();
+
+            if (!res.ok || !data.ok) {
+                showError(data.error || 'Payment verification failed.');
+                return;
+            }
+
+            // Show success
+            document.getElementById('courseName').textContent = COURSE_NAMES[data.courseId] || 'Course';
+            document.getElementById('amountPaid').textContent = `$${(data.amount / 100).toFixed(2)} ${(data.currency || 'usd').toUpperCase()}`;
+            document.getElementById('customerEmail').textContent = data.email || '';
+
+            // Save purchase locally
+            const purchases = JSON.parse(localStorage.getItem('dib_purchases') || '[]');
+            if (!purchases.includes(data.courseId)) {
+                purchases.push(data.courseId);
+                localStorage.setItem('dib_purchases', JSON.stringify(purchases));
+            }
+
+            document.getElementById('loadingState').classList.remove('active');
+            document.getElementById('successState').classList.add('active');
+        } catch (err) {
+            showError('Connection error. Please check your internet and try again.');
+        }
+    })();
+
+    function showError(msg) {
+        document.getElementById('errorMsg').textContent = msg;
+        document.getElementById('loadingState').classList.remove('active');
+        document.getElementById('errorState').classList.add('active');
+    }
+</script>
+</body>
+</html>
