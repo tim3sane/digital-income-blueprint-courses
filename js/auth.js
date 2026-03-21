@@ -165,13 +165,17 @@ const AUTH = {
 
         if (error) return { ok: false, error: error.message };
 
-        // Update profile with extra fields
+        // Upsert profile to ensure it exists even if trigger failed
         if (data.user) {
-            await this._supabase.from('profiles').update({
+            await this._supabase.from('profiles').upsert({
+                id: data.user.id,
                 name: name.trim(),
+                email: email.toLowerCase().trim(),
                 phone: phone?.trim() || '',
-                address: address?.trim() || ''
-            }).eq('id', data.user.id);
+                address: address?.trim() || '',
+                role: 'user',
+                avatar_url: ''
+            }, { onConflict: 'id' });
 
             const user = { id: data.user.id, name: name.trim(), email: data.user.email, phone, address, role: 'user', avatar_url: '', created_at: new Date().toISOString() };
             localStorage.setItem('dib_supabase_user', JSON.stringify(user));
