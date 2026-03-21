@@ -35,24 +35,23 @@ CREATE POLICY "Users can insert own profile"
     ON public.profiles FOR INSERT
     WITH CHECK (auth.uid() = id);
 
--- Admin policies
+-- Helper function to check admin role without triggering RLS recursion
+CREATE OR REPLACE FUNCTION public.is_admin()
+RETURNS BOOLEAN AS $$
+    SELECT EXISTS (
+        SELECT 1 FROM public.profiles
+        WHERE id = auth.uid() AND role = 'admin'
+    );
+$$ LANGUAGE sql SECURITY DEFINER;
+
+-- Admin policies (use is_admin() to avoid infinite recursion)
 CREATE POLICY "Admins can view all profiles"
     ON public.profiles FOR SELECT
-    USING (
-        EXISTS (
-            SELECT 1 FROM public.profiles
-            WHERE id = auth.uid() AND role = 'admin'
-        )
-    );
+    USING (public.is_admin());
 
 CREATE POLICY "Admins can update all profiles"
     ON public.profiles FOR UPDATE
-    USING (
-        EXISTS (
-            SELECT 1 FROM public.profiles
-            WHERE id = auth.uid() AND role = 'admin'
-        )
-    );
+    USING (public.is_admin());
 
 -- 4. Auto-create profile on signup
 CREATE OR REPLACE FUNCTION public.handle_new_user()

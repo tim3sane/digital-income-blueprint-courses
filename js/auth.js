@@ -17,7 +17,7 @@ const AUTH = {
     USERS_KEY: 'dib_users',
     SESSION_KEY: 'dib_session',
 
-    // Initialize
+    // Initialize (called immediately when script loads)
     init() {
         if (typeof CONFIG !== 'undefined' &&
             CONFIG.SUPABASE_URL &&
@@ -29,7 +29,6 @@ const AUTH = {
         } else {
             console.log('[AUTH] Running in local mode (configure Supabase for production)');
         }
-        this.updateNavUI();
     },
 
     // ========== REGISTER ==========
@@ -155,19 +154,37 @@ const AUTH = {
     // =============================================
 
     async _supabaseRegister({ name, email, password, phone, address }) {
-        const { data, error } = await this._supabase.auth.signUp({
-            email: email.toLowerCase().trim(),
-            password,
-            options: {
-                data: { name: name.trim() }
+        console.log('[AUTH] Attempting Supabase signUp for:', email);
+
+        try {
+            const { data, error } = await this._supabase.auth.signUp({
+                email: email.toLowerCase().trim(),
+                password,
+                options: {
+                    data: { name: name.trim() }
+                }
+            });
+
+            console.log('[AUTH] signUp response:', { data, error });
+
+            if (error) {
+                console.error('[AUTH] signUp error:', error);
+                return { ok: false, error: error.message };
             }
-        });
 
-        if (error) return { ok: false, error: error.message };
+            if (!data.user) {
+                console.error('[AUTH] signUp returned no user. Email confirmation may be required.');
+                return { ok: false, error: 'Registration failed. Check if email confirmation is disabled in Supabase.' };
+            }
 
-        // Upsert profile to ensure it exists even if trigger failed
-        if (data.user) {
-            await this._supabase.from('profiles').upsert({
+            // Check if user has a session (no email confirmation required)
+            if (!data.session) {
+                console.warn('[AUTH] No session returned — email confirmation may still be enabled.');
+            }
+
+            // Upsert profile to ensure it exists even if trigger failed
+            console.log('[AUTH] Upserting profile for user:', data.user.id);
+            const { error: upsertError } = await this._supabase.from('profiles').upsert({
                 id: data.user.id,
                 name: name.trim(),
                 email: email.toLowerCase().trim(),
@@ -177,11 +194,20 @@ const AUTH = {
                 avatar_url: ''
             }, { onConflict: 'id' });
 
+            if (upsertError) {
+                console.error('[AUTH] Profile upsert error:', upsertError);
+            } else {
+                console.log('[AUTH] Profile upserted successfully');
+            }
+
             const user = { id: data.user.id, name: name.trim(), email: data.user.email, phone, address, role: 'user', avatar_url: '', created_at: new Date().toISOString() };
             localStorage.setItem('dib_supabase_user', JSON.stringify(user));
-        }
 
-        return { ok: true, user: data.user };
+            return { ok: true, user: data.user };
+        } catch (err) {
+            console.error('[AUTH] Registration exception:', err);
+            return { ok: false, error: 'Connection error. Please try again.' };
+        }
     },
 
     async _supabaseLogin(email, password) {
@@ -408,4 +434,7 @@ const AUTH = {
     }
 };
 
-document.addEventListener('DOMContentLoaded', () => AUTH.init());
+// Init immediately so isLoggedInSync() works in inline scripts
+AUTH.init();
+// Update nav UI once DOM is ready
+document.addEventListener('DOMContentLoaded', () => AUTH.updateNavUI());
