@@ -75,18 +75,81 @@
             border-radius: 50px; font-size: .85rem; font-weight: 600; transition: .3s;
         }
         .nav-cta:hover { background: var(--accent-light); color: var(--dark); }
-        .nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
-        .nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; transition: .3s; }
+        .nav-toggle {
+            display: none; background: none; border: none; cursor: pointer;
+            width: 32px; height: 32px; position: relative; z-index: 301;
+        }
+        .nav-toggle span {
+            display: block; width: 22px; height: 2px; background: #fff;
+            position: absolute; left: 5px; transition: all .35s cubic-bezier(.4,0,.2,1);
+        }
+        .nav-toggle span:nth-child(1) { top: 8px; }
+        .nav-toggle span:nth-child(2) { top: 15px; }
+        .nav-toggle span:nth-child(3) { top: 22px; }
+        .nav-toggle.active span:nth-child(1) { top: 15px; transform: rotate(45deg); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; transform: translateX(-8px); }
+        .nav-toggle.active span:nth-child(3) { top: 15px; transform: rotate(-45deg); }
+
+        /* Mobile overlay menu */
+        .mobile-menu {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 299; background: rgba(12,12,12,.97); backdrop-filter: blur(20px);
+            flex-direction: column; align-items: center; justify-content: center;
+            gap: 0; opacity: 0; transition: opacity .35s ease;
+        }
+        .mobile-menu.active { display: flex; opacity: 1; }
+        .mobile-menu-links {
+            list-style: none; display: flex; flex-direction: column; align-items: center;
+            gap: .5rem; margin-bottom: 2rem;
+        }
+        .mobile-menu-links a {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 600;
+            color: var(--text-muted); padding: .8rem 2rem; border-radius: 12px;
+            transition: all .3s; display: block; text-align: center;
+            border: 1px solid transparent;
+        }
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a:active {
+            color: #fff; background: rgba(201,162,39,.1); border-color: rgba(201,162,39,.3);
+        }
+        .mobile-menu-auth {
+            display: flex; flex-direction: column; align-items: center; gap: .75rem;
+            padding-top: 1.5rem; border-top: 1px solid var(--dark-4); min-width: 220px;
+        }
+        .mobile-menu-auth .nav-cta {
+            display: inline-block; padding: .75rem 2.5rem; font-size: 1rem;
+            background: var(--accent); color: #fff; border-radius: 50px; font-weight: 700;
+            text-align: center; width: 100%; transition: .3s;
+        }
+        .mobile-menu-auth .nav-cta:hover { background: var(--accent-light); color: var(--dark); }
+        .mobile-menu-auth .nav-user {
+            display: flex; align-items: center; gap: .75rem; color: #fff;
+            padding: .6rem 1.5rem; border-radius: 50px; background: var(--dark-3);
+            border: 1px solid var(--dark-4); font-size: 1rem; transition: .3s;
+        }
+        .mobile-menu-auth .nav-user:hover { border-color: var(--accent); }
+        .mobile-menu-auth .nav-avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            display: flex; align-items: center; justify-content: center;
+            font-size: .9rem; font-weight: 700; color: var(--dark); overflow: hidden;
+        }
+        .mobile-menu-auth .nav-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .mobile-menu-socials {
+            display: flex; gap: 1.5rem; margin-top: 2rem;
+        }
+        .mobile-menu-socials a {
+            color: var(--text-muted); font-size: 1.1rem; transition: .3s;
+        }
+        .mobile-menu-socials a:hover { color: var(--accent-light); }
 
         @media (max-width: 768px) {
-            .nav-toggle { display: flex; }
-            .nav-links {
-                display: none; position: absolute; top: 100%; left: 0; right: 0;
-                flex-direction: column; background: var(--dark-2); padding: 1.5rem;
-                border-bottom: 1px solid var(--dark-4);
-            }
-            .nav-links.active { display: flex; }
-            .nav-cta { display: none; }
+            .nav-toggle { display: block; }
+            .nav-links { display: none; }
+            .nav-auth { display: none; }
+            .nav-logo span { display: none; }
+            .nav-logo { font-size: 0; }
+            .nav-logo-img { width: 40px; height: 40px; }
         }
 
         /* ── HERO ── */
@@ -387,6 +450,10 @@
         .nav-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .nav-username { font-size: .85rem; font-weight: 500; }
 
+        @media (max-width: 768px) {
+            .nav-auth { display: none !important; }
+        }
+
         /* ── PROMO POPUP ── */
         .promo-popup {
             position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
@@ -471,6 +538,24 @@
             </button>
         </div>
     </nav>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-links">
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#method">Method</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#testimonials">Results</a></li>
+        </ul>
+        <div class="mobile-menu-auth" id="mobileAuthBtn">
+            <a href="login.html" class="nav-cta">Login / Register</a>
+        </div>
+        <div class="mobile-menu-socials">
+            <a href="#" title="Instagram">IG</a>
+            <a href="#" title="TikTok">TT</a>
+            <a href="#" title="YouTube">YT</a>
+        </div>
+    </div>
 
     <!-- HERO -->
     <section class="hero">
@@ -788,13 +873,45 @@
     <script src="js/config.js"></script>
     <script src="js/auth.js"></script>
     <script>
-        // Mobile nav
-        document.getElementById('navToggle').addEventListener('click', () => {
-            document.getElementById('navLinks').classList.toggle('active');
+        // Mobile nav overlay
+        const navToggle = document.getElementById('navToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+
+        function closeMobileMenu() {
+            navToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
         });
+
+        // Update mobile menu auth state
+        function updateMobileAuth() {
+            const mobileAuth = document.getElementById('mobileAuthBtn');
+            if (!mobileAuth) return;
+            const loggedIn = AUTH.isLoggedInSync();
+            if (loggedIn) {
+                const user = AUTH.getCurrentUserSync();
+                const initial = (user?.name?.[0] || 'U').toUpperCase();
+                const avatarSrc = user?.avatar_url || user?.avatar;
+                mobileAuth.innerHTML = `
+                    <a href="profile.html" class="nav-user">
+                        <span class="nav-avatar">${avatarSrc ? `<img src="${AUTH._sanitize(avatarSrc)}" alt="">` : initial}</span>
+                        <span>${AUTH._sanitize(user?.name || 'My Profile')}</span>
+                    </a>`;
+            } else {
+                mobileAuth.innerHTML = `<a href="login.html" class="nav-cta">Login / Register</a>`;
+            }
+        }
+        updateMobileAuth();
 
         // Fade in on scroll
         const observer = new IntersectionObserver((entries) => {
