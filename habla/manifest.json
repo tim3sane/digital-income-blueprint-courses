@@ -1,0 +1,10 @@
+{
+  "name": "Habla — Comunicador gratuito",
+  "short_name": "Habla",
+  "description": "Comunicación aumentativa gratuita y sin internet para personas que no pueden hablar.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fffaf0",
+  "theme_color": "#1f6feb",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

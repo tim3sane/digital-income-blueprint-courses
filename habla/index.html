@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Habla — Comunicador gratuito</title>
+<meta name="theme-color" content="#1f6feb">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg">
+<style>
+:root{--bg:#fffaf0;--fg:#1b1f24;--card:#fff;--line:#d9d2c3;--accent:#1f6feb;--on-accent:#fff;--bar:#fff;--shadow:0 2px 0 rgba(0,0,0,.12);--fs:1}
+:root[data-theme=dark]{--bg:#12161c;--fg:#f2f4f7;--card:#1d242e;--line:#35404f;--accent:#5aa2ff;--on-accent:#0b1118;--bar:#1d242e}
+:root[data-theme=contrast]{--bg:#000;--fg:#ffe600;--card:#000;--line:#ffe600;--accent:#ffe600;--on-accent:#000;--bar:#000}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;overscroll-behavior:none;user-select:none;-webkit-user-select:none}
+button{font:inherit;color:inherit;cursor:pointer}
+header{display:flex;gap:8px;align-items:center;padding:calc(8px + env(safe-area-inset-top)) 10px 8px;background:var(--bar);border-bottom:2px solid var(--line)}
+#sentence{flex:1;min-height:64px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 10px;border:2px solid var(--line);border-radius:14px;background:var(--card);overflow-y:auto;max-height:28vh;cursor:pointer}
+#sentence:empty::before{content:attr(data-ph);opacity:.55;font-size:calc(1.1rem*var(--fs))}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:10px;background:color-mix(in srgb,var(--accent) 16%,var(--card));border:1px solid var(--accent);font-size:calc(1.25rem*var(--fs));font-weight:600}
+.chip i{font-style:normal;font-size:calc(1.6rem*var(--fs))}
+.ctl{width:64px;height:64px;border-radius:14px;border:2px solid var(--line);background:var(--card);font-size:1.7rem;box-shadow:var(--shadow);flex:none}
+.ctl.speak{background:var(--accent);color:var(--on-accent);border-color:var(--accent);width:84px}
+.ctl:active{transform:translateY(2px);box-shadow:none}
+nav{display:flex;gap:6px;overflow-x:auto;padding:8px 10px;border-bottom:2px solid var(--line);background:var(--bar);scrollbar-width:none}
+nav button{flex:none;padding:8px 14px;border-radius:999px;border:2px solid var(--line);background:var(--card);font-weight:700;font-size:calc(1rem*var(--fs));white-space:nowrap}
+nav button[aria-selected=true]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+main{flex:1;overflow-y:auto;padding:12px;padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(calc(110px*var(--fs)),1fr));gap:10px}
+.tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:calc(112px*var(--fs));padding:8px;border-radius:16px;border:3px solid var(--line);background:var(--card);box-shadow:var(--shadow);font-weight:700;font-size:calc(1.05rem*var(--fs));text-align:center;line-height:1.15;position:relative}
+.tile .e{font-size:calc(2.8rem*var(--fs));line-height:1}
+.tile:active{transform:translateY(2px);box-shadow:none;border-color:var(--accent)}
+.tile.add{border-style:dashed;opacity:.75}
+.tile .x{position:absolute;top:2px;right:4px;font-size:1rem;opacity:.7;padding:4px;background:none;border:0}
+.k-pron{border-color:#e8a33d}.k-verb{border-color:#3fa564}.k-adj{border-color:#8a63d2}.k-noun{border-color:#e8793d}.k-misc{border-color:#4a90d9}.k-neg{border-color:#d9534f}
+#kb{display:none;flex-direction:column;gap:8px}
+#kb.on{display:flex}
+#txt{width:100%;min-height:96px;font-size:calc(1.6rem*var(--fs));padding:12px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--fg);user-select:text;-webkit-user-select:text;resize:vertical}
+#pred{display:flex;gap:8px;flex-wrap:wrap}
+#pred button{padding:10px 16px;border-radius:12px;border:2px solid var(--accent);background:var(--card);font-size:calc(1.3rem*var(--fs));font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.big{padding:14px 20px;border-radius:14px;border:2px solid var(--line);background:var(--card);font-weight:700;font-size:calc(1.1rem*var(--fs))}
+.big.pri{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+dialog{border:3px solid var(--line);border-radius:18px;background:var(--bg);color:var(--fg);max-width:min(520px,94vw);width:100%;padding:18px}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+dialog h2{margin:0 0 12px}
+label{display:block;margin:12px 0 4px;font-weight:700}
+select,input[type=text],input[type=range]{width:100%;font:inherit;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--fg);user-select:text;-webkit-user-select:text}
+input[type=range]{padding:0}
+.hint{font-size:.85rem;opacity:.7;margin-top:12px;line-height:1.4}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;text-align:center}
+#toast.on{opacity:1}
+@media (max-width:600px){header{flex-wrap:wrap}#sentence{flex:1 1 100%;min-height:56px;max-height:22vh}.ctl{flex:1;width:auto;height:52px;font-size:1.4rem}.ctl.speak{flex:2;width:auto}}
+</style>
+</head>
+<body>
+<header>
+  <div id="sentence" role="button" tabindex="0" aria-label="Frase actual. Toca para hablar" data-ph="Toca los símbolos para armar tu frase…"></div>
+  <button class="ctl" id="back" aria-label="Borrar última palabra">⌫</button>
+  <button class="ctl" id="clear" aria-label="Borrar todo">🗑️</button>
+  <button class="ctl speak" id="speak" aria-label="Hablar">🔊</button>
+  <button class="ctl" id="cfg" aria-label="Ajustes">⚙️</button>
+</header>
+<nav id="tabs" role="tablist"></nav>
+<main>
+  <div id="grid"></div>
+  <div id="kb">
+    <textarea id="txt" placeholder="Escribe aquí lo que quieras decir…" aria-label="Texto"></textarea>
+    <div id="pred"></div>
+    <div class="row">
+      <button class="big pri" id="kbSpeak">🔊 Hablar</button>
+      <button class="big" id="kbSave">⭐ Guardar como frase rápida</button>
+      <button class="big" id="kbClear">Borrar</button>
+    </div>
+    <div id="hist"></div>
+  </div>
+</main>
+
+<dialog id="dlg">
+  <h2>Ajustes</h2>
+  <label for="lang">Idioma</label>
+  <select id="lang"><option value="es">Español</option><option value="en">English</option></select>
+  <label for="voice">Voz</label>
+  <select id="voice"></select>
+  <label for="rate">Velocidad de la voz</label>
+  <input type="range" id="rate" min="0.5" max="1.5" step="0.1">
+  <label for="size">Tamaño de los botones</label>
+  <input type="range" id="size" min="0.8" max="1.6" step="0.1">
+  <label for="theme">Tema</label>
+  <select id="theme"><option value="light">Claro</option><option value="dark">Oscuro</option><option value="contrast">Alto contraste</option></select>
+  <label><input type="checkbox" id="auto"> Hablar cada palabra al tocarla</label>
+  <div class="row" style="margin-top:14px">
+    <button class="big" id="export">Exportar mis frases</button>
+    <button class="big" id="import">Importar</button>
+    <button class="big pri" id="close">Listo</button>
+  </div>
+  <p class="hint">Habla es gratis y funciona sin internet. Todo se guarda solo en este dispositivo. La calidad de la voz depende de las voces instaladas en tu teléfono o computador (Ajustes → Accesibilidad → Voz).</p>
+</dialog>
+<div id="toast"></div>
+
+<script>
+'use strict';
+// ---------- Vocabulario ----------
+const V = {
+  es: {
+    ui:{ph:'Toca los símbolos para armar tu frase…',quick:'⭐ Rápidas',kb:'⌨️ Escribir',add:'Añadir',newPhrase:'¿Qué quieres que diga?',saved:'Frase guardada',nov:'Tu dispositivo no tiene voz para este idioma',copied:'Copiado',empty:'Aún no hay frases. Escribe una y guárdala con ⭐.',hist:'Recientes'},
+    cats:{
+      core:{n:'🧩 Básico',w:[
+        ['yo','🙋','pron'],['tú','👉','pron'],['quiero','🤲','verb'],['no quiero','🚫','neg'],['necesito','❗','verb'],['me gusta','👍','verb'],['no me gusta','👎','neg'],['más','➕','misc'],['otra vez','🔁','misc'],['terminé','✅','misc'],['ayuda','🆘','verb'],['sí','✔️','misc'],['no','✖️','neg'],['por favor','🙏','misc'],['gracias','😊','misc'],['ir','🚶','verb'],['ver','👀','verb'],['hacer','🛠️','verb'],['esperar','⏳','verb'],['parar','✋','verb'],['aquí','📍','misc'],['allá','👈','misc'],['ahora','⏰','misc'],['después','⏭️','misc'],['con','🤝','misc'],['mi','🫵','pron'],['esto','☝️','pron'],['otro','🔀','misc']]},
+      need:{n:'🚨 Urgente',w:[
+        ['Necesito ir al baño','🚽','neg'],['Tengo dolor','😣','neg'],['Tengo sed','🥤','verb'],['Tengo hambre','🍽️','verb'],['Tengo frío','🥶','verb'],['Tengo calor','🥵','verb'],['Estoy cansado','😴','verb'],['No puedo respirar bien','😮‍💨','neg'],['Llama a mi familia','📞','misc'],['Llama al doctor','🧑‍⚕️','misc'],['Necesito mi medicina','💊','verb'],['Estoy mareado','😵‍💫','neg'],['Me siento mal','🤒','neg'],['Estoy asustado','😨','neg'],['Estoy bien','🙂','misc'],['No entiendo','❓','neg'],['Repite, por favor','🔂','misc'],['Más despacio','🐢','misc'],['Quiero estar solo','🚪','neg'],['Quédate conmigo','🫂','misc']]},
+      feel:{n:'😀 Sentimientos',w:[
+        ['feliz','😀','adj'],['triste','😢','adj'],['enojado','😠','adj'],['asustado','😨','adj'],['cansado','😴','adj'],['aburrido','🥱','adj'],['emocionado','🤩','adj'],['nervioso','😬','adj'],['enfermo','🤒','adj'],['con dolor','🤕','adj'],['solo','🥺','adj'],['orgulloso','😌','adj'],['confundido','😕','adj'],['te quiero','❤️','misc'],['te extraño','💭','misc'],['perdón','🙇','misc']]},
+      body:{n:'🩺 Cuerpo',w:[
+        ['cabeza','🧠','noun'],['ojos','👁️','noun'],['oído','👂','noun'],['garganta','🗣️','noun'],['pecho','🫀','noun'],['estómago','🤢','noun'],['espalda','🧍','noun'],['brazo','💪','noun'],['mano','✋','noun'],['pierna','🦵','noun'],['pie','🦶','noun'],['diente','🦷','noun'],['poco','🤏','misc'],['mucho','🤯','misc'],['me duele','😖','verb'],['picazón','🪲','verb']]},
+      food:{n:'🍎 Comida',w:[
+        ['agua','💧','noun'],['jugo','🧃','noun'],['leche','🥛','noun'],['café','☕','noun'],['pan','🍞','noun'],['arroz','🍚','noun'],['sopa','🍲','noun'],['pollo','🍗','noun'],['carne','🥩','noun'],['pescado','🐟','noun'],['huevo','🥚','noun'],['fruta','🍎','noun'],['verdura','🥦','noun'],['galleta','🍪','noun'],['postre','🍰','noun'],['comer','🍴','verb'],['beber','🥤','verb'],['caliente','🔥','adj'],['frío','🧊','adj'],['sin sal','🧂','neg']]},
+      people:{n:'👪 Personas',w:[
+        ['mamá','👩','noun'],['papá','👨','noun'],['hermano','🧑','noun'],['abuela','👵','noun'],['abuelo','👴','noun'],['hijo','🧒','noun'],['amigo','🧑‍🤝‍🧑','noun'],['doctor','🧑‍⚕️','noun'],['enfermera','👩‍⚕️','noun'],['maestro','🧑‍🏫','noun'],['cuidador','🤗','noun'],['todos','👥','pron'],['nadie','🚷','neg']]},
+      places:{n:'🏠 Lugares',w:[
+        ['casa','🏠','noun'],['baño','🚻','noun'],['cama','🛏️','noun'],['cocina','🍳','noun'],['escuela','🏫','noun'],['hospital','🏥','noun'],['tienda','🛒','noun'],['parque','🌳','noun'],['iglesia','⛪','noun'],['carro','🚗','noun'],['bus','🚌','noun'],['afuera','🌤️','noun'],['adentro','🛋️','noun']]},
+      act:{n:'🎮 Actividades',w:[
+        ['jugar','⚽','verb'],['música','🎵','noun'],['televisión','📺','noun'],['celular','📱','noun'],['leer','📖','verb'],['dibujar','🎨','verb'],['caminar','🚶','verb'],['dormir','😴','verb'],['bañarme','🛁','verb'],['vestirme','👕','verb'],['llamar','☎️','verb'],['abrazo','🫂','noun'],['salir','🚪','verb'],['trabajar','💼','verb']]},
+      soc:{n:'💬 Social',w:[
+        ['Hola','👋','misc'],['Adiós','🖐️','misc'],['Buenos días','🌅','misc'],['Buenas noches','🌙','misc'],['¿Cómo estás?','🙂','misc'],['Estoy bien, gracias','👌','misc'],['Mucho gusto','🤝','misc'],['Me llamo…','🪪','misc'],['No puedo hablar, uso este comunicador','🗨️','misc'],['Dame un momento para escribir','⌨️','misc'],['Estoy de acuerdo','👍','misc'],['No estoy de acuerdo','👎','neg'],['Cuéntame más','👂','misc'],['Eso es gracioso','😂','misc']]}
+    },
+    quick:['Hola, no puedo hablar. Uso este comunicador.','Necesito ayuda, por favor.','Tengo dolor.','Quiero agua.','Necesito ir al baño.','Gracias, eres muy amable.'],
+    pred:'yo quiero necesito tengo estoy puedo gracias por favor ayuda agua baño dolor hambre sed casa familia doctor medicina hola buenos días noches ahora después también porque quiero ir me gusta no me gusta más menos mucho poco bien mal cansado feliz triste'.split(' ')
+  },
+  en: {
+    ui:{ph:'Tap symbols to build your sentence…',quick:'⭐ Quick',kb:'⌨️ Type',add:'Add',newPhrase:'What should it say?',saved:'Phrase saved',nov:'Your device has no voice for this language',copied:'Copied',empty:'No phrases yet. Type one and save it with ⭐.',hist:'Recent'},
+    cats:{
+      core:{n:'🧩 Core',w:[['I','🙋','pron'],['you','👉','pron'],['want','🤲','verb'],["don't want",'🚫','neg'],['need','❗','verb'],['like','👍','verb'],["don't like",'👎','neg'],['more','➕','misc'],['again','🔁','misc'],['finished','✅','misc'],['help','🆘','verb'],['yes','✔️','misc'],['no','✖️','neg'],['please','🙏','misc'],['thank you','😊','misc'],['go','🚶','verb'],['see','👀','verb'],['do','🛠️','verb'],['wait','⏳','verb'],['stop','✋','verb'],['here','📍','misc'],['there','👈','misc'],['now','⏰','misc'],['later','⏭️','misc'],['with','🤝','misc'],['my','🫵','pron'],['this','☝️','pron'],['other','🔀','misc']]},
+      need:{n:'🚨 Urgent',w:[['I need the bathroom','🚽','neg'],["I'm in pain",'😣','neg'],["I'm thirsty",'🥤','verb'],["I'm hungry",'🍽️','verb'],["I'm cold",'🥶','verb'],["I'm hot",'🥵','verb'],["I'm tired",'😴','verb'],["I can't breathe well",'😮‍💨','neg'],['Call my family','📞','misc'],['Call the doctor','🧑‍⚕️','misc'],['I need my medicine','💊','verb'],["I'm dizzy",'😵‍💫','neg'],['I feel sick','🤒','neg'],["I'm scared",'😨','neg'],["I'm okay",'🙂','misc'],["I don't understand",'❓','neg'],['Please repeat','🔂','misc'],['Slower, please','🐢','misc'],['I want to be alone','🚪','neg'],['Stay with me','🫂','misc']]},
+      feel:{n:'😀 Feelings',w:[['happy','😀','adj'],['sad','😢','adj'],['angry','😠','adj'],['scared','😨','adj'],['tired','😴','adj'],['bored','🥱','adj'],['excited','🤩','adj'],['nervous','😬','adj'],['sick','🤒','adj'],['hurting','🤕','adj'],['lonely','🥺','adj'],['proud','😌','adj'],['confused','😕','adj'],['I love you','❤️','misc'],['I miss you','💭','misc'],['sorry','🙇','misc']]},
+      body:{n:'🩺 Body',w:[['head','🧠','noun'],['eyes','👁️','noun'],['ear','👂','noun'],['throat','🗣️','noun'],['chest','🫀','noun'],['stomach','🤢','noun'],['back','🧍','noun'],['arm','💪','noun'],['hand','✋','noun'],['leg','🦵','noun'],['foot','🦶','noun'],['tooth','🦷','noun'],['a little','🤏','misc'],['a lot','🤯','misc'],['hurts','😖','verb'],['itchy','🪲','verb']]},
+      food:{n:'🍎 Food',w:[['water','💧','noun'],['juice','🧃','noun'],['milk','🥛','noun'],['coffee','☕','noun'],['bread','🍞','noun'],['rice','🍚','noun'],['soup','🍲','noun'],['chicken','🍗','noun'],['meat','🥩','noun'],['fish','🐟','noun'],['egg','🥚','noun'],['fruit','🍎','noun'],['vegetables','🥦','noun'],['cookie','🍪','noun'],['dessert','🍰','noun'],['eat','🍴','verb'],['drink','🥤','verb'],['hot','🔥','adj'],['cold','🧊','adj'],['no salt','🧂','neg']]},
+      people:{n:'👪 People',w:[['mom','👩','noun'],['dad','👨','noun'],['brother','🧑','noun'],['grandma','👵','noun'],['grandpa','👴','noun'],['child','🧒','noun'],['friend','🧑‍🤝‍🧑','noun'],['doctor','🧑‍⚕️','noun'],['nurse','👩‍⚕️','noun'],['teacher','🧑‍🏫','noun'],['caregiver','🤗','noun'],['everyone','👥','pron'],['nobody','🚷','neg']]},
+      places:{n:'🏠 Places',w:[['home','🏠','noun'],['bathroom','🚻','noun'],['bed','🛏️','noun'],['kitchen','🍳','noun'],['school','🏫','noun'],['hospital','🏥','noun'],['store','🛒','noun'],['park','🌳','noun'],['church','⛪','noun'],['car','🚗','noun'],['bus','🚌','noun'],['outside','🌤️','noun'],['inside','🛋️','noun']]},
+      act:{n:'🎮 Activities',w:[['play','⚽','verb'],['music','🎵','noun'],['TV','📺','noun'],['phone','📱','noun'],['read','📖','verb'],['draw','🎨','verb'],['walk','🚶','verb'],['sleep','😴','verb'],['bathe','🛁','verb'],['get dressed','👕','verb'],['call','☎️','verb'],['hug','🫂','noun'],['go out','🚪','verb'],['work','💼','verb']]},
+      soc:{n:'💬 Social',w:[['Hello','👋','misc'],['Goodbye','🖐️','misc'],['Good morning','🌅','misc'],['Good night','🌙','misc'],['How are you?','🙂','misc'],["I'm fine, thanks",'👌','misc'],['Nice to meet you','🤝','misc'],['My name is…','🪪','misc'],["I can't speak, I use this communicator",'🗨️','misc'],['Give me a moment to type','⌨️','misc'],['I agree','👍','misc'],['I disagree','👎','neg'],['Tell me more','👂','misc'],["That's funny",'😂','misc']]}
+    },
+    quick:["Hello, I can't speak. I use this communicator.",'I need help, please.',"I'm in pain.",'I want water.','I need the bathroom.','Thank you, you are very kind.'],
+    pred:'I want need have am can thank you please help water bathroom pain hungry thirsty home family doctor medicine hello good morning night now later also because like dislike more less much little well bad tired happy sad'.split(' ')
+  }
+};
+
+// ---------- Estado ----------
+const $ = id => document.getElementById(id);
+const store = {
+  get(k,d){try{const v=localStorage.getItem('habla.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem('habla.'+k,JSON.stringify(v))}catch(e){}}
+};
+const defLang = (navigator.language||'es').toLowerCase().startsWith('en') ? 'en' : 'es';
+const S = {
+  lang: store.get('lang', defLang),
+  voice: store.get('voice',''),
+  rate: store.get('rate', 0.9),
+  size: store.get('size', 1),
+  theme: store.get('theme','light'),
+  auto: store.get('auto', false),
+  custom: store.get('custom', {es:[],en:[]}),   // [{t,e}]
+  phrases: store.get('phrases', {es:[],en:[]}),
+  hist: store.get('hist', []),
+  tab: 'core',
+  words: []
+};
+const T = () => V[S.lang];
+const save = () => ['lang','voice','rate','size','theme','auto','custom','phrases','hist'].forEach(k=>store.set(k,S[k]));
+
+// ---------- Voz ----------
+let voices = [];
+function loadVoices(){
+  if(!('speechSynthesis' in window)) return;
+  voices = speechSynthesis.getVoices();
+  const sel = $('voice'); const list = voices.filter(v=>v.lang.toLowerCase().startsWith(S.lang));
+  sel.innerHTML = '<option value="">Auto</option>' + list.map(v=>`<option value="${v.voiceURI}">${v.name} (${v.lang})</option>`).join('');
+  sel.value = list.some(v=>v.voiceURI===S.voice) ? S.voice : '';
+}
+function say(text){
+  text = text.trim(); if(!text) return;
+  if(!('speechSynthesis' in window)){toast('Tu navegador no soporta voz');return}
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = S.lang==='es' ? 'es-ES' : 'en-US';
+  const v = voices.find(v=>v.voiceURI===S.voice) || voices.find(v=>v.lang.toLowerCase().startsWith(S.lang));
+  if(v){u.voice=v;u.lang=v.lang} else if(voices.length) toast(T().ui.nov);
+  u.rate = S.rate;
+  speechSynthesis.speak(u);
+  S.hist = [text, ...S.hist.filter(h=>h!==text)].slice(0,12); save();
+}
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2200)}
+
+// ---------- Frase ----------
+function renderSentence(){
+  const el=$('sentence'); el.innerHTML='';
+  S.words.forEach(([t,e])=>{const c=document.createElement('span');c.className='chip';c.innerHTML=`<i>${e}</i>`;c.append(t);el.append(c)});
+  el.scrollTop=el.scrollHeight;
+}
+const sentenceText = () => S.words.map(w=>w[0]).join(' ');
+function addWord(t,e){S.words.push([t,e]);renderSentence();if(S.auto)say(t)}
+
+// ---------- Cuadrícula ----------
+function renderTabs(){
+  const tabs=$('tabs'); tabs.innerHTML='';
+  const items=[['quick',T().ui.quick],...Object.entries(T().cats).map(([k,c])=>[k,c.n]),['mine','➕ '+(S.lang==='es'?'Mis cosas':'Mine')],['kb',T().ui.kb]];
+  items.forEach(([k,n])=>{const b=document.createElement('button');b.textContent=n;b.setAttribute('role','tab');b.setAttribute('aria-selected',k===S.tab);b.onclick=()=>{S.tab=k;render()};tabs.append(b)});
+}
+function tile(t,e,kind,onclick,onremove){
+  const b=document.createElement('button');b.className='tile k-'+kind;
+  b.innerHTML=`<span class="e">${e}</span><span></span>`;b.lastChild.textContent=t;
+  b.onclick=onclick;
+  if(onremove){const x=document.createElement('button');x.className='x';x.textContent='✕';x.setAttribute('aria-label','Quitar');x.onclick=ev=>{ev.stopPropagation();onremove()};b.append(x)}
+  return b;
+}
+function renderGrid(){
+  const g=$('grid'),kb=$('kb');
+  const isKb=S.tab==='kb'; kb.classList.toggle('on',isKb); g.style.display=isKb?'none':'grid';
+  g.innerHTML='';
+  if(isKb){renderKb();return}
+  if(S.tab==='quick'){
+    const all=[...T().quick.map(t=>[t,false]),...S.phrases[S.lang].map(t=>[t,true])];
+    all.forEach(([t,own])=>g.append(tile(t,'💬','misc',()=>{S.words=[[t,'💬']];renderSentence();say(t)},own?()=>{S.phrases[S.lang]=S.phrases[S.lang].filter(p=>p!==t);save();render()}:null)));
+    g.style.gridTemplateColumns='repeat(auto-fill,minmax(calc(200px*var(--fs)),1fr))';
+    return;
+  }
+  g.style.gridTemplateColumns='';
+  if(S.tab==='mine'){
+    S.custom[S.lang].forEach((w,i)=>g.append(tile(w.t,w.e,'misc',()=>addWord(w.t,w.e),()=>{S.custom[S.lang].splice(i,1);save();render()})));
+    const a=tile(T().ui.add,'➕','misc',()=>{
+      const t=prompt(S.lang==='es'?'Palabra o frase:':'Word or phrase:'); if(!t||!t.trim())return;
+      const e=prompt(S.lang==='es'?'Emoji o símbolo (opcional):':'Emoji or symbol (optional):','⭐')||'⭐';
+      S.custom[S.lang].push({t:t.trim(),e:e.trim().slice(0,4)});save();render();
+    });a.classList.add('add');g.append(a);return;
+  }
+  T().cats[S.tab].w.forEach(([t,e,k])=>g.append(tile(t,e,k,()=>addWord(t,e))));
+}
+function renderKb(){
+  $('hist').innerHTML='';
+  if(S.hist.length){
+    const h=document.createElement('div');h.innerHTML=`<p class="hint">${T().ui.hist}</p>`;
+    const r=document.createElement('div');r.className='row';
+    S.hist.forEach(t=>{const b=document.createElement('button');b.className='big';b.textContent=t;b.onclick=()=>{$('txt').value=t;say(t)};r.append(b)});
+    h.append(r);$('hist').append(h);
+  }
+  predict();
+}
+function predict(){
+  const v=$('txt').value, m=v.match(/(\S*)$/)[1].toLowerCase(), box=$('pred'); box.innerHTML='';
+  const pool=[...new Set([...S.hist.join(' ').split(/\s+/),...T().pred])].filter(Boolean);
+  const out=(m?pool.filter(w=>w.toLowerCase().startsWith(m)&&w.toLowerCase()!==m):T().pred.slice(0,8)).slice(0,8);
+  out.forEach(w=>{const b=document.createElement('button');b.textContent=w;b.onclick=()=>{$('txt').value=v.slice(0,v.length-m.length)+w+' ';$('txt').focus();predict()};box.append(b)});
+}
+function render(){
+  document.documentElement.dataset.theme=S.theme;
+  document.documentElement.style.setProperty('--fs',S.size);
+  document.documentElement.lang=S.lang;
+  $('sentence').dataset.ph=T().ui.ph;
+  renderTabs();renderGrid();renderSentence();
+}
+
+// ---------- Eventos ----------
+$('speak').onclick=()=>say(sentenceText());
+$('sentence').onclick=()=>say(sentenceText());
+$('sentence').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();say(sentenceText())}};
+$('back').onclick=()=>{S.words.pop();renderSentence()};
+$('clear').onclick=()=>{S.words=[];renderSentence();speechSynthesis.cancel&&speechSynthesis.cancel()};
+$('txt').oninput=predict;
+$('kbSpeak').onclick=()=>{say($('txt').value);renderKb()};
+$('kbClear').onclick=()=>{$('txt').value='';predict()};
+$('kbSave').onclick=()=>{const t=$('txt').value.trim();if(!t)return;if(!S.phrases[S.lang].includes(t))S.phrases[S.lang].push(t);save();toast(T().ui.saved)};
+$('cfg').onclick=()=>{$('lang').value=S.lang;$('rate').value=S.rate;$('size').value=S.size;$('theme').value=S.theme;$('auto').checked=S.auto;loadVoices();$('dlg').showModal()};
+$('close').onclick=()=>{$('dlg').close()};
+$('lang').onchange=e=>{S.lang=e.target.value;S.voice='';S.words=[];S.tab='core';save();loadVoices();render()};
+$('voice').onchange=e=>{S.voice=e.target.value;save()};
+$('rate').oninput=e=>{S.rate=+e.target.value;save()};
+$('size').oninput=e=>{S.size=+e.target.value;save();render()};
+$('theme').onchange=e=>{S.theme=e.target.value;save();render()};
+$('auto').onchange=e=>{S.auto=e.target.checked;save()};
+$('export').onclick=()=>{
+  const data=JSON.stringify({custom:S.custom,phrases:S.phrases});
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download='habla-mis-frases.json';a.click();
+};
+$('import').onclick=()=>{
+  const i=document.createElement('input');i.type='file';i.accept='.json';
+  i.onchange=async()=>{try{const d=JSON.parse(await i.files[0].text());
+    for(const l of ['es','en']){
+      if(d.custom&&Array.isArray(d.custom[l]))S.custom[l]=d.custom[l].filter(w=>w&&typeof w.t==='string').map(w=>({t:String(w.t).slice(0,80),e:String(w.e||'⭐').slice(0,4)}));
+      if(d.phrases&&Array.isArray(d.phrases[l]))S.phrases[l]=d.phrases[l].filter(p=>typeof p==='string').map(p=>p.slice(0,300));
+    }save();render();toast('✔')}catch(e){toast('Archivo no válido')}};
+  i.click();
+};
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=loadVoices;loadVoices()}
+if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(()=>{});
+render();
+</script>
+</body>
+</html>
