@@ -1,5 +1,5 @@
 /**
- * POST /api/habla/portal   { token, lang? }
+ * POST /api/portal   { token, lang? }
  * Abre el portal de clientes de Stripe para cambiar de plan, actualizar la tarjeta o cancelar.
  * Requiere activar el Customer Portal una vez en el Dashboard de Stripe.
  */
@@ -14,7 +14,7 @@ export async function onRequestPost({ request, env }) {
 
         const params = new URLSearchParams();
         params.append('customer', data.c);
-        params.append('return_url', `${new URL(request.url).origin}/habla/app.html`);
+        params.append('return_url', `${new URL(request.url).origin}/app.html`);
         params.append('locale', lang === 'en' ? 'en' : 'es');
         const session = await stripe(env, 'billing_portal/sessions', { method: 'POST', params });
         return json({ url: session.url });

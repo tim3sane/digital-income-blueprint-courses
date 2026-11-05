@@ -1,5 +1,5 @@
 /**
- * POST /api/habla/status   { token }
+ * POST /api/status   { token }
  * La app lo llama como máximo una vez al día para renovar la fecha de vencimiento local.
  * También sirve para "restaurar" la membresía en otro dispositivo pegando el código.
  */

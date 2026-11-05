@@ -1,18 +1,18 @@
 /**
- * Habla — utilidades compartidas para las funciones de membresía.
+ * Vocari — utilidades compartidas para las funciones de membresía.
  * Este archivo no exporta handlers, así que no crea ninguna ruta.
  *
- * Variables de entorno (Cloudflare Pages → Settings → Environment variables):
- *   STRIPE_SECRET_KEY    — la misma que ya usan los cursos (sk_live_... / sk_test_...)
- *   HABLA_TOKEN_SECRET   — opcional. Cadena larga aleatoria para firmar los códigos de membresía.
+ * Variables de entorno (Vercel → Project → Settings → Environment Variables):
+ *   STRIPE_SECRET_KEY    — clave secreta de Stripe (sk_live_... / sk_test_...)
+ *   VOCARI_TOKEN_SECRET   — opcional. Cadena larga aleatoria para firmar los códigos de membresía.
  *                          Si no existe, se deriva de STRIPE_SECRET_KEY.
  */
 
 export const PLANS = {
-    plus_m: { plan: 'plus', name: 'Habla Plus — mensual',        amount: 399,  interval: 'month' },
-    plus_y: { plan: 'plus', name: 'Habla Plus — anual',          amount: 2900, interval: 'year'  },
-    pro_m:  { plan: 'pro',  name: 'Habla Profesional — mensual', amount: 999,  interval: 'month' },
-    pro_y:  { plan: 'pro',  name: 'Habla Profesional — anual',   amount: 7900, interval: 'year'  },
+    plus_m: { plan: 'plus', name: 'Vocari Plus — mensual',        amount: 399,  interval: 'month' },
+    plus_y: { plan: 'plus', name: 'Vocari Plus — anual',          amount: 2900, interval: 'year'  },
+    pro_m:  { plan: 'pro',  name: 'Vocari Profesional — mensual', amount: 999,  interval: 'month' },
+    pro_y:  { plan: 'pro',  name: 'Vocari Profesional — anual',   amount: 7900, interval: 'year'  },
 };
 export const TRIAL_DAYS = 7;
 const GRACE_MS = 7 * 86400000;          // días extra sin internet antes de que caduque en el dispositivo
@@ -57,9 +57,9 @@ const b64url = buf => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(
 const fromB64url = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
 
 async function key(env) {
-    const raw = env.HABLA_TOKEN_SECRET
-        ? enc.encode(env.HABLA_TOKEN_SECRET)
-        : await crypto.subtle.digest('SHA-256', enc.encode('habla-token-v1:' + env.STRIPE_SECRET_KEY));
+    const raw = env.VOCARI_TOKEN_SECRET
+        ? enc.encode(env.VOCARI_TOKEN_SECRET)
+        : await crypto.subtle.digest('SHA-256', enc.encode('vocari-token-v1:' + env.STRIPE_SECRET_KEY));
     return crypto.subtle.importKey('raw', raw, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign', 'verify']);
 }
 
@@ -79,7 +79,7 @@ export async function verify(env, token) {
 
 /** Convierte una suscripción de Stripe en la respuesta que guarda la app. */
 export async function licenseFromSubscription(env, sub) {
-    if (!sub || sub.metadata?.app !== 'habla') return { active: false };
+    if (!sub || sub.metadata?.app !== 'vocari') return { active: false };
     if (!ACTIVE.includes(sub.status)) return { active: false, status: sub.status };
     const plan = sub.metadata.plan === 'pro' ? 'pro' : 'plus';
     const periodEnd = sub.current_period_end ?? sub.items?.data?.[0]?.current_period_end ?? (Date.now() / 1000 + 35 * 86400);

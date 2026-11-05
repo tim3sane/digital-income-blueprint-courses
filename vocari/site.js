@@ -1,12 +1,14 @@
-// ⚠️ EDITA SOLO ESTO: tus datos aparecen automáticamente en la landing y en las páginas legales.
-window.HABLA_SITE = {
-  owner: '[TU NOMBRE O EMPRESA]',        // responsable legal, p. ej. "Santiago Narváez" o "Habla SAS"
-  country: '[PAÍS]',                      // país cuyas leyes aplican, p. ej. "Colombia"
-  email: '[CORREO DE CONTACTO]',          // correo de soporte, p. ej. "hola@tudominio.com"
-  updated: '5 de noviembre de 2026'
+// Datos del responsable: aparecen automáticamente en la landing y en las páginas legales.
+window.VOCARI_SITE = {
+  owner: 'Vocari',
+  country: 'Chile',
+  countryEn: 'Chile',
+  email: 'nemsstoredrip@gmail.com',
+  updated: '5 de noviembre de 2026',
+  updatedEn: 'November 5, 2026'
 };
 (function () {
-  var c = window.HABLA_SITE;
+  var c = window.VOCARI_SITE;
   function fill() {
     document.querySelectorAll('[data-site]').forEach(function (el) {
       var k = el.getAttribute('data-site');

@@ -1,8 +1,8 @@
 'use strict';
-/* Habla — comunicador CAA. Todo se guarda en este dispositivo (localStorage).
-   La membresía se valida con /api/habla/* (Stripe) y se guarda como un token firmado. */
+/* Vocari — comunicador CAA. Todo se guarda en este dispositivo (localStorage).
+   La membresía se valida con /api/* (Stripe) y se guarda como un token firmado. */
 
-const API = '/api/habla';
+const API = '/api';
 const $ = id => document.getElementById(id);
 const DAY = 86400000;
 
@@ -29,7 +29,7 @@ const UI = {
     lockHint: 'Con el bloqueo activo se ocultan los botones de editar y los ajustes se abren manteniendo presionado ⚙️ durante 1 segundo.',
     holdCfg: 'Mantén presionado ⚙️ para abrir los ajustes', membership: 'Membresía', tools: 'Herramientas', backup: 'Respaldo',
     exportAll: '💾 Exportar todo', importFile: '📂 Importar archivo', done: 'Listo', close: 'Cerrar', cancel: 'Cancelar', save: 'Guardar', add: 'Añadir',
-    privacyHint: 'Habla no tiene cuentas ni rastreo. Tus tableros, fotos y frases se guardan solo en este dispositivo: haz un respaldo de vez en cuando.',
+    privacyHint: 'Vocari no tiene cuentas ni rastreo. Tus tableros, fotos y frases se guardan solo en este dispositivo: haz un respaldo de vez en cuando.',
     privacy: 'Privacidad', terms: 'Términos', refunds: 'Reembolsos', newProfile: 'Nuevo perfil (nombre)', profHint: 'Tu plan permite {n} perfil(es).',
     use: 'Usar', del: 'Borrar', confirmDel: '¿Borrar "{x}" y todo su contenido? No se puede deshacer.', newButton: 'Nuevo botón',
     itemText: 'Lo que dirá', itemEmoji: 'Emoji o símbolo', photo: '📷 Usar una foto', noPhoto: 'Quitar foto', newBoard: 'Nuevo tablero', boardName: 'Nombre del tablero',
@@ -37,7 +37,7 @@ const UI = {
     statsHint: 'Se cuenta solo en este dispositivo y nunca se envía a ningún lado. Útil para terapeutas y familias.', reset: 'Reiniciar', noStats: 'Todavía no hay datos.',
     imported: 'Importado ✔', badFile: 'Archivo no válido', me: 'Yo', mine: 'Mis cosas', needText: 'Escribe lo que dirá el botón',
     // membresía
-    plFree: 'Habla Gratis', plPlus: 'Habla Plus', plPro: 'Habla Profesional', yourPlan: 'Tu plan: {p}', monthly: 'Mensual', yearly: 'Anual (ahorra 39%)',
+    plFree: 'Vocari Gratis', plPlus: 'Vocari Plus', plPro: 'Vocari Profesional', yourPlan: 'Tu plan: {p}', monthly: 'Mensual', yearly: 'Anual (ahorra 39%)',
     perMonth: '/mes', perYear: '/año', trial: '7 días gratis, cancela cuando quieras.', choose: 'Probar 7 días gratis',
     plusF: ['Hasta 5 perfiles (hijos, alumnos, pacientes)', 'Fotos reales como botones', 'Tableros propios ilimitados', 'Todo lo de Gratis'],
     proF: ['Hasta 50 perfiles', 'Imprimir tableros (respaldo sin pantalla)', 'Estadísticas de palabras más usadas', 'Compartir perfiles con familias', 'Todo lo de Plus'],
@@ -46,7 +46,7 @@ const UI = {
     restore: 'Restaurar', manage: 'Administrar o cancelar suscripción', copyCode: 'Copiar código de restauración',
     codeHint: 'Guarda este código: sirve para activar tu membresía en otro teléfono o tablet.', copied: 'Copiado',
     offline: 'Necesitas internet para esto.', payErr: 'No se pudo iniciar el pago. Intenta de nuevo.', activating: 'Activando tu membresía…',
-    activated: '¡Listo! Tu membresía está activa. Gracias por apoyar Habla 💙', badCode: 'Código no válido o suscripción inactiva.',
+    activated: '¡Listo! Tu membresía está activa. Gracias por apoyar Vocari 💙', badCode: 'Código no válido o suscripción inactiva.',
     needPlan: 'Esta función es parte de {p}.', renews: 'Válida hasta {d} (se renueva sola mientras la suscripción esté activa).',
     expired: 'Tu membresía terminó. Todo lo que creaste sigue aquí; solo no puedes crear cosas nuevas de pago.'
   },
@@ -60,14 +60,14 @@ const UI = {
     lockHint: 'When locked, edit buttons are hidden and settings open by holding ⚙️ for 1 second.',
     holdCfg: 'Hold ⚙️ to open settings', membership: 'Membership', tools: 'Tools', backup: 'Backup',
     exportAll: '💾 Export all', importFile: '📂 Import file', done: 'Done', close: 'Close', cancel: 'Cancel', save: 'Save', add: 'Add',
-    privacyHint: 'Habla has no accounts and no tracking. Your boards, photos and phrases stay on this device only: back them up now and then.',
+    privacyHint: 'Vocari has no accounts and no tracking. Your boards, photos and phrases stay on this device only: back them up now and then.',
     privacy: 'Privacy', terms: 'Terms', refunds: 'Refunds', newProfile: 'New profile (name)', profHint: 'Your plan allows {n} profile(s).',
     use: 'Use', del: 'Delete', confirmDel: 'Delete "{x}" and everything in it? This cannot be undone.', newButton: 'New button',
     itemText: 'What it will say', itemEmoji: 'Emoji or symbol', photo: '📷 Use a photo', noPhoto: 'Remove photo', newBoard: 'New board', boardName: 'Board name',
     print: '🖨️ Print board', stats: '📊 Most used words', share: '📤 Share profile',
     statsHint: 'Counted on this device only and never sent anywhere. Useful for therapists and families.', reset: 'Reset', noStats: 'No data yet.',
     imported: 'Imported ✔', badFile: 'Invalid file', me: 'Me', mine: 'Mine', needText: 'Type what the button will say',
-    plFree: 'Habla Free', plPlus: 'Habla Plus', plPro: 'Habla Professional', yourPlan: 'Your plan: {p}', monthly: 'Monthly', yearly: 'Yearly (save 39%)',
+    plFree: 'Vocari Free', plPlus: 'Vocari Plus', plPro: 'Vocari Professional', yourPlan: 'Your plan: {p}', monthly: 'Monthly', yearly: 'Yearly (save 39%)',
     perMonth: '/mo', perYear: '/yr', trial: '7 days free, cancel anytime.', choose: 'Try 7 days free',
     plusF: ['Up to 5 profiles (kids, students, patients)', 'Real photos as buttons', 'Unlimited custom boards', 'Everything in Free'],
     proF: ['Up to 50 profiles', 'Print boards (no-tech backup)', 'Most-used word statistics', 'Share profiles with families', 'Everything in Plus'],
@@ -76,7 +76,7 @@ const UI = {
     restore: 'Restore', manage: 'Manage or cancel subscription', copyCode: 'Copy restore code',
     codeHint: 'Keep this code: it activates your membership on another phone or tablet.', copied: 'Copied',
     offline: 'You need internet for this.', payErr: 'Could not start the payment. Please try again.', activating: 'Activating your membership…',
-    activated: 'Done! Your membership is active. Thanks for supporting Habla 💙', badCode: 'Invalid code or inactive subscription.',
+    activated: 'Done! Your membership is active. Thanks for supporting Vocari 💙', badCode: 'Invalid code or inactive subscription.',
     needPlan: 'This feature is part of {p}.', renews: 'Valid until {d} (renews automatically while the subscription is active).',
     expired: 'Your membership ended. Everything you made is still here; you just can’t create new paid items.'
   }
@@ -84,9 +84,9 @@ const UI = {
 
 // ---------- Almacenamiento ----------
 const store = {
-  get(k, d) { try { const v = localStorage.getItem('habla.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
-  set(k, v) { try { localStorage.setItem('habla.' + k, JSON.stringify(v)); return true; } catch (e) { return false; } },
-  del(k) { try { localStorage.removeItem('habla.' + k); } catch (e) {} }
+  get(k, d) { try { const v = localStorage.getItem('vocari.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('vocari.' + k, JSON.stringify(v)); return true; } catch (e) { return false; } },
+  del(k) { try { localStorage.removeItem('vocari.' + k); } catch (e) {} }
 };
 const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
 const defLang = (navigator.language || 'es').toLowerCase().startsWith('en') ? 'en' : 'es';
@@ -243,8 +243,11 @@ function predict() {
   const out = (m ? pool.filter(w => w.toLowerCase().startsWith(m) && w.toLowerCase() !== m) : base.slice(0, 8)).slice(0, 8);
   out.forEach(w => { const b = document.createElement('button'); b.textContent = w; b.onclick = () => { $('txt').value = v.slice(0, v.length - m.length) + w + ' '; $('txt').focus(); predict(); }; box.append(b); });
 }
+const LEGAL = { es: { privacy: 'privacidad.html', terms: 'terminos.html', refunds: 'reembolsos.html', home: './', beca: './#becas' },
+                en: { privacy: 'privacy.html', terms: 'terms.html', refunds: 'refunds.html', home: 'en.html', beca: 'en.html#scholarships' } };
 function applyTexts() {
-  const l = L();
+  const l = L(), lg = LEGAL[P().lang] || LEGAL.es;
+  document.querySelectorAll('footer.legal a').forEach(a => { a.href = lg[a.dataset.t || 'home']; });
   document.querySelectorAll('[data-t]').forEach(el => { const k = el.dataset.t; if (typeof l[k] === 'string') el.textContent = l[k]; });
   $('sentence').dataset.ph = l.ph; $('txt').placeholder = l.typeHere;
   $('kbSpeak').textContent = l.speak; $('kbSave').textContent = l.savePhrase; $('kbClear').textContent = l.clear;
@@ -367,11 +370,11 @@ function download(name, data) {
   a.download = name; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
 const stamp = () => new Date().toISOString().slice(0, 10);
-$('export').onclick = () => download(`habla-respaldo-${stamp()}.json`, { app: 'habla', kind: 'backup', v: 2, db: DB });
+$('export').onclick = () => download(`vocari-respaldo-${stamp()}.json`, { app: 'vocari', kind: 'backup', v: 2, db: DB });
 $('shareProfile').onclick = () => {
   if (!lim().share) return openPlans('pro');
   const p = JSON.parse(JSON.stringify(P())); p.stats = {}; p.hist = [];
-  download(`habla-perfil-${p.name.replace(/[^\w-]+/g, '_')}.json`, { app: 'habla', kind: 'profile', v: 2, profile: p });
+  download(`vocari-perfil-${p.name.replace(/[^\w-]+/g, '_')}.json`, { app: 'vocari', kind: 'profile', v: 2, profile: p });
 };
 function cleanProfile(p) {
   const str = (x, n) => String(x == null ? '' : x).slice(0, n);
@@ -394,7 +397,7 @@ $('import').onclick = () => {
   i.onchange = async () => {
     try {
       const d = JSON.parse(await i.files[0].text());
-      if (d.app !== 'habla') throw 0;
+      if (d.app !== 'vocari') throw 0;
       let incoming = d.kind === 'backup' && d.db && Array.isArray(d.db.profiles) ? d.db.profiles : d.kind === 'profile' && d.profile ? [d.profile] : null;
       if (!incoming) throw 0;
       incoming = incoming.map(cleanProfile);
@@ -465,7 +468,7 @@ function openPlans(needed) {
     card.append(h, price, ul, btn); grid.append(card);
   });
   add('p', 'hint', l.trial);
-  const beca = add('p', 'hint'); const a = document.createElement('a'); a.href = './#becas'; a.textContent = l.beca; beca.append(a);
+  const beca = add('p', 'hint'); const a = document.createElement('a'); a.href = (LEGAL[P().lang] || LEGAL.es).beca; a.textContent = l.beca; beca.append(a);
   if (cur === 'free') {
     add('p', 'hint', l.haveCode);
     const r = add('div', 'row');

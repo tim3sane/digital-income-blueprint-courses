@@ -1,5 +1,5 @@
 'use strict';
-// Vocabulario base de Habla (es/en). Símbolos: emoji del sistema.
+// Vocabulario base de Vocari (es/en). Símbolos: emoji del sistema.
 window.V = {
   es: {
     ui:{ph:'Toca los símbolos para armar tu frase…',quick:'⭐ Rápidas',kb:'⌨️ Escribir',add:'Añadir',newPhrase:'¿Qué quieres que diga?',saved:'Frase guardada',nov:'Tu dispositivo no tiene voz para este idioma',copied:'Copiado',empty:'Aún no hay frases. Escribe una y guárdala con ⭐.',hist:'Recientes'},
