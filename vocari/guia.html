@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía Vocari para familias — USD 1,99</title>
+<meta name="description" content="Libro digital práctico para empezar a comunicarse con CAA en casa: mitos, cómo modelar, plan de 30 días, rutinas y 9 tableros imprimibles.">
+<meta name="theme-color" content="#6a4cff">
+<meta property="og:title" content="Guía Vocari para familias">
+<meta property="og:description" content="Empieza a comunicarte con CAA en casa: plan de 30 días y tableros imprimibles. USD 1,99.">
+<meta property="og:image" content="guia-portada.jpg">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="site.css">
+<style>
+.gh{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center;padding:30px 0 50px}
+.gh img.cover{width:100%;max-width:340px;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.18);display:block;margin:0 auto}
+.gh h1{font-size:clamp(1.9rem,4.5vw,2.8rem);line-height:1.1;margin:0 0 14px}
+.price-tag{font-size:2.4rem;font-weight:800;margin:14px 0 4px}
+.price-tag small{font-size:1rem;color:var(--muted);font-weight:600}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.shots img{width:100%;border:2px solid var(--line);border-radius:10px;background:#fff}
+.done{background:var(--soft);border:2px solid var(--accent);border-radius:18px;padding:24px;margin:20px 0}
+.done[hidden]{display:none}
+@media (max-width:820px){.gh{grid-template-columns:1fr}.shots{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" id="home" href="./"><img src="icon.svg" alt=""> Vocari</a>
+    <nav><a href="app.html"><b data-t="open">Abrir app</b></a></nav>
+  </header>
+
+  <div class="done" id="done" hidden>
+    <h2 data-t="thanks">¡Gracias por tu compra! 💙</h2>
+    <p id="doneMsg" data-t="preparing">Estamos confirmando tu pago con Paddle…</p>
+    <p><a class="btn" id="dl" hidden data-t="download">⬇️ Descargar la guía (PDF)</a></p>
+    <p class="note" data-t="keep">Guarda el PDF en tu teléfono o computador. También puedes volver a esta página desde el mismo enlace para descargarlo de nuevo. Si tienes cualquier problema, escríbenos a <a data-site="mailto" data-subject="Guía Vocari"></a>.</p>
+  </div>
+
+  <div class="gh">
+    <div><img class="cover" src="guia-portada.jpg" alt="Portada de la Guía Vocari para familias" width="579" height="819"></div>
+    <div>
+      <h1 data-t="h1">Guía Vocari para familias</h1>
+      <p class="lead" style="font-size:1.15rem;color:var(--muted)" data-t="lead">Todo lo que necesitas para empezar a comunicarte con CAA en casa, explicado sin tecnicismos: qué es, los mitos que frenan a las familias, cómo enseñar con el ejemplo, un plan de 30 días y tableros listos para imprimir.</p>
+      <div class="price-tag">USD 1,99 <small data-t="once">pago único · PDF · 33 páginas</small></div>
+      <p><button class="btn" id="buy" data-t="buy">Comprar y descargar</button></p>
+      <p class="note" data-t="note">Pago seguro con Paddle (tarjeta, PayPal, Apple Pay, Google Pay). Descarga inmediata. Garantía de reembolso de 14 días. La guía está en español.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2 data-t="inside">Qué incluye</h2>
+    <div class="cards">
+      <div class="card"><div class="ic">📖</div><h3 data-t="c1">13 capítulos cortos</h3><p data-t="c1p">Qué es la CAA, mitos y realidades, cómo modelar, qué palabras enseñar primero, rutinas, salud y emergencias, colegio y más.</p></div>
+      <div class="card"><div class="ic">🗓️</div><h3 data-t="c2">Plan de 30 días</h3><p data-t="c2p">Una actividad corta por día, para que la comunicación se vuelva parte de la vida diaria.</p></div>
+      <div class="card"><div class="ic">🖨️</div><h3 data-t="c3">9 anexos imprimibles</h3><p data-t="c3p">Tablero núcleo, tablero urgente, escala de dolor, sí/no, sentimientos, alfabeto, pasaporte de comunicación, carta para el colegio y registro.</p></div>
+      <div class="card"><div class="ic">💙</div><h3 data-t="c4">Apoya a Vocari</h3><p data-t="c4p">Cada compra ayuda a mantener Vocari gratis y a financiar becas para familias que no pueden pagar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 data-t="peek">Un vistazo</h2>
+    <div class="shots">
+      <img src="guia-plan.jpg" alt="Página del plan de 30 días" loading="lazy" width="579" height="819">
+      <img src="guia-muestra.jpg" alt="Tablero de palabras núcleo para imprimir" loading="lazy" width="579" height="819">
+    </div>
+    <p class="note" data-t="disclaimer">La guía es material educativo y no reemplaza la evaluación de un fonoaudiólogo o terapeuta del lenguaje.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="./" id="fHome">Vocari</a><a href="privacidad.html" id="fPriv">Privacidad</a><a href="terminos.html" id="fTerms">Términos</a><a href="reembolsos.html" id="fRef">Reembolsos</a><a data-site="mailto">Contacto</a></p>
+    <p>© 2026 <span data-site="owner"></span> · Chile</p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script src="pay.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search), lang = q.get('lang') === 'en' ? 'en' : 'es', txn = q.get('txn');
+  var EN = {
+    open: 'Open app', thanks: 'Thank you for your purchase! 💙', preparing: 'Confirming your payment with Paddle…',
+    download: '⬇️ Download the guide (PDF)', keep: 'Save the PDF on your phone or computer. You can come back to this same link to download it again. Any problem? Email us at ',
+    h1: 'Vocari Family Guide', lead: 'Everything you need to start communicating with AAC at home, in plain language: what it is, myths that hold families back, how to teach by modeling, a 30-day plan and printable boards.',
+    once: 'one-time · PDF · 33 pages', buy: 'Buy and download', note: 'Secure payment by Paddle (card, PayPal, Apple Pay, Google Pay). Instant download. 14-day money-back guarantee. The guide is in Spanish.',
+    inside: "What's inside", c1: '13 short chapters', c1p: 'What AAC is, myths and facts, modeling, first words to teach, routines, health and emergencies, school and more.',
+    c2: '30-day plan', c2p: 'One short activity a day so communication becomes part of everyday life.', c3: '9 printable appendices',
+    c3p: 'Core board, urgent board, pain scale, yes/no, feelings, alphabet, communication passport, letter for school and progress log.',
+    c4: 'Support Vocari', c4p: 'Every purchase helps keep Vocari free and funds scholarships for families who can’t pay.',
+    peek: 'A sneak peek', disclaimer: 'The guide is educational material and does not replace assessment by a speech-language therapist.'
+  };
+  if (lang === 'en') {
+    document.documentElement.lang = 'en';
+    document.title = 'Vocari Family Guide — USD 1.99';
+    document.querySelectorAll('[data-t]').forEach(function (el) {
+      var t = EN[el.dataset.t]; if (!t) return;
+      if (el.dataset.t === 'keep') { var a = el.querySelector('a'); el.textContent = t; if (a) { el.append(a); el.append('.'); } }
+      else el.textContent = t;
+    });
+    document.querySelector('.price-tag').firstChild.textContent = 'USD 1.99 ';
+    document.getElementById('home').href = 'en.html'; document.getElementById('fHome').href = 'en.html';
+    document.getElementById('fPriv').href = 'privacy.html'; document.getElementById('fPriv').textContent = 'Privacy';
+    document.getElementById('fTerms').href = 'terms.html'; document.getElementById('fTerms').textContent = 'Terms';
+    document.getElementById('fRef').href = 'refunds.html'; document.getElementById('fRef').textContent = 'Refunds';
+  }
+  var buy = document.getElementById('buy');
+  buy.onclick = function () {
+    buy.disabled = true;
+    VocariPay.buy('ebook', lang)
+      .catch(function () { alert(lang === 'en' ? 'Could not start the payment. Please try again.' : 'No se pudo iniciar el pago. Intenta de nuevo.'); })
+      .then(function () { buy.disabled = false; });
+  };
+  if (/^txn_[a-z0-9]{10,60}$/.test(txn || '')) {
+    var box = document.getElementById('done'), msg = document.getElementById('doneMsg'), dl = document.getElementById('dl');
+    box.hidden = false; box.scrollIntoView();
+    var tries = 0;
+    (function check() {
+      fetch('/api/ebook?check=1&txn=' + txn).then(function (r) {
+        if (r.ok) {
+          dl.href = '/api/ebook?txn=' + txn; dl.hidden = false;
+          msg.textContent = lang === 'en' ? 'Payment confirmed. Your guide is ready:' : 'Pago confirmado. Tu guía está lista:';
+          return;
+        }
+        if (r.status === 409 && ++tries < 15) return setTimeout(check, 2000);
+        msg.textContent = lang === 'en' ? 'We could not confirm the payment yet. Reload this page in a minute or email us.' : 'Aún no pudimos confirmar el pago. Recarga esta página en un minuto o escríbenos.';
+      }).catch(function () { if (++tries < 15) setTimeout(check, 2000); });
+    })();
+  }
+})();
+</script>
+</body>
+</html>

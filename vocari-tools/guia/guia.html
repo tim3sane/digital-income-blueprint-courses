@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Guía Vocari para familias</title>
+<style>
+@page { size: A4; margin: 20mm 18mm 22mm; }
+@page :first { margin: 0; }
+:root { --ink:#1b1f24; --muted:#5f584c; --accent:#6a4cff; --accent2:#14b8e6; --soft:#f1edff; --warm:#fff6e6; --line:#e4dccb; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin:0; font: 11.2pt/1.55 "Noto Sans", "DejaVu Sans", system-ui, sans-serif; color: var(--ink); }
+h1, h2, h3 { line-height: 1.2; color: #2a1f7a; break-after: avoid; }
+h1 { font-size: 24pt; margin: 0 0 6mm; }
+h2 { font-size: 15pt; margin: 8mm 0 3mm; }
+h3 { font-size: 12.5pt; margin: 5mm 0 2mm; color: var(--ink); }
+p { margin: 0 0 3mm; }
+ul, ol { margin: 0 0 3mm; padding-left: 6mm; }
+li { margin: 1mm 0; }
+.chapter { break-before: page; }
+.num { display:inline-block; font-size: 10pt; font-weight: 800; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 2mm; }
+.box { background: var(--soft); border-left: 4px solid var(--accent); border-radius: 3mm; padding: 4mm 5mm; margin: 4mm 0; break-inside: avoid; }
+.tip { background: var(--warm); border-left: 4px solid #e8a33d; border-radius: 3mm; padding: 4mm 5mm; margin: 4mm 0; break-inside: avoid; }
+.box p:last-child, .tip p:last-child { margin-bottom: 0; }
+table { width: 100%; border-collapse: collapse; margin: 3mm 0 5mm; font-size: 10pt; break-inside: avoid; }
+th, td { border: 1px solid var(--line); padding: 2mm 2.5mm; text-align: left; vertical-align: top; }
+th { background: var(--soft); }
+.cover { height: 297mm; padding: 30mm 22mm; color: #fff; background: linear-gradient(140deg, #7b5cff, #14b8e6); display: flex; flex-direction: column; }
+.cover .logo { width: 34mm; height: 34mm; }
+.cover h1 { color: #fff; font-size: 34pt; margin: 18mm 0 6mm; }
+.cover .sub { font-size: 15pt; opacity: .95; max-width: 150mm; }
+.cover .foot { margin-top: auto; font-size: 11pt; opacity: .9; }
+.toc li { margin: 1.6mm 0; }
+.grid { display: grid; gap: 3mm; margin-top: 4mm; }
+.grid.c5 { grid-template-columns: repeat(5, 1fr); }
+.grid.c4 { grid-template-columns: repeat(4, 1fr); }
+.grid.c3 { grid-template-columns: repeat(3, 1fr); }
+.cell { border: 2.5px solid #4a90d9; border-radius: 3mm; text-align: center; padding: 2mm 1mm; font-weight: 700; font-size: 10.5pt; min-height: 29mm; display: flex; flex-direction: column; justify-content: center; }
+.cell b { display: block; font-size: 24pt; line-height: 1.15; font-weight: 400; }
+.k-pron{border-color:#e8a33d}.k-verb{border-color:#3fa564}.k-adj{border-color:#8a63d2}.k-noun{border-color:#e8793d}.k-neg{border-color:#d9534f}
+.pain .cell { min-height: 34mm; }
+.sheet { break-before: page; }
+.sheet h2 { margin-top: 0; }
+.lines div { border-bottom: 1px solid #bbb; height: 9mm; }
+.cut { font-size: 9pt; color: var(--muted); }
+.legend span { display:inline-block; margin-right: 4mm; font-size: 9.5pt; }
+.legend i { display:inline-block; width: 4mm; height: 4mm; border-radius: 1mm; vertical-align: -0.6mm; margin-right: 1.2mm; }
+.small { font-size: 9.5pt; color: var(--muted); }
+.license { font-size: 9pt; color: var(--muted); margin-top: 6mm; }
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<section class="cover">
+  <svg class="logo" viewBox="0 0 512 512"><rect width="512" height="512" rx="116" fill="rgba(255,255,255,.18)"/><path d="M152 118h208a60 60 0 0 1 60 60v122a60 60 0 0 1-60 60H262l-82 66v-66h-28a60 60 0 0 1-60-60V178a60 60 0 0 1 60-60z" fill="#fff"/><path d="M190 182l66 116 66-116" fill="none" stroke="#7b5cff" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <h1>Guía Vocari<br>para familias</h1>
+  <p class="sub">Cómo empezar a comunicarse con CAA en casa: qué es, cómo enseñarla, un plan de 30 días, rutinas diarias y tableros listos para imprimir.</p>
+  <p class="foot">Primera edición · 2026<br>Vocari · Hecho en Chile 🇨🇱 para el mundo</p>
+</section>
+
+<!-- PRESENTACIÓN -->
+<section class="chapter">
+  <h1>Antes de empezar</h1>
+  <p>Si tienes esta guía en tus manos, probablemente quieres a alguien que no puede decir con palabras lo que siente, lo que necesita o lo que piensa. Puede ser tu hijo o hija, tu madre después de un derrame, tu pareja con ELA, un alumno, un paciente. Esta guía es para ti.</p>
+  <p>La <b>comunicación aumentativa y alternativa (CAA)</b> es el conjunto de formas de comunicarse que complementan o reemplazan el habla. No es magia ni un último recurso: es un derecho. Toda persona se comunica, y toda persona merece una forma de hacerse entender.</p>
+  <p>La escribimos pensando en familias sin formación técnica, con poco tiempo y, muchas veces, con poco dinero. Por eso todo lo que proponemos se puede hacer con un teléfono, la app gratuita Vocari y papel impreso.</p>
+
+  <div class="box">
+    <p><b>Importante.</b> Esta guía es material educativo. No reemplaza la evaluación ni el acompañamiento de un fonoaudiólogo, logopeda o terapeuta del lenguaje. Si tienes acceso a uno, compártele esta guía: les servirá para trabajar en equipo. Si no lo tienes, igual puedes empezar hoy. Comunicarse no puede esperar.</p>
+  </div>
+
+  <h2>Cómo usar esta guía</h2>
+  <ul>
+    <li><b>Lee los capítulos 1 a 3</b> (unos 20 minutos). Son la base: qué es la CAA, los mitos que frenan a las familias y la técnica más importante, el <i>modelado</i>.</li>
+    <li><b>Configura Vocari</b> con el capítulo 5 (10 minutos).</li>
+    <li><b>Sigue el plan de 30 días</b> del capítulo 6. Una o dos actividades cortas al día bastan.</li>
+    <li><b>Imprime los anexos.</b> Un tablero en papel es el respaldo perfecto cuando el teléfono no tiene batería, en la ducha o en la playa.</li>
+  </ul>
+
+  <h2>Contenido</h2>
+  <ol class="toc">
+    <li>¿Qué es la comunicación aumentativa (CAA)?</li>
+    <li>Mitos que frenan a las familias</li>
+    <li>La técnica más importante: modelar</li>
+    <li>Qué palabras enseñar primero</li>
+    <li>Configurar Vocari paso a paso</li>
+    <li>Plan de 30 días</li>
+    <li>Rutinas para practicar todos los días</li>
+    <li>Salud, dolor y emergencias</li>
+    <li>En el colegio y con otras personas</li>
+    <li>Cuando algo no funciona</li>
+    <li>Cómo ver el progreso</li>
+    <li>Cuidar a quien cuida</li>
+    <li>Preguntas para tu terapeuta y recursos</li>
+  </ol>
+  <p><b>Anexos imprimibles:</b> tablero de palabras núcleo, tablero urgente, escala de dolor, tablero sí/no/no sé, tablero de sentimientos, alfabeto, pasaporte de comunicación, carta para el colegio y registro semanal.</p>
+</section>
+
+<!-- CAP 1 -->
+<section class="chapter">
+  <span class="num">Capítulo 1</span>
+  <h1>¿Qué es la comunicación aumentativa (CAA)?</h1>
+  <p>Comunicarse es mucho más que hablar. Señalar, mirar, hacer un gesto, mostrar una foto, escribir o tocar un botón que dice una frase: todo eso es comunicación. La CAA reúne esas formas y las organiza para que una persona pueda expresar cada vez más cosas, a cada vez más personas.</p>
+  <ul>
+    <li><b>Aumentativa:</b> se suma al habla que la persona ya tiene. Alguien que dice algunas palabras puede usar la CAA para decir el resto.</li>
+    <li><b>Alternativa:</b> reemplaza el habla cuando no está disponible, de forma temporal o permanente.</li>
+  </ul>
+
+  <h2>Tipos de CAA</h2>
+  <table>
+    <tr><th>Tipo</th><th>Ejemplos</th><th>Ventajas</th></tr>
+    <tr><td><b>Sin apoyo externo</b></td><td>Gestos, señas, expresiones faciales, lengua de señas</td><td>Siempre disponibles, no necesitan nada</td></tr>
+    <tr><td><b>Baja tecnología</b></td><td>Tableros impresos con símbolos o fotos, cuadernos de comunicación, alfabetos</td><td>Baratos, no se descargan, sirven en la ducha o la piscina</td></tr>
+    <tr><td><b>Alta tecnología</b></td><td>Apps como Vocari, tablets y dispositivos que generan voz</td><td>Voz audible, mucho vocabulario, se pueden personalizar</td></tr>
+  </table>
+  <p>No hay que elegir uno solo. Lo ideal es una combinación: Vocari en el teléfono, un tablero impreso de respaldo y los gestos que la persona ya usa.</p>
+
+  <h2>¿Quién puede beneficiarse?</h2>
+  <p>Personas de cualquier edad con condiciones como:</p>
+  <ul>
+    <li>Trastorno del espectro autista (TEA), con o sin habla.</li>
+    <li>Parálisis cerebral y otras condiciones motoras.</li>
+    <li>Síndrome de Down, síndrome de Angelman, síndrome de Rett y otras condiciones genéticas.</li>
+    <li>Apraxia del habla infantil.</li>
+    <li>Afasia después de un accidente cerebrovascular (derrame) o un traumatismo.</li>
+    <li>ELA, Parkinson, esclerosis múltiple y otras enfermedades neurodegenerativas.</li>
+    <li>Personas intubadas, con traqueostomía o que no pueden hablar temporalmente en un hospital.</li>
+  </ul>
+
+  <div class="tip"><p><b>Regla de oro:</b> si una persona no logra comunicar todo lo que necesita con el habla, la CAA puede ayudarla. No hace falta esperar un diagnóstico, una edad o un "nivel" para empezar.</p></div>
+
+  <h2>Lo que la CAA le da a una persona</h2>
+  <ul>
+    <li><b>Pedir</b> lo que necesita: agua, el baño, ayuda, parar.</li>
+    <li><b>Rechazar:</b> decir "no", "no quiero", "basta". Es fundamental para la dignidad y la seguridad.</li>
+    <li><b>Contar</b> lo que siente: dolor, miedo, alegría.</li>
+    <li><b>Conversar:</b> comentar, preguntar, bromear, saludar.</li>
+    <li><b>Participar</b> en la familia, el colegio y la comunidad.</li>
+  </ul>
+  <p>Muchas conductas difíciles (golpes, gritos, autolesiones) son, en parte, intentos de comunicar algo que no se puede decir de otra manera. Cuando aparece una forma eficaz de comunicarse, esas conductas suelen disminuir.</p>
+</section>
+
+<!-- CAP 2 -->
+<section class="chapter">
+  <span class="num">Capítulo 2</span>
+  <h1>Mitos que frenan a las familias</h1>
+  <p>Muchas familias tardan meses o años en empezar con la CAA por ideas que no son ciertas. Estas son las más comunes.</p>
+
+  <h3>❌ "Si usa la app, nunca va a aprender a hablar."</h3>
+  <p><b>Realidad:</b> la investigación no ha encontrado que la CAA impida el desarrollo del habla. En los estudios revisados, muchas personas que usan CAA incluso aumentan su habla. Al quitar la presión de "tener que hablar", y al escuchar la palabra cada vez que tocan un botón, muchas personas se animan a decirla.</p>
+
+  <h3>❌ "Primero tiene que entender, mirar a los ojos o quedarse sentado."</h3>
+  <p><b>Realidad:</b> no hay requisitos previos. La CAA se aprende usándola, igual que un bebé aprende a hablar escuchando hablar durante meses antes de decir su primera palabra.</p>
+
+  <h3>❌ "Es muy pequeño" o "es muy mayor".</h3>
+  <p><b>Realidad:</b> no existe una edad mínima ni máxima. Niños de dos años y adultos de ochenta aprenden a usar CAA.</p>
+
+  <h3>❌ "Usar CAA es rendirse."</h3>
+  <p><b>Realidad:</b> es justo lo contrario. Es darle a la persona una voz <i>hoy</i>, mientras se siguen trabajando todas las demás habilidades, incluida el habla.</p>
+
+  <h3>❌ "Ya nos entendemos en casa, no la necesita."</h3>
+  <p><b>Realidad:</b> la familia aprende a adivinar, pero el resto del mundo no: el profesor, el médico, los amigos, la persona que lo cuide cuando tú no estés. La CAA le da independencia.</p>
+
+  <h3>❌ "Toca los botones sin sentido, no está listo."</h3>
+  <p><b>Realidad:</b> explorar es parte de aprender. Los bebés balbucean antes de hablar. Cuando la persona toca botones "al azar", responde como si lo hubiera dicho a propósito, con calma y con naturalidad (capítulo 10).</p>
+
+  <h3>❌ "Necesitamos un dispositivo carísimo."</h3>
+  <p><b>Realidad:</b> se puede empezar con un teléfono, una app gratuita y papel. Lo que más importa no es el aparato, sino que las personas alrededor lo usen todos los días.</p>
+
+  <div class="box"><p><b>Si solo recuerdas una cosa:</b> empieza ahora, con lo que tengas, y usa la CAA tú mismo delante de la persona. Eso es el capítulo siguiente.</p></div>
+</section>
+
+<!-- CAP 3 -->
+<section class="chapter">
+  <span class="num">Capítulo 3</span>
+  <h1>La técnica más importante: modelar</h1>
+  <p>Un bebé escucha miles de horas de habla antes de decir "mamá". Nadie le pide que hable antes de haberlo escuchado. Con la CAA pasa lo mismo: la persona necesita <b>ver a otros usar su sistema de comunicación</b> muchas veces antes de usarlo por sí misma.</p>
+  <p>Eso se llama <b>modelar</b>, o <i>estimulación del lenguaje asistido</i>: mientras le hablas, tocas en Vocari, o señalas en el tablero impreso, las palabras clave de lo que dices.</p>
+
+  <h2>Cómo se hace</h2>
+  <ol>
+    <li><b>Habla normal</b> y, al mismo tiempo, toca una o dos palabras importantes. Por ejemplo, dices "¿Quieres <u>más</u> <u>agua</u>?" y tocas <i>más</i> y <i>agua</i>.</li>
+    <li><b>No exijas nada.</b> No digas "ahora tú" ni "toca agua". Solo muestra. La presión hace que la persona se cierre.</li>
+    <li><b>Hazlo muchas veces al día</b>, en situaciones reales: comidas, juegos, el baño, salir a pasear.</li>
+    <li><b>Ve un paso más allá.</b> Si la persona usa una palabra, tú modela dos. Si dice "agua", tú tocas "más agua" o "quiero agua".</li>
+    <li><b>Espera.</b> Después de modelar, cuenta en silencio hasta 10. Dale tiempo para responder. Muchas personas necesitan bastante tiempo para planificar un movimiento.</li>
+  </ol>
+
+  <h2>Ejemplos</h2>
+  <table>
+    <tr><th>Situación</th><th>Lo que dices</th><th>Lo que tocas en Vocari</th></tr>
+    <tr><td>Desayuno</td><td>"¿Quieres pan o fruta?"</td><td>quiero · pan · fruta</td></tr>
+    <tr><td>Jugando</td><td>"¡Otra vez! Vamos a jugar otra vez."</td><td>otra vez · jugar</td></tr>
+    <tr><td>Se cae un juguete</td><td>"Uy, se cayó. Ayuda."</td><td>ayuda</td></tr>
+    <tr><td>Termina el baño</td><td>"Terminamos. Ahora vestirnos."</td><td>terminé · vestirme</td></tr>
+    <tr><td>Algo le molesta</td><td>"No te gusta. Está bien decir no."</td><td>no me gusta · no</td></tr>
+  </table>
+
+  <div class="tip"><p><b>Truco:</b> pon el teléfono o el tablero impreso <b>siempre a la vista y al alcance</b>, no en un cajón ni en la mochila. Si para comunicarse hay que pedir permiso para sacar el aparato, no se usará.</p></div>
+
+  <h2>Qué hacer cuando la persona toca algo</h2>
+  <ul>
+    <li><b>Responde siempre, como si fuera intencional.</b> Si toca "baño", acompáñala al baño o di "¿Quieres ir al baño? ¡Vamos!". Así aprende que sus palabras tienen poder.</li>
+    <li><b>Si toca "no", respeta ese no</b> siempre que sea seguro. Si no se puede (por ejemplo, un remedio), reconócelo: "Sé que no quieres. Es difícil. Lo hacemos rápido."</li>
+    <li><b>No corrijas.</b> Si toca "agua" y quería jugo, modela: "Ah, ¿quieres jugo?" y toca <i>jugo</i>.</li>
+  </ul>
+</section>
+
+<!-- CAP 4 -->
+<section class="chapter">
+  <span class="num">Capítulo 4</span>
+  <h1>Qué palabras enseñar primero</h1>
+  <p>Hay dos tipos de vocabulario:</p>
+  <ul>
+    <li><b>Palabras núcleo:</b> unas pocas palabras que usamos todo el tiempo y en cualquier situación, como <i>yo, quiero, no, más, ir, ayuda, terminé, otra vez, esto</i>. Forman la mayor parte de lo que decimos cada día.</li>
+    <li><b>Palabras específicas:</b> nombres de cosas, personas y lugares: <i>pan, mamá, parque, perro</i>. Son importantes, pero cada una sirve solo en algunas situaciones.</li>
+  </ul>
+  <p>Muchas familias empiezan solo con objetos (comidas, juguetes). Funciona para pedir, pero la persona queda limitada a pedir cosas. Las palabras núcleo le permiten <b>rechazar, comentar, preguntar y dirigir</b>.</p>
+
+  <h2>Las 30 primeras palabras</h2>
+  <p>Todas están en la categoría <b>🧩 Básico</b> de Vocari y en el tablero imprimible del Anexo A.</p>
+  <table>
+    <tr><th>Para qué</th><th>Palabras</th></tr>
+    <tr><td>Pedir</td><td>quiero, necesito, más, otra vez, ayuda, por favor</td></tr>
+    <tr><td>Rechazar y parar</td><td>no, no quiero, parar, terminé, no me gusta</td></tr>
+    <tr><td>Confirmar</td><td>sí, me gusta, gracias</td></tr>
+    <tr><td>Acciones</td><td>ir, ver, hacer, esperar</td></tr>
+    <tr><td>Personas y cosas</td><td>yo, tú, mi, esto, otro</td></tr>
+    <tr><td>Lugar y tiempo</td><td>aquí, allá, ahora, después, con</td></tr>
+  </table>
+
+  <h2>Cómo agregar palabras específicas</h2>
+  <p>Agrega en <b>⭐ Mis cosas</b> las palabras de la vida real de la persona: el nombre de su mascota, su comida favorita, su programa de televisión, las personas importantes. Con Vocari Plus puedes usar <b>fotos reales</b>, lo que ayuda mucho al principio y a las personas con dificultades de visión o de comprensión de símbolos.</p>
+  <div class="tip"><p><b>Consejo:</b> agrega pocas palabras nuevas por semana (3 a 5) y modélalas mucho. Un tablero con 200 botones que nadie usa sirve menos que uno con 20 botones usados todos los días.</p></div>
+
+  <h2>Mantén las palabras en su lugar</h2>
+  <p>Las personas aprenden la <b>ubicación</b> de los botones, como nosotros aprendemos dónde está cada letra del teclado. Por eso no reorganices los tableros con frecuencia. Agrega palabras nuevas al final y deja las conocidas en su sitio.</p>
+</section>
+
+<!-- CAP 5 -->
+<section class="chapter">
+  <span class="num">Capítulo 5</span>
+  <h1>Configurar Vocari paso a paso</h1>
+  <p>Vocari es gratis y funciona sin internet. Estos pasos toman unos 10 minutos.</p>
+
+  <h3>1. Instálalo en la pantalla de inicio</h3>
+  <ul>
+    <li><b>Android:</b> abre Vocari en Chrome → menú ⋮ → "Instalar app" o "Agregar a pantalla de inicio".</li>
+    <li><b>iPhone/iPad:</b> abre Vocari en Safari → botón Compartir → "Agregar a inicio".</li>
+  </ul>
+  <p>Así se abre como una app, a pantalla completa y sin internet.</p>
+
+  <h3>2. Elige una buena voz</h3>
+  <p>Vocari usa la voz de tu teléfono. Vale la pena descargar una de buena calidad:</p>
+  <ul>
+    <li><b>Android:</b> Ajustes → Accesibilidad → Texto a voz → Motor preferido → Instalar datos de voz → tu idioma.</li>
+    <li><b>iPhone:</b> Ajustes → Accesibilidad → Contenido leído → Voces → elige una voz "mejorada" o "premium".</li>
+  </ul>
+  <p>Después, en Vocari: ⚙️ Ajustes → Voz. Elige una voz que suene adecuada para la edad y el género de la persona, y pregúntale si le gusta: es <i>su</i> voz.</p>
+
+  <h3>3. Ajusta el tamaño y la velocidad</h3>
+  <p>En ⚙️ Ajustes, aumenta el <b>tamaño de los botones</b> si a la persona le cuesta apuntar, y baja la <b>velocidad de la voz</b> si las frases salen muy rápido. Prueba los temas "Oscuro" o "Alto contraste" si tiene baja visión.</p>
+
+  <h3>4. Crea su perfil y sus palabras</h3>
+  <p>En ⚙️ Ajustes → Perfiles, pon el nombre de la persona. Luego toca <b>✏️ Editar</b>, entra a <b>⭐ Mis cosas</b> y agrega sus primeras palabras personales: el nombre de la familia, sus comidas y juguetes favoritos.</p>
+
+  <h3>5. Activa el bloqueo</h3>
+  <p>En ⚙️ Ajustes, activa <b>Bloquear edición</b>. Así nadie borra botones por accidente. Para volver a los ajustes, mantén presionado ⚙️ durante un segundo.</p>
+
+  <h3>6. Haz un respaldo</h3>
+  <p>⚙️ Ajustes → <b>Exportar todo</b>. Guarda el archivo en tu correo o en la nube. Si cambias de teléfono, lo importas y recuperas todo.</p>
+
+  <div class="box"><p><b>Opcional: "Decir cada palabra al tocarla".</b> Actívalo al principio: escuchar cada palabra ayuda a entender qué hace cada botón. Más adelante, cuando la persona arme frases, puedes desactivarlo para que la frase completa se diga al final.</p></div>
+</section>
+
+<!-- CAP 6 -->
+<section class="chapter">
+  <span class="num">Capítulo 6</span>
+  <h1>Plan de 30 días</h1>
+  <p>Este plan está pensado para 10 a 15 minutos de práctica intencional al día, más el uso natural en la rutina. Si un día no se puede, no pasa nada: retoma al día siguiente. El objetivo de este mes <b>no es</b> que la persona use Vocari sola. El objetivo es que <b>tú</b> te acostumbres a modelar y que la CAA forme parte de la vida diaria.</p>
+
+  <h2>Semana 1 · Conocer y explorar</h2>
+  <table>
+    <tr><th>Día</th><th>Actividad</th></tr>
+    <tr><td>1</td><td>Configura Vocari (capítulo 5). Deja que la persona lo explore libremente, sin instrucciones.</td></tr>
+    <tr><td>2</td><td>Elige 3 palabras para la semana: <b>más</b>, <b>terminé</b> y <b>ayuda</b>. Modélalas en todas las comidas.</td></tr>
+    <tr><td>3</td><td>Juego de "más": burbujas, cosquillas o un columpio. Para y modela "más". Sigue en cuanto toque cualquier botón.</td></tr>
+    <tr><td>4</td><td>Modela "terminé" al final de cada actividad: comida, baño, juego.</td></tr>
+    <tr><td>5</td><td>Modela "ayuda" cuando algo esté difícil: abrir un envase o ponerse los zapatos.</td></tr>
+    <tr><td>6</td><td>Imprime y pega el tablero del Anexo A en la cocina o junto a la mesa.</td></tr>
+    <tr><td>7</td><td>Descanso. Anota en el registro (Anexo I) lo que observaste esta semana.</td></tr>
+  </table>
+
+  <h2>Semana 2 · Pedir y rechazar</h2>
+  <table>
+    <tr><th>Día</th><th>Actividad</th></tr>
+    <tr><td>8</td><td>Palabras nuevas: <b>quiero</b>, <b>no</b>, <b>otra vez</b>.</td></tr>
+    <tr><td>9</td><td>Ofrece dos opciones en cada comida y modela: "¿quiero pan o quiero fruta?".</td></tr>
+    <tr><td>10</td><td>Practica el <b>no</b>: ofrece algo que no le gusta y modela "no". Respeta su respuesta.</td></tr>
+    <tr><td>11</td><td>Juego con turnos (pelota, torre de bloques) y modela "otra vez".</td></tr>
+    <tr><td>12</td><td>Agrega 3 palabras personales en Mis cosas (comida, juguete o persona favorita).</td></tr>
+    <tr><td>13</td><td>Paseo: lleva Vocari y modela "ir", "ver" y "allá".</td></tr>
+    <tr><td>14</td><td>Descanso y registro.</td></tr>
+  </table>
+
+  <h2>Semana 3 · Combinar palabras</h2>
+  <table>
+    <tr><th>Día</th><th>Actividad</th></tr>
+    <tr><td>15</td><td>Modela frases de dos palabras: "quiero agua", "más jugar", "no quiero".</td></tr>
+    <tr><td>16</td><td>Introduce la categoría 😀 Sentimientos. Pon nombre a tus propias emociones: "yo feliz", "yo cansada".</td></tr>
+    <tr><td>17</td><td>Al mirar fotos o un libro, comenta con Vocari: "ver perro", "me gusta".</td></tr>
+    <tr><td>18</td><td>Practica 🚨 Urgente: muéstrale "tengo dolor" y "necesito ir al baño" en un momento tranquilo.</td></tr>
+    <tr><td>19</td><td>Pide a otro familiar que modele durante una comida.</td></tr>
+    <tr><td>20</td><td>Revisa qué palabras usa más. Si tienes el plan Profesional, mira 📊 Palabras más usadas.</td></tr>
+    <tr><td>21</td><td>Descanso y registro.</td></tr>
+  </table>
+
+  <h2>Semana 4 · Ampliar el mundo</h2>
+  <table>
+    <tr><th>Día</th><th>Actividad</th></tr>
+    <tr><td>22</td><td>Preparen juntos el pasaporte de comunicación (Anexo G).</td></tr>
+    <tr><td>23</td><td>Comparte la carta del Anexo H con el colegio, el centro de día o los cuidadores.</td></tr>
+    <tr><td>24</td><td>Usa la categoría 💬 Social para saludar a vecinos, abuelos o amigos.</td></tr>
+    <tr><td>25</td><td>Agrega frases rápidas propias (⌨️ Escribir → ⭐ Guardar), como "Me llamo …" o "Me gusta el fútbol".</td></tr>
+    <tr><td>26</td><td>Durante una salida, deja que la persona elija adónde ir o qué comprar.</td></tr>
+    <tr><td>27</td><td>Repasa la semana: ¿qué funcionó?, ¿qué palabras faltan?</td></tr>
+    <tr><td>28–30</td><td>Celebra lo logrado y elige 5 palabras nuevas para el próximo mes.</td></tr>
+  </table>
+</section>
+
+<!-- CAP 7 -->
+<section class="chapter">
+  <span class="num">Capítulo 7</span>
+  <h1>Rutinas para practicar todos los días</h1>
+  <p>Las rutinas son ideales porque se repiten todos los días, son predecibles y tienen palabras que siempre aparecen. Elige <b>una</b> rutina para empezar y modela ahí con constancia.</p>
+
+  <h3>🍽️ Comidas</h3>
+  <p><b>Palabras:</b> quiero, más, terminé, comer, beber, agua, no me gusta, caliente, frío.</p>
+  <p><b>Ideas:</b> sirve porciones pequeñas para que haya ocasión de pedir "más". Pon el vaso un poco lejos para que tenga que pedirlo.</p>
+
+  <h3>🛁 Baño</h3>
+  <p><b>Palabras:</b> agua, caliente, frío, más, parar, terminé, ayuda. En la ducha usa el tablero impreso, plastificado o dentro de una funda plástica.</p>
+
+  <h3>👕 Vestirse</h3>
+  <p><b>Palabras:</b> ayuda, esto, otro, me gusta, no me gusta. Ofrece dos prendas y modela "esto" mientras señalas.</p>
+
+  <h3>⚽ Juego</h3>
+  <p><b>Palabras:</b> jugar, otra vez, más, parar, mi turno, tú, ayuda, me gusta. Los juegos de causa y efecto (burbujas, globos, cosquillas, columpio) son perfectos para "más" y "otra vez".</p>
+
+  <h3>🚗 Salidas</h3>
+  <p><b>Palabras:</b> ir, ver, allá, aquí, esperar, casa, parque, tienda. Antes de salir, modela adónde van. En el auto o en el bus, comenten lo que ven.</p>
+
+  <h3>🌙 Hora de dormir</h3>
+  <p><b>Palabras:</b> cansado, dormir, cama, te quiero, buenas noches, ¿cómo estás? Es un buen momento para hablar de sentimientos: "Hoy yo feliz. ¿Y tú?".</p>
+
+  <div class="tip"><p><b>Las frases rápidas ahorran tiempo.</b> Guarda en ⭐ Rápidas las frases que se repiten en cada rutina, por ejemplo "Quiero salir a jugar" o "¿Puedo ver televisión?". Así la persona las dice con un solo toque.</p></div>
+</section>
+
+<!-- CAP 8 -->
+<section class="chapter">
+  <span class="num">Capítulo 8</span>
+  <h1>Salud, dolor y emergencias</h1>
+  <p>Una de las razones más importantes para usar CAA es poder decir <b>"me duele"</b> y <b>dónde</b>. Practica esto en momentos tranquilos, no solo cuando hay dolor.</p>
+
+  <h2>Enseñar a avisar dolor</h2>
+  <ol>
+    <li>Cuando la persona tenga un golpe menor, modela: "Te duele. <u>Me duele</u> la <u>rodilla</u>." y toca las palabras en 🩺 Cuerpo.</li>
+    <li>Usa la escala de dolor del Anexo C: "¿Cuánto duele? ¿Poco o mucho?".</li>
+    <li>Modela tú también: "<u>Me duele</u> la <u>cabeza</u>, voy a descansar."</li>
+  </ol>
+
+  <h2>En el médico o en el hospital</h2>
+  <ul>
+    <li>Lleva el <b>pasaporte de comunicación</b> (Anexo G) y entrégalo al personal de salud.</li>
+    <li>Pide que le hablen <b>a la persona</b>, no solo a ti, y que le den tiempo para responder.</li>
+    <li>Ten el tablero impreso y un cargador: en los hospitales a veces no hay enchufes cerca.</li>
+    <li>En adultos que pierden el habla de golpe (por ejemplo, intubados o después de un derrame), empieza con la categoría 🚨 Urgente y el tablero sí/no. Son las respuestas más importantes.</li>
+  </ul>
+
+  <div class="box"><p><b>Recuerda:</b> Vocari no llama a nadie ni es un sistema de emergencias. En una emergencia, llama a los servicios de emergencia de tu país. Ten anotados los números de emergencia y de la familia en un lugar visible.</p></div>
+
+  <h2>Consentimiento y cuerpo</h2>
+  <p>Que la persona pueda decir <b>"no"</b>, <b>"parar"</b> y <b>"no me gusta"</b> también la protege. Enséñale que puede usarlas con cualquier persona, incluidos los adultos, y que ese "no" se respeta.</p>
+</section>
+
+<!-- CAP 9 -->
+<section class="chapter">
+  <span class="num">Capítulo 9</span>
+  <h1>En el colegio y con otras personas</h1>
+  <p>La CAA funciona mejor cuando <b>todos</b> los que rodean a la persona la usan: profesores, asistentes, abuelos, hermanos, amigos y terapeutas. Si solo se usa en casa, la persona aprende que solo sirve en casa.</p>
+
+  <h2>Cómo involucrar al colegio</h2>
+  <ul>
+    <li>Entrega la carta del Anexo H y una copia del tablero núcleo.</li>
+    <li>Pide que Vocari, o el tablero impreso, esté <b>siempre en la mesa</b> de la persona, no guardado.</li>
+    <li>Sugiere que el profesor modele 2 o 3 palabras durante la clase, como "terminé", "ayuda" u "otra vez".</li>
+    <li>Si el colegio tiene varios alumnos que usan CAA, el plan Profesional permite manejar varios perfiles e imprimir tableros para cada uno.</li>
+  </ul>
+
+  <h2>Con los hermanos y los amigos</h2>
+  <p>Los niños aprenden CAA muy rápido. Conviértelo en un juego: que ellos también "hablen con Vocari" durante una tarde. Así la persona deja de ser "la única que usa la app".</p>
+
+  <h2>Con desconocidos</h2>
+  <p>Guarda en Rápidas la frase: <i>"Hola, no puedo hablar, uso este comunicador. Dame un momento para escribir."</i> Ya viene incluida en Vocari y ayuda mucho en tiendas, en el transporte y con personas nuevas.</p>
+</section>
+
+<!-- CAP 10 -->
+<section class="chapter">
+  <span class="num">Capítulo 10</span>
+  <h1>Cuando algo no funciona</h1>
+  <table>
+    <tr><th>Situación</th><th>Qué probar</th></tr>
+    <tr><td>No muestra interés</td><td>Modela más y exige menos. Usa palabras de lo que más le gusta. Pon la CAA en sus actividades favoritas, no en "tareas".</td></tr>
+    <tr><td>Toca los botones sin parar</td><td>Es exploración y es normal. Responde a lo que dice, aunque no sea intencional. Con el tiempo, la exploración se vuelve comunicación.</td></tr>
+    <tr><td>Siempre toca el mismo botón</td><td>Puede que sea el que mejor conoce. Modela otras palabras cerca de ese botón y celebra cuando use alguna.</td></tr>
+    <tr><td>Tira el teléfono o lo rechaza</td><td>Usa una funda resistente o empieza con el tablero impreso. Revisa si el volumen está muy alto o si la voz le incomoda.</td></tr>
+    <tr><td>Le cuesta apuntar</td><td>Aumenta el tamaño de los botones. Prueba con una tablet o apoya el teléfono sobre la mesa. Consulta a un terapeuta ocupacional por otras formas de acceso.</td></tr>
+    <tr><td>Se frustra</td><td>Valida su emoción ("estás enojado, es difícil"). Ofrece "ayuda" y "parar". Retoma otro día.</td></tr>
+    <tr><td>Nadie más lo usa</td><td>Comparte la carta del Anexo H. Pide un solo compromiso pequeño: modelar "terminé" al final de cada actividad.</td></tr>
+    <tr><td>La voz no suena</td><td>Revisa el volumen del teléfono y el modo silencio. Descarga una voz (capítulo 5). Prueba otro navegador.</td></tr>
+    <tr><td>Se borró todo</td><td>Importa tu último respaldo (⚙️ Ajustes → Importar archivo). Haz respaldos periódicos.</td></tr>
+  </table>
+  <div class="tip"><p><b>Paciencia.</b> Aprender un nuevo sistema de comunicación toma meses, a veces años. Cada pequeño paso cuenta: una mirada al tablero, un primer "no", una primera frase.</p></div>
+</section>
+
+<!-- CAP 11 -->
+<section class="chapter">
+  <span class="num">Capítulo 11</span>
+  <h1>Cómo ver el progreso</h1>
+  <p>El progreso en CAA no siempre es lineal. A veces hay semanas sin cambios y después un salto. Anotar ayuda a ver avances que de otro modo pasarían desapercibidos.</p>
+
+  <h2>Señales de progreso</h2>
+  <ul>
+    <li>Mira el tablero o el teléfono cuando tú modelas.</li>
+    <li>Busca Vocari por iniciativa propia.</li>
+    <li>Usa una palabra en una situación nueva.</li>
+    <li>Combina dos palabras.</li>
+    <li>Usa la CAA con una persona distinta de ti.</li>
+    <li>Disminuyen los gritos, los golpes o la frustración.</li>
+    <li>Intenta decir la palabra con su voz.</li>
+  </ul>
+
+  <h2>Usa el registro semanal</h2>
+  <p>El Anexo I trae un registro sencillo: qué palabras modelaste, qué palabras usó la persona y algún momento destacado. Si tienes el plan Profesional, 📊 <b>Palabras más usadas</b> te muestra qué botones usa más, sin enviar ningún dato fuera del teléfono.</p>
+</section>
+
+<!-- CAP 12 -->
+<section class="chapter">
+  <span class="num">Capítulo 12</span>
+  <h1>Cuidar a quien cuida</h1>
+  <p>Acompañar a alguien que no puede hablar es cansador. Muchas familias sienten culpa por "no hacer suficiente". Queremos decirte algo con claridad: <b>no tienes que hacerlo perfecto</b>.</p>
+  <ul>
+    <li>Cinco minutos de modelado con buen ánimo valen más que una hora de tensión.</li>
+    <li>Reparte la tarea: que cada persona de la familia se comprometa con una rutina.</li>
+    <li>Busca redes de apoyo, como asociaciones de familias, grupos de padres y fundaciones de tu país.</li>
+    <li>Pide ayuda profesional para ti si la necesitas. Cuidarte también es cuidar.</li>
+    <li>Celebra los logros pequeños. Un "más" dicho por primera vez es enorme.</li>
+  </ul>
+  <div class="box"><p>Si tu familia no puede pagar Vocari Plus, escríbenos y pide una <b>beca</b>. Ninguna familia debería quedarse sin herramientas por dinero.</p></div>
+</section>
+
+<!-- CAP 13 -->
+<section class="chapter">
+  <span class="num">Capítulo 13</span>
+  <h1>Preguntas para tu terapeuta y recursos</h1>
+  <p>Si tienes acceso a un fonoaudiólogo, logopeda o terapeuta del lenguaje, estas preguntas pueden ayudarte a aprovechar la consulta:</p>
+  <ol>
+    <li>¿Qué forma de acceso le conviene más: tocar con el dedo, señalar con la mirada o usar un tablero de alfabeto?</li>
+    <li>¿Qué tamaño de botones y cuántos por pantalla recomiendas para empezar?</li>
+    <li>¿Qué palabras deberíamos agregar este mes?</li>
+    <li>¿Cómo puedo modelar mejor en nuestras rutinas?</li>
+    <li>¿Cómo coordinamos con el colegio?</li>
+    <li>¿Qué otras evaluaciones necesita (audición, visión, motricidad)?</li>
+    <li>¿Cómo trabajamos el habla en paralelo con la CAA?</li>
+  </ol>
+
+  <h2>Para seguir aprendiendo</h2>
+  <ul>
+    <li><b>ISAAC</b>, International Society for Augmentative and Alternative Communication: organización internacional dedicada a la CAA, con capítulos en varios países.</li>
+    <li><b>ARASAAC</b> (Centro Aragonés para la Comunicación Aumentativa y Alternativa): pictogramas y materiales gratuitos en muchos idiomas, para uso no comercial.</li>
+    <li><b>Asociaciones de familias</b> de autismo, síndrome de Down, parálisis cerebral, ELA y afasia de tu país: suelen ofrecer talleres y redes de apoyo.</li>
+    <li><b>Universidades y centros de salud públicos:</b> muchas carreras de fonoaudiología ofrecen atención a bajo costo.</li>
+  </ul>
+  <p class="small">Las organizaciones mencionadas son independientes de Vocari y se citan solo como referencia.</p>
+</section>
+
+<!-- ANEXO A -->
+<section class="sheet">
+  <span class="num">Anexo A</span>
+  <h2>Tablero de palabras núcleo</h2>
+  <p class="legend"><span><i style="background:#e8a33d"></i>personas</span><span><i style="background:#3fa564"></i>acciones</span><span><i style="background:#8a63d2"></i>descripciones</span><span><i style="background:#d9534f"></i>negación</span><span><i style="background:#4a90d9"></i>otras</span></p>
+  <div class="grid c5">
+    <div class="cell k-pron"><b>🙋</b>yo</div><div class="cell k-pron"><b>👉</b>tú</div><div class="cell k-verb"><b>🤲</b>quiero</div><div class="cell k-verb"><b>❗</b>necesito</div><div class="cell k-neg"><b>✖️</b>no</div>
+    <div class="cell"><b>✔️</b>sí</div><div class="cell"><b>➕</b>más</div><div class="cell"><b>🔁</b>otra vez</div><div class="cell"><b>✅</b>terminé</div><div class="cell k-verb"><b>🆘</b>ayuda</div>
+    <div class="cell k-verb"><b>👍</b>me gusta</div><div class="cell k-neg"><b>👎</b>no me gusta</div><div class="cell k-neg"><b>🚫</b>no quiero</div><div class="cell k-verb"><b>✋</b>parar</div><div class="cell k-verb"><b>⏳</b>esperar</div>
+    <div class="cell k-verb"><b>🚶</b>ir</div><div class="cell k-verb"><b>👀</b>ver</div><div class="cell k-verb"><b>🛠️</b>hacer</div><div class="cell k-verb"><b>🍴</b>comer</div><div class="cell k-verb"><b>🥤</b>beber</div>
+    <div class="cell k-pron"><b>☝️</b>esto</div><div class="cell"><b>🔀</b>otro</div><div class="cell"><b>📍</b>aquí</div><div class="cell"><b>👈</b>allá</div><div class="cell"><b>⏰</b>ahora</div>
+    <div class="cell"><b>⏭️</b>después</div><div class="cell"><b>🙏</b>por favor</div><div class="cell"><b>😊</b>gracias</div><div class="cell k-noun"><b>🚽</b>baño</div><div class="cell k-noun"><b>🏠</b>casa</div>
+  </div>
+  <p class="cut">Consejo: imprímelo en cartulina y plastifícalo, o guárdalo en una funda plástica.</p>
+</section>
+
+<!-- ANEXO B -->
+<section class="sheet">
+  <span class="num">Anexo B</span>
+  <h2>Tablero urgente</h2>
+  <div class="grid c4">
+    <div class="cell k-neg"><b>😣</b>tengo dolor</div><div class="cell k-neg"><b>🚽</b>necesito ir al baño</div><div class="cell k-verb"><b>🥤</b>tengo sed</div><div class="cell k-verb"><b>🍽️</b>tengo hambre</div>
+    <div class="cell k-verb"><b>🥶</b>tengo frío</div><div class="cell k-verb"><b>🥵</b>tengo calor</div><div class="cell k-verb"><b>😴</b>estoy cansado/a</div><div class="cell k-neg"><b>😮‍💨</b>no puedo respirar bien</div>
+    <div class="cell"><b>📞</b>llama a mi familia</div><div class="cell"><b>🧑‍⚕️</b>llama al doctor</div><div class="cell k-verb"><b>💊</b>necesito mi medicina</div><div class="cell k-neg"><b>😵‍💫</b>estoy mareado/a</div>
+    <div class="cell k-neg"><b>😨</b>tengo miedo</div><div class="cell"><b>🙂</b>estoy bien</div><div class="cell k-neg"><b>❓</b>no entiendo</div><div class="cell"><b>🐢</b>más despacio</div>
+  </div>
+  <h2 style="margin-top:8mm">¿Dónde duele?</h2>
+  <div class="grid c4">
+    <div class="cell k-noun"><b>🧠</b>cabeza</div><div class="cell k-noun"><b>👁️</b>ojos</div><div class="cell k-noun"><b>👂</b>oído</div><div class="cell k-noun"><b>🗣️</b>garganta</div>
+    <div class="cell k-noun"><b>🫀</b>pecho</div><div class="cell k-noun"><b>🤢</b>estómago</div><div class="cell k-noun"><b>🧍</b>espalda</div><div class="cell k-noun"><b>🦷</b>diente</div>
+  </div>
+</section>
+
+<!-- ANEXO C -->
+<section class="sheet">
+  <span class="num">Anexo C</span>
+  <h2>Escala de dolor</h2>
+  <p>Señala cuánto duele.</p>
+  <div class="grid c3 pain">
+    <div class="cell" style="border-color:#3fa564"><b>😀</b>0 · no duele</div>
+    <div class="cell" style="border-color:#8bc34a"><b>🙂</b>2 · duele un poco</div>
+    <div class="cell" style="border-color:#e8c23d"><b>😐</b>4 · duele algo</div>
+    <div class="cell" style="border-color:#e8a33d"><b>😟</b>6 · duele bastante</div>
+    <div class="cell" style="border-color:#e8793d"><b>😣</b>8 · duele mucho</div>
+    <div class="cell" style="border-color:#d9534f"><b>😭</b>10 · el peor dolor</div>
+  </div>
+  <h2 style="margin-top:10mm">¿Desde cuándo?</h2>
+  <div class="grid c4">
+    <div class="cell"><b>⏰</b>ahora</div><div class="cell"><b>🌅</b>esta mañana</div><div class="cell"><b>🌙</b>ayer</div><div class="cell"><b>📅</b>varios días</div>
+  </div>
+  <p class="small" style="margin-top:6mm">Esta escala de caras es orientativa y no reemplaza la evaluación médica.</p>
+</section>
+
+<!-- ANEXO D -->
+<section class="sheet">
+  <span class="num">Anexo D</span>
+  <h2>Sí · No · No sé</h2>
+  <div class="grid c3" style="margin-top:10mm">
+    <div class="cell" style="border-color:#3fa564;min-height:70mm;font-size:22pt"><b style="font-size:60pt">👍</b>SÍ</div>
+    <div class="cell k-neg" style="min-height:70mm;font-size:22pt"><b style="font-size:60pt">👎</b>NO</div>
+    <div class="cell" style="min-height:70mm;font-size:22pt"><b style="font-size:60pt">🤷</b>NO SÉ</div>
+  </div>
+  <p style="margin-top:8mm">Haz preguntas que se puedan responder con sí o no, de una a la vez: "¿Te duele?", "¿Quieres agua?". Espera la respuesta antes de hacer la siguiente.</p>
+</section>
+
+<!-- ANEXO E -->
+<section class="sheet">
+  <span class="num">Anexo E</span>
+  <h2>¿Cómo me siento?</h2>
+  <div class="grid c4">
+    <div class="cell k-adj"><b>😀</b>feliz</div><div class="cell k-adj"><b>😢</b>triste</div><div class="cell k-adj"><b>😠</b>enojado/a</div><div class="cell k-adj"><b>😨</b>asustado/a</div>
+    <div class="cell k-adj"><b>😴</b>cansado/a</div><div class="cell k-adj"><b>🥱</b>aburrido/a</div><div class="cell k-adj"><b>🤩</b>emocionado/a</div><div class="cell k-adj"><b>😬</b>nervioso/a</div>
+    <div class="cell k-adj"><b>🤒</b>enfermo/a</div><div class="cell k-adj"><b>🥺</b>solo/a</div><div class="cell k-adj"><b>😕</b>confundido/a</div><div class="cell k-adj"><b>😌</b>tranquilo/a</div>
+    <div class="cell"><b>❤️</b>te quiero</div><div class="cell"><b>💭</b>te extraño</div><div class="cell"><b>🫂</b>abrazo</div><div class="cell"><b>🙇</b>perdón</div>
+  </div>
+</section>
+
+<!-- ANEXO F -->
+<section class="sheet">
+  <span class="num">Anexo F</span>
+  <h2>Alfabeto</h2>
+  <p>Para personas que pueden deletrear: señala letra por letra. Usa ␣ para separar palabras.</p>
+  <div class="grid c5" style="font-size:20pt">
+    <div class="cell"><b>A</b></div><div class="cell"><b>B</b></div><div class="cell"><b>C</b></div><div class="cell"><b>D</b></div><div class="cell"><b>E</b></div>
+    <div class="cell"><b>F</b></div><div class="cell"><b>G</b></div><div class="cell"><b>H</b></div><div class="cell"><b>I</b></div><div class="cell"><b>J</b></div>
+    <div class="cell"><b>K</b></div><div class="cell"><b>L</b></div><div class="cell"><b>M</b></div><div class="cell"><b>N</b></div><div class="cell"><b>Ñ</b></div>
+    <div class="cell"><b>O</b></div><div class="cell"><b>P</b></div><div class="cell"><b>Q</b></div><div class="cell"><b>R</b></div><div class="cell"><b>S</b></div>
+    <div class="cell"><b>T</b></div><div class="cell"><b>U</b></div><div class="cell"><b>V</b></div><div class="cell"><b>W</b></div><div class="cell"><b>X</b></div>
+    <div class="cell"><b>Y</b></div><div class="cell"><b>Z</b></div><div class="cell"><b>␣</b>espacio</div><div class="cell k-neg"><b>⌫</b>borrar</div><div class="cell"><b>✔️</b>listo</div>
+  </div>
+</section>
+
+<!-- ANEXO G -->
+<section class="sheet">
+  <span class="num">Anexo G</span>
+  <h2>Pasaporte de comunicación</h2>
+  <p>Complétalo con la persona y entrégalo a profesores, médicos y cuidadores nuevos.</p>
+  <table>
+    <tr><th style="width:42%">Me llamo</th><td></td></tr>
+    <tr><th>Me gusta que me llamen</th><td></td></tr>
+    <tr><th>Cómo me comunico</th><td>☐ Vocari &nbsp; ☐ tablero impreso &nbsp; ☐ gestos/señas &nbsp; ☐ algunas palabras &nbsp; ☐ mirada</td></tr>
+    <tr><th>Cuando digo "sí", hago…</th><td></td></tr>
+    <tr><th>Cuando digo "no", hago…</th><td></td></tr>
+    <tr><th>Así sabes que algo me duele</th><td></td></tr>
+    <tr><th>Así sabes que estoy nervioso/a o asustado/a</th><td></td></tr>
+    <tr><th>Lo que me ayuda a calmarme</th><td></td></tr>
+    <tr><th>Cosas que me gustan</th><td></td></tr>
+    <tr><th>Cosas que no me gustan</th><td></td></tr>
+    <tr><th>Alergias / medicamentos importantes</th><td></td></tr>
+    <tr><th>Contacto de mi familia</th><td></td></tr>
+  </table>
+  <div class="box"><p><b>Por favor:</b> háblame directamente a mí, dame tiempo para responder (cuenta hasta 10), y no termines mis frases por mí.</p></div>
+</section>
+
+<!-- ANEXO H -->
+<section class="sheet">
+  <span class="num">Anexo H</span>
+  <h2>Carta para el colegio o los cuidadores</h2>
+  <p>Estimado/a ______________________________,</p>
+  <p>______________________ usa un sistema de comunicación aumentativa (CAA) llamado Vocari, en el teléfono o la tablet, y un tablero impreso de respaldo. Es su forma de comunicarse y la necesita disponible en todo momento, igual que otra persona necesita sus anteojos.</p>
+  <p>Les pedimos, por favor:</p>
+  <ol>
+    <li>Mantener el comunicador o el tablero <b>siempre a su alcance</b>, sobre la mesa.</li>
+    <li><b>Modelar</b>: mientras le hablan, tocar o señalar 1 o 2 palabras clave (por ejemplo, "terminé", "ayuda", "otra vez").</li>
+    <li>Darle <b>tiempo para responder</b> (contar hasta 10 en silencio).</li>
+    <li>Responder a lo que comunica, <b>aunque parezca un toque al azar</b>.</li>
+    <li>Respetar su <b>"no"</b> siempre que sea seguro.</li>
+    <li>Contarnos qué palabras le harían falta en el colegio.</li>
+  </ol>
+  <p>Vocari es gratuito y se puede abrir en cualquier navegador. Con gusto les mostramos cómo funciona.</p>
+  <p>Muchas gracias por ayudar a que ______________________ tenga voz.</p>
+  <p style="margin-top:10mm">Firma: ______________________ &nbsp;&nbsp; Teléfono: ______________________</p>
+</section>
+
+<!-- ANEXO I -->
+<section class="sheet">
+  <span class="num">Anexo I</span>
+  <h2>Registro semanal</h2>
+  <table>
+    <tr><th style="width:18%">Semana</th><th>Palabras que modelé</th><th>Palabras que usó</th><th>Con quién</th><th>Momento destacado</th></tr>
+    <tr><td style="height:26mm">1</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td style="height:26mm">2</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td style="height:26mm">3</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td style="height:26mm">4</td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <h3>Palabras para el próximo mes</h3>
+  <div class="lines"><div></div><div></div><div></div></div>
+</section>
+
+<!-- CIERRE -->
+<section class="chapter">
+  <h1>Gracias</h1>
+  <p>Gracias por comprar esta guía. Con tu compra ayudas a mantener Vocari gratis para quien lo necesite y a financiar becas para familias que no pueden pagar.</p>
+  <p>Si te sirvió, compártela con otra familia, con el colegio o con tu terapeuta (o mejor aún, recomiéndales que la consigan). Si tienes sugerencias para la próxima edición, escríbenos: nos encanta leerlas.</p>
+  <div class="box">
+    <p><b>Vocari</b> · comunicador gratuito para quien no puede hablar<br>
+    Contacto: nemsstoredrip@gmail.com</p>
+  </div>
+  <p class="license">© 2026 Vocari. Todos los derechos reservados. Puedes imprimir esta guía y sus tableros para tu uso personal, familiar o profesional con las personas que acompañas. No está permitido revenderla ni publicarla en internet. Esta guía es material informativo y no constituye consejo médico ni terapéutico. Los símbolos son emojis Noto (Google, licencia SIL Open Font License 1.1).</p>
+</section>
+
+</body>
+</html>
