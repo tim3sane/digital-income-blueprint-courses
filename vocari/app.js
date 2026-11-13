@@ -1,6 +1,6 @@
 'use strict';
 /* Vocari — comunicador CAA. Todo se guarda en este dispositivo (localStorage).
-   La membresía se valida con /api/* (Stripe) y se guarda como un token firmado. */
+   La membresía se valida con /api/* (Paddle) y se guarda como un token firmado. */
 
 const API = '/api';
 const $ = id => document.getElementById(id);
@@ -489,8 +489,9 @@ async function post(path, body) {
 async function checkout(id, btn) {
   if (!navigator.onLine) return toast(L().offline);
   btn.disabled = true;
-  try { const j = await post('/checkout', { plan: id, lang: P().lang }); location.href = j.url; }
-  catch (e) { toast(L().payErr); btn.disabled = false; }
+  try { $('dlgPlans').close(); await window.VocariPay.buy(id, P().lang); }
+  catch (e) { toast(L().payErr); }
+  btn.disabled = false;
 }
 async function portal(btn) {
   if (!navigator.onLine) return toast(L().offline);
@@ -513,17 +514,18 @@ async function refresh(token, manual) {
   } catch (e) { if (manual) toast(e.status === 400 || e.status === 401 ? L().badCode : L().payErr); }
 }
 async function activateFromCheckout() {
-  const q = new URLSearchParams(location.search), sid = q.get('session_id');
-  if (!sid) return;
+  const q = new URLSearchParams(location.search), txn = q.get('txn');
+  if (!txn) return;
   history.replaceState(null, '', location.pathname);
   toast(L().activating);
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 10; i++) { // Paddle puede tardar unos segundos en crear la suscripción
     try {
-      const r = await fetch(`${API}/activate?session_id=${encodeURIComponent(sid)}`);
+      const r = await fetch(`${API}/activate?txn=${encodeURIComponent(txn)}`);
       const j = await r.json();
       if (r.ok && j.token) { setLicense(j); toast(L().activated); openPlans(); return; }
+      if (r.status !== 409 && r.status < 500) break;
     } catch (e) {}
-    await new Promise(r => setTimeout(r, 1500));
+    await new Promise(r => setTimeout(r, 2000));
   }
   toast(L().payErr);
 }

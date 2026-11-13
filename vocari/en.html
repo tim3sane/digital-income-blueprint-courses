@@ -21,7 +21,7 @@
 <div class="wrap">
   <header class="top">
     <a class="logo" href="en.html"><img src="icon.svg" alt=""> Vocari</a>
-    <nav><a href="./" hreflang="es" lang="es">ES</a><a class="hide-sm" href="#how">How it works</a><a class="hide-sm" href="#plans">Plans</a><a href="app.html"><b>Open app</b></a></nav>
+    <nav><a href="./" hreflang="es" lang="es">ES</a><a class="hide-sm" href="#how">How it works</a><a class="hide-sm" href="#plans">Plans</a><a class="hide-sm" href="guia.html?lang=en">Guide</a><a href="app.html"><b>Open app</b></a></nav>
   </header>
 
   <div class="hero">
@@ -124,7 +124,7 @@
         <button class="btn" data-buy="pro">Try 7 days free</button>
       </div>
     </div>
-    <p class="note">Secure payments by Stripe. Prices in USD; your bank converts to your currency. Cancel anytime from the app. See <a href="terms.html">Terms</a> and <a href="refunds.html">Refunds</a>.</p>
+    <p class="note">Secure payments by Paddle (card, PayPal, Apple Pay, Google Pay). Prices in USD plus local taxes where applicable; Paddle shows the total in your currency. Cancel anytime from the app. See <a href="terms.html">Terms</a> and <a href="refunds.html">Refunds</a>.</p>
   </div>
 </section>
 
@@ -134,6 +134,19 @@
       <h2>Scholarships: nobody is left out</h2>
       <p>If your family, school or foundation can't afford Plus, write to us briefly describing your situation and we'll send you a free code. No paperwork required. Every paid membership helps fund these scholarships.</p>
       <a class="btn" data-site="mailto" data-subject="Vocari Plus scholarship">Request a scholarship</a>
+    </div>
+  </div>
+</section>
+
+<section id="guide">
+  <div class="wrap">
+    <div class="cards" style="align-items:center">
+      <div>
+        <h2>📘 Vocari Family Guide</h2>
+        <p class="sub" style="margin-bottom:16px">A practical ebook (PDF, in Spanish) to start communicating with AAC at home: what it is, myths, how to model, a 30-day plan, routines and printable boards.</p>
+        <a class="btn" href="guia.html?lang=en">See the guide · USD 1.99</a>
+      </div>
+      <div class="card" style="text-align:center"><div class="ic" style="font-size:4rem">📘</div><h3>33 pages · USD 1.99</h3><p>Instant download. 14-day guarantee.</p></div>
     </div>
   </div>
 </section>
@@ -153,12 +166,13 @@
 
 <footer>
   <div class="wrap">
-    <p><a href="app.html">Open Vocari</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refunds.html">Refunds</a><a data-site="mailto">Contact</a></p>
+    <p><a href="app.html">Open Vocari</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refunds.html">Refunds</a><a href="guia.html?lang=en">Guide</a><a data-site="mailto">Contact</a></p>
     <p>© 2026 <span data-site="owner"></span> · Made in Chile 🇨🇱 for the world. · <a href="./" lang="es">Español</a></p>
   </div>
 </footer>
 
 <script src="site.js"></script>
+<script src="pay.js"></script>
 <script>
 (function () {
   var P = { plus: { m: ['$3.99', '/mo', 'Billed monthly', 'plus_m'], y: ['$29', '/yr', 'Just $2.42/month', 'plus_y'] },
@@ -176,10 +190,9 @@
   document.querySelectorAll('[data-buy]').forEach(function (btn) {
     btn.onclick = function () {
       btn.disabled = true;
-      fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ plan: P[btn.dataset.buy][b][3], lang: 'en' }) })
-        .then(function (r) { return r.json(); })
-        .then(function (j) { if (j.url) location.href = j.url; else throw 0; })
-        .catch(function () { alert('Could not start the payment. Check your connection and try again.'); btn.disabled = false; });
+      VocariPay.buy(P[btn.dataset.buy][b][3], 'en')
+        .catch(function () { alert('Could not start the payment. Check your connection and try again.'); })
+        .then(function () { btn.disabled = false; });
     };
   });
   paint();
